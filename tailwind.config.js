@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
-      colors:{
+      colors: {
         primary: {
           indigo: '#6366F1',
           black: '#23272A',
@@ -20,14 +20,13 @@ export default {
           slate: '#EDEDED',
           purple: '#9799FF',
           neutral: '#ACACAC',
-        }
+        },
       },
       fontFamily: {
-        inter:['Inter', 'sans-serif'],
-        sora:['Sora', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+        sora: ['Sora', 'sans-serif'],
       },
     },
   },
   plugins: [],
-}
-
+};

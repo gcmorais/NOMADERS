@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from './pages/site/Home';
+import Home from './pages/Home';
 import Navbar from './components/navbar';
 
 function App() {
