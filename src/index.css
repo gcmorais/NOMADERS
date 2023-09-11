@@ -3,3 +3,57 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .packages{
+    width: 330px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    padding: 28px;
+    gap: 20px;
+    background-color: white;
+    filter: drop-shadow(0 4px 3px rgba(152,152,152, 0.25));
+    border-radius: 0.75rem;
+    transition: all .2s ease;
+
+    &:hover{
+      filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
+      transform: scale(1.03);
+
+      .packages-btn{
+        /* background-color: #6366F1; */
+        opacity: 100%;
+      }
+    }
+
+    &:first-child{
+      filter: drop-shadow(0 4px 3px rgba(151,153,255, 0.45));
+      .packages-btn{
+        opacity: 100%;
+        background-color: #6366F1;
+        color: white;
+        border: none;
+      }
+    }
+
+    .packages-btn {
+      border-radius: 0.5rem;
+      border-width: 2px;
+      font-weight: 500;
+      color: #6366F1;
+      font-size: 16px;
+      line-height: 1.5rem;
+      height: 48px;
+      opacity: 60%;
+      transition: all .2s ease;
+      cursor: default;
+  
+      /* &:hover{
+        background-color: #6366F1;
+        border: none;
+        color: white;
+      } */
+    }
+
+  }
+}

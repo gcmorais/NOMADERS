@@ -16,7 +16,7 @@ function Navbar() {
     window.addEventListener('scroll', posicaoScroll);
   }, []);
   return (
-    <header className={ativaCor ? 'w-[100%] top-0 px-10 fixed flex justify-between pt-5 text-primary-white font-inter items-center bg-primary-indigo lg:px-36 2xl:px-72' : 'w-[100%] top-0 px-10 fixed flex justify-between pt-5 text-primary-white font-inter items-center bg-transparent lg:px-36 2xl:px-72'}>
+    <header className={ativaCor ? 'w-[100%] top-0 px-10 fixed flex justify-between py-5 text-primary-white font-inter items-center bg-primary-indigo lg:px-36 2xl:px-72 z-10' : 'w-[100%] top-0 px-10 fixed flex justify-between pt-5 text-primary-white font-inter items-center bg-transparent lg:px-36 2xl:px-72 z-10'}>
       <h1 className="text-lg font-extrabold tracking-widest">
         NOMADERS
       </h1>

@@ -10,7 +10,7 @@ function Info({ title, text, icon }) {
       <h1 className="text-xl text-primary-black font-semibold">
         {title}
       </h1>
-      <span className="m-auto text-secundary-gray tracking-wider  font-semibold text-xs ">
+      <span className="m-auto text-secundary-gray tracking-wider  font-semibold text-xs">
         {text}
       </span>
     </div>
