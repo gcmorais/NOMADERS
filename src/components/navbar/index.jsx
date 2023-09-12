@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AiOutlineUser } from 'react-icons/ai';
+import NavButton from '../navbutton';
 
 function Navbar() {
   const [ativaCor, setAtivaCor] = useState(false);
@@ -29,10 +29,7 @@ function Navbar() {
           <li>FAQ</li>
         </ul>
       </nav>
-      <button type="button" className=" flex justify-center gap-1  bg-primary-white text-primary-black py-2  rounded-full w-28">
-        <p className="text-lg opacity-70"><AiOutlineUser /></p>
-        <p className="font-semibold text-sm opacity-80">Entrar</p>
-      </button>
+      <NavButton bgcolor="bg-primary-white" text="text-black" />
     </header>
   );
 }
