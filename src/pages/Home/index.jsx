@@ -1,6 +1,7 @@
 import React from 'react';
 import { AiFillWindows } from 'react-icons/ai';
 import { Accordion } from '@prismane/core';
+import { Link } from 'react-router-dom';
 import MainImage from '../../assets/image.svg';
 import Stars from '../../assets/Vector.svg';
 import Info from '../../components/info';
@@ -68,7 +69,7 @@ function Home() {
 
   return (
     <main>
-      <section className="bg-primary-indigo px-[10%] font-inter lg:flex justify-center items-center flex-col pb-32">
+      <section id="home" className="bg-primary-indigo px-[10%] font-inter lg:flex justify-center items-center flex-col pb-32">
         <div className="flex flex-col justify-center gap-5 pt-32 lg:flex-row">
           <div className="m-auto max-w-[90%] flex justify-end lg:m-0">
             <img src={MainImage} alt="Home" className="items-center" />
@@ -81,18 +82,18 @@ function Home() {
             <p className="mt-5 mb-10 text-center lg:w-[90%]">…onde você possa pertencer a um clube escolar, um grupo de gamers, ou uma comunidade artística mundial. Onde você e alguns amigos possam passar um tempo juntos. Um lugar que torna fácil conversar todos os dias e socializar com mais frequência.</p>
 
             <div className="flex justify-center gap-3 ">
-              <button className=" bg-primary-white text-primary-black py-3  rounded-full px-10 lg:px-20" type="button">
+              <Link to="/login" className=" bg-primary-white text-primary-black py-3  rounded-full px-10 lg:px-20">
                 Registrar
-              </button>
-              <button className="hidden w-[200px] bg-primary-black text-primary-white py-2 rounded-full px-5 lg:w-[290px] lg:py-3 lg:list-item" type="button">
+              </Link>
+              <Link to="/login" className="hidden w-[200px] bg-primary-black text-primary-white py-2 rounded-full px-5 lg:w-[290px] lg:py-3 lg:list-item text-center" type="button">
                 Já tem uma conta ? Entrar
-              </button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-primary-white py-28 font-inter">
+      <section id="overview" className="bg-primary-white py-28 font-inter">
         <Framer>
           <div className="flex justify-center flex-col items-center gap-14">
             <div className="flex justify-center flex-col items-center gap-2">
@@ -115,7 +116,7 @@ function Home() {
         </Framer>
       </section>
 
-      <section className="py-28">
+      <section id="integração" className="py-28">
         <Framer>
           <div className="flex justify-center flex-col items-center gap-14">
             <div className="flex justify-center flex-col items-center gap-2">
@@ -134,12 +135,12 @@ function Home() {
               <Platform img={MercadoLivre} />
               <Platform img={Shopify} />
             </div>
-            <Button>Ver todas</Button>
+            <Button link="/login">Ver todas</Button>
           </div>
         </Framer>
       </section>
 
-      <section className="flex justify-center pb-32">
+      <section className="flex justify-center">
         <Framer>
           <div className="w-[100%] bg-primary-white pt-10 pb-5 font-inter rounded-lg lg:px-28">
             <div className="flex justify-center flex-col items-center">
@@ -158,7 +159,7 @@ function Home() {
         </Framer>
       </section>
 
-      <section className="pb-20">
+      <section id="pacotes" className="py-32">
         <Framer>
           <div className="flex justify-center flex-col items-center gap-2 mb-16">
             <h1 className="text-primary-black font-black text-3xl text-center">
@@ -172,7 +173,7 @@ function Home() {
         </Framer>
       </section>
 
-      <section className="bg-primary-white lg:h-[600px] py-28 font-inter">
+      <section id="faq" className="bg-primary-white lg:h-[600px] py-28 font-inter">
         <Framer>
           <div className="flex justify-center flex-col py-20 items-center gap-14 lg:w-[50%] lg:h-[600px] m-auto bg-primary-indigo lg:rounded-lg lg:mt-30">
             <img src={background} alt="bg-img" className="hidden absolute w-[45%] lg:block" />
@@ -261,7 +262,7 @@ function Home() {
               Vamos começar sua jornada?
             </h1>
           </div>
-          <Button>Registrar</Button>
+          <Button link="/login">Registrar</Button>
         </div>
       </section>
     </main>

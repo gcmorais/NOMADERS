@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Anchor, ConfigProvider } from 'antd';
 import NavButton from '../navbutton';
 
 function Navbar() {
@@ -20,16 +21,51 @@ function Navbar() {
       <h1 className="text-lg font-extrabold tracking-widest">
         NOMADERS
       </h1>
-      <nav>
-        <ul className="gap-10 hidden md:hidden lg:flex cursor-pointer text-sm font-semibold">
-          <li>Overview</li>
-          <li>Pacotes</li>
-          <li>Integração</li>
-          <li>Suporte</li>
-          <li>FAQ</li>
-        </ul>
-      </nav>
-      <NavButton bgcolor="bg-primary-white" text="text-black" />
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: '#fff',
+            colorText: 'rgba(255,255,255, 0.8)',
+            fontFamily: 'Inter',
+            lineType: 'none',
+            padding: '40',
+            screenLGMax: '10',
+          },
+        }}
+      >
+        <Anchor
+          className="hidden lg:block font-semibold"
+          direction="horizontal"
+          items={[
+            {
+              key: 'home',
+              href: '#home',
+              title: 'Home',
+            },
+            {
+              key: 'overview',
+              href: '#overview',
+              title: 'Overview',
+            },
+            {
+              key: 'integração',
+              href: '#integração',
+              title: 'Integração',
+            },
+            {
+              key: 'pacotes',
+              href: '#pacotes',
+              title: 'Pacotes',
+            },
+            {
+              key: 'faq',
+              href: '#faq',
+              title: 'FAQs',
+            },
+          ]}
+        />
+      </ConfigProvider>
+      <NavButton link="/login" bgcolor="bg-primary-white" text="text-black" />
     </header>
   );
 }

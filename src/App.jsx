@@ -1,16 +1,16 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { PrismaneProvider } from '@prismane/core';
-import Home from './pages/Home';
-import Navbar from './components/navbar';
-import Footer from './components/footer';
+import { BrowserRouter } from 'react-router-dom';
+
+import Rotas from './routes';
 
 function App() {
   return (
     <PrismaneProvider>
-      <Navbar />
-      <Home />
-      <Footer />
+      <BrowserRouter>
+        <Rotas />
+      </BrowserRouter>
     </PrismaneProvider>
   );
 }

@@ -62,7 +62,7 @@ function Footer() {
           <img src={BrazilFlag} alt="brazil" className="w-[22px] rounded-sm opacity-80" />
           Português do Brasil
         </div>
-        <NavButton bgcolor="bg-primary-indigo" text="text-white" />
+        <NavButton link="/login" bgcolor="bg-primary-indigo" text="text-white" />
       </div>
     </footer>
   );
