@@ -33,6 +33,7 @@
         background-color: #6366F1;
         color: white;
         border: none;
+        cursor: pointer;
       }
     }
 
@@ -53,6 +54,7 @@
         border: none;
         color: white;
       } */
+
     }
 
   }

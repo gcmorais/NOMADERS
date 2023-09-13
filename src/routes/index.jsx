@@ -5,18 +5,10 @@ import {
   Route,
   Outlet,
 } from 'react-router-dom';
+import Layout from '../pages/Home/layout';
 import LoginPage from '../pages/Login';
-import Home from '../pages/Home';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
-
-// function Appdash(){
-//   return(
-//     <>
-
-//     </>
-//   )
-// }
 
 function Homedash() {
   return (
@@ -34,7 +26,7 @@ function Rotas() {
   return (
     <Routes location={location} key={location.pathname}>
       <Route path="/" element={<Homedash />}>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Layout />} />
       </Route>
       <Route path="/login" element={<LoginPage />} />
       {/* <Route path="/app" element={<Appdash />}>
