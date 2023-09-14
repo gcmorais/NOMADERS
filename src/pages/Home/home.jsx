@@ -18,10 +18,10 @@ function Home() {
           <p className="mt-5 mb-10 text-center lg:w-[90%]">…onde você possa pertencer a um clube escolar, um grupo de gamers, ou uma comunidade artística mundial. Onde você e alguns amigos possam passar um tempo juntos. Um lugar que torna fácil conversar todos os dias e socializar com mais frequência.</p>
 
           <div className="flex justify-center gap-3 ">
-            <Link to="/login" className=" bg-primary-white text-primary-black py-3  rounded-full px-10 lg:px-20">
+            <Link to="/app/signup" className=" bg-primary-white text-primary-black py-3  rounded-full px-10 lg:px-20">
               Registrar
             </Link>
-            <Link to="/login" className="hidden w-[200px] bg-primary-black text-primary-white py-2 rounded-full px-5 lg:w-[290px] lg:py-3 lg:list-item text-center" type="button">
+            <Link to="/app/signin" className="hidden w-[200px] bg-primary-black text-primary-white py-2 rounded-full px-5 lg:w-[290px] lg:py-3 lg:list-item text-center" type="button">
               Já tem uma conta ? Entrar
             </Link>
           </div>

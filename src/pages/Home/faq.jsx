@@ -14,7 +14,7 @@ function Faq() {
               Perguntas frequentes
             </h1>
           </div>
-          <Accordion className="lg:w-[70%] gap-3 z-0 p-4">
+          <Accordion className="w-[80%] gap-3 z-0 p-4">
             <Accordion.Item value="first" className="rounded-md bg-white border-none">
               <Accordion.Control className="rounded-md px-6 font-medium">
                 Posso gerar o histórico de vendas por meio do app ?

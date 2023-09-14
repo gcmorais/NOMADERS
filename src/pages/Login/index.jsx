@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { BsArrowLeft } from 'react-icons/bs';
 import Laptop from '../../assets/laptop.svg';
 import StarsIndigo from '../../assets/starsindigo.svg';
-import Login from '../../components/modal';
+import SignUp from '../../components/modal/signUp';
+import SignIn from '../../components/modal/signIn';
 
 function LoginPage() {
-  const [openModal, setOpenModal] = useState(false);
+  const [openUpModal, setOpenUpModal] = useState(false);
+  const [openInModal, setOpenInModal] = useState(false);
 
   return (
     <>
@@ -38,18 +40,22 @@ function LoginPage() {
             </h1>
             <div className="lg:flex mt-2 mb-14 lg:mb-0">
               <div className="flex flex-col gap-2 items-center lg:items-start">
-                <button type="button" className="flex justify-center text-center items-center rounded-full bg-primary-indigo text-white 2xl:w-[280px] lg:px-10 h-10 " onClick={() => setOpenModal(true)}>
-                  Criar conta
-                </button>
-                <p className="w-[280px] 2xl:text-[9.5px] lg:text-[8px] text-primary-gray lg:w-[94%]">
+                <Link to="/app/signup">
+                  <button type="button" className="flex justify-center text-center items-center rounded-full bg-primary-indigo text-white 2xl:w-[280px] px-[43px] h-10 " onClick={() => setOpenUpModal(true)}>
+                    Criar conta
+                  </button>
+                </Link>
+                <p className="w-[280px] text-[10px] 2xl:text-[9.5px] lg:text-[8px] text-primary-gray lg:w-[94%] text-center">
                   Ao se inscrever, você concorda com os Termos de Serviço
                   e a Política de Privacidade, incluindo o Uso de Cookies.
                 </p>
               </div>
               <div className="flex flex-col gap-2 mt-7 lg:mt-0 items-center">
-                <button type="button" className="flex justify-center text-center items-center rounded-full bg-primary-indigo text-white 2xl:w-[270px] lg:px-20 h-10" onClick={() => setOpenModal(true)}>
-                  Entrar
-                </button>
+                <Link to="/app/signin">
+                  <button type="button" className="flex justify-center text-center items-center rounded-full bg-primary-indigo text-white 2xl:w-[270px] px-[62px] h-10" onClick={() => setOpenInModal(true)}>
+                    Entrar
+                  </button>
+                </Link>
                 <p className="text-[12px] text-primary-gray lg:text-center">
                   Já tem uma conta ?
                 </p>
@@ -58,7 +64,9 @@ function LoginPage() {
           </div>
         </main>
       </section>
-      <Login isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)} />
+      <Outlet />
+      <SignUp isOpen={openUpModal} setModalOpen={() => setOpenUpModal(!openUpModal)} />
+      <SignIn isOpen={openInModal} setModalOpen={() => setOpenInModal(!openInModal)} />
     </>
   );
 }

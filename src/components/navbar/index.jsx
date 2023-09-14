@@ -65,7 +65,7 @@ function Navbar() {
           ]}
         />
       </ConfigProvider>
-      <NavButton link="/login" bgcolor="bg-primary-white" text="text-black" />
+      <NavButton link="/app" bgcolor="bg-primary-white" text="text-black" />
     </header>
   );
 }

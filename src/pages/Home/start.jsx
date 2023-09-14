@@ -10,7 +10,7 @@ function Start() {
             Vamos começar sua jornada?
           </h1>
         </div>
-        <Button link="/login">Registrar</Button>
+        <Button link="/app/signup">Registrar</Button>
       </div>
     </section>
   );
