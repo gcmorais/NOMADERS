@@ -11,6 +11,18 @@ import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import SignIn from '../components/modal/signIn';
 import SignUp from '../components/modal/signUp';
+import DashMenu from '../components/dashMenu';
+import Dashboard from '../pages/App/dashboard';
+import Products from '../pages/App/products';
+
+function AppDash() {
+  return (
+    <div className="lg:flex lg:gap-1.5 p-1">
+      <DashMenu />
+      <Outlet />
+    </div>
+  );
+}
 
 function Homedash() {
   return (
@@ -35,6 +47,10 @@ function Rotas() {
       <Route path="/app" element={<LoginPage />}>
         <Route path="signup" element={<SignUp isOpen={openUpModal} />} />
         <Route path="signin" element={<SignIn isOpen={openInModal} />} />
+      </Route>
+      <Route path="app/dashboard" element={<AppDash />}>
+        <Route path="home" element={<Dashboard />} />
+        <Route path="products" element={<Products />} />
       </Route>
       {/* <Route path="/app" element={<Appdash />}>
         <Route path="/dashboard" element={<Dashboard />} />
