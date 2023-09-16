@@ -17,7 +17,7 @@ import Products from '../pages/App/products';
 
 function AppDash() {
   return (
-    <div className="lg:flex lg:gap-1.5 p-1">
+    <div className="lg:flex lg:gap-1.5 p-1 dark:bg-primary-blue lg:h-screen">
       <DashMenu />
       <Outlet />
     </div>
@@ -48,8 +48,8 @@ function Rotas() {
         <Route path="signup" element={<SignUp isOpen={openUpModal} />} />
         <Route path="signin" element={<SignIn isOpen={openInModal} />} />
       </Route>
-      <Route path="app/dashboard" element={<AppDash />}>
-        <Route path="home" element={<Dashboard />} />
+      <Route path="app/nomaders" element={<AppDash />}>
+        <Route path="dashboard" element={<Dashboard />} />
         <Route path="products" element={<Products />} />
       </Route>
       {/* <Route path="/app" element={<Appdash />}>

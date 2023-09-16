@@ -8,14 +8,14 @@ import User from '../../assets/user.svg';
 function DashMenu() {
   return (
     <div className="flex flex-col gap-1.5 w-full lg:w-72 ">
-      <div className="lg:h-[13vh] flex flex-col justify-center items-left gap-1 bg-secundary-white rounded-lg">
-        <div className="flex justify-around items-center pr-10">
+      <div className="lg:h-[13.75vh] flex flex-col justify-center items-left gap-1 bg-secundary-white rounded-lg dark:bg-secundary-blue">
+        <div className="flex justify-center gap-3 lg:justify-around lg:gap-0 items-center lg:p-10 p-3">
           <img src={User} alt="profile-img" className="pl-1" />
           <div>
-            <h1 className="font-inter font-semibold text-xl text-primary-black ">
+            <h1 className="font-inter font-semibold text-xl text-primary-black dark:text-white/80">
               Antony Curt
             </h1>
-            <p className="font-inter text-[10.5px] opacity-50">
+            <p className="font-inter text-[10.5px] opacity-50 dark:text-secundary-neutral">
               Imperatriz systems AD
             </p>
           </div>
@@ -24,8 +24,8 @@ function DashMenu() {
           </span>
         </div>
       </div>
-      <div className="pt-5 lg:h-[84.8vh] bg-secundary-white rounded-lg">
-        <NavLink to="home" className={({ isActive }) => (isActive ? 'w-[90%] flex justify-center gap-10 items-center px-20 py-2 mb-2 lg:mb-10 rounded-r-full bg-primary-indigo text-white' : 'w-[90%] flex justify-center gap-10 items-center px-20 py-2 mb-10 text-[#7E86A8]')}>
+      <div className="hidden lg:block pt-5 lg:h-[84.8vh] bg-secundary-white rounded-lg dark:bg-secundary-blue">
+        <NavLink to="dashboard" className={({ isActive }) => (isActive ? 'w-[90%] flex justify-center gap-10 items-center px-20 py-2 mb-2 lg:mb-10 rounded-r-full bg-primary-indigo text-white' : 'w-[90%] flex justify-center gap-10 items-center px-20 py-2 mb-10 text-[#7E86A8]')}>
           <span className="text-2xl">
             <FaHome />
           </span>

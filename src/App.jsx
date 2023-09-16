@@ -4,14 +4,17 @@ import { PrismaneProvider } from '@prismane/core';
 import { BrowserRouter } from 'react-router-dom';
 
 import Rotas from './routes';
+import ThemeProvider from './contexts/ThemeContext';
 
 function App() {
   return (
-    <PrismaneProvider>
-      <BrowserRouter>
-        <Rotas />
-      </BrowserRouter>
-    </PrismaneProvider>
+    <ThemeProvider>
+      <PrismaneProvider>
+        <BrowserRouter>
+          <Rotas />
+        </BrowserRouter>
+      </PrismaneProvider>
+    </ThemeProvider>
   );
 }
 

@@ -12,6 +12,7 @@
   "dependencies": {
     "@prismane/core": "^1.0.1",
     "antd": "^5.9.0",
+    "apexcharts": "^3.42.0",
     "framer-motion": "^10.16.4",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",

@@ -4,6 +4,7 @@ export default {
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -13,6 +14,7 @@ export default {
           white: '#F3FAFF',
           slate: '#D9D9D9',
           gray: '#989898',
+          blue: '#1C2438',
         },
         secundary: {
           white: '#F3F6FF',
@@ -20,6 +22,7 @@ export default {
           slate: '#EDEDED',
           purple: '#9799FF',
           neutral: '#ACACAC',
+          blue: '#151929',
         },
       },
       fontFamily: {
