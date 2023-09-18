@@ -7,7 +7,7 @@ import User from '../../assets/user.svg';
 
 function DashMenu() {
   return (
-    <div className="flex flex-col gap-1.5 w-full lg:w-72 ">
+    <div className="flex flex-col gap-1.5 w-full lg:w-[270px] ">
       <div className="lg:h-[13.75vh] flex flex-col justify-center items-left gap-1 bg-secundary-white rounded-lg dark:bg-secundary-blue">
         <div className="flex justify-center gap-3 lg:justify-around lg:gap-0 items-center lg:p-10 p-3">
           <img src={User} alt="profile-img" className="pl-1" />
