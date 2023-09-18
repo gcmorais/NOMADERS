@@ -29,6 +29,10 @@ export default {
         inter: ['Inter', 'sans-serif'],
         sora: ['Sora', 'sans-serif'],
       },
+      screens: {
+        '3xl': '1880px',
+        '4xl': '1881px',
+      },
     },
   },
   plugins: [],

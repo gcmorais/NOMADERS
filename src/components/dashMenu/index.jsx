@@ -24,7 +24,7 @@ function DashMenu() {
           </span>
         </div>
       </div>
-      <div className="hidden lg:block pt-5 lg:h-[84.8vh] bg-secundary-white rounded-lg dark:bg-secundary-blue">
+      <div className="hidden lg:block pt-5 lg:h-full bg-secundary-white rounded-lg dark:bg-secundary-blue">
         <NavLink to="dashboard" className={({ isActive }) => (isActive ? 'w-[90%] flex justify-center gap-10 items-center px-20 py-2 mb-2 lg:mb-10 rounded-r-full bg-primary-indigo text-white' : 'w-[90%] flex justify-center gap-10 items-center px-20 py-2 mb-10 text-[#7E86A8]')}>
           <span className="text-2xl">
             <FaHome />

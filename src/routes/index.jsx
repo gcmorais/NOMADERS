@@ -17,7 +17,7 @@ import Products from '../pages/App/products';
 
 function AppDash() {
   return (
-    <div className="lg:flex lg:gap-1.5 p-1 dark:bg-primary-blue lg:h-screen">
+    <div className="lg:flex lg:gap-1.5 p-[13.5px] dark:bg-primary-blue">
       <DashMenu />
       <Outlet />
     </div>

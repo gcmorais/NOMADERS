@@ -3,6 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.apexcharts-tooltip {
+  background: #f3f3f3;
+  color: rgb(117, 117, 117);
+}
+.apexcharts-toolbar {
+  color: rgb(117, 117, 117);
+}
+
 @layer components {
   .packages{
     width: 330px;

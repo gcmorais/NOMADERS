@@ -9,19 +9,21 @@ import { BsFillMoonStarsFill } from 'react-icons/bs';
 import { AiOutlineSearch, AiOutlineDownload } from 'react-icons/ai';
 import { MdOutlineWallet } from 'react-icons/md';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import AreaChart from '../../components/chart/areaChart';
+import DonutChart from '../../components/chart/donutChart';
 
 function Dashboard() {
   const { theme, handleToggleTheme } = useContext(ThemeContext);
 
   return (
-    <section className="w-full mt-2 lg:mt-0 lg:h-[99.2vh] rounded-lg bg-secundary-white dark:bg-secundary-blue">
+    <section className="mt-2 lg:mt-0 rounded-lg bg-secundary-white dark:bg-secundary-blue w-full">
       <header className="flex justify-between items-center p-5">
         <div>
           <button type="button" className="text-2xl text-secundary-gray">
             <BiMenu />
           </button>
         </div>
-        <div>
+        <div className="hidden sm:block">
           <form className="flex">
             <input className="lg:w-[300px] bg-white py-2 px-5 text-[12px] rounded-l-full dark:bg-primary-blue dark:text-white/80" placeholder="Pesquisar..." />
             <button type="submit" className="bg-white p-1 pr-3 rounded-r-full dark:bg-primary-blue dark:text-white">
@@ -57,7 +59,7 @@ function Dashboard() {
           </button>
         </header>
         <main>
-          <div className="lg:flex justify-between mt-10 gap-2">
+          <div className="lg:flex justify-between mt-10 gap-[2px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
               <div className="flex flex-col gap-3   lg:w-72 p-5 rounded-lg bg-white dark:bg-primary-blue">
                 <header className="flex justify-between">
@@ -148,19 +150,19 @@ function Dashboard() {
                 </footer>
               </div>
             </div>
-            <div className="bg-white rounded-lg dark:bg-primary-blue w-full lg:w-[978px] mt-2 lg:mt-0">
-              <header className="flex justify-between">
+            <div className="bg-white rounded-lg dark:bg-primary-blue w-[960px] mt-2 lg:mt-0">
+              <header className="flex justify-between mb-10">
                 <h3
                   className="dark:text-white/70 pt-5 pb-2 border-b-[1px]
                   border-secundary-purple/20 dark:border-secundary-purple/20 w-full
                   px-10"
                 >
-                  Lucros Totais
+                  Lucros Mensais
                 </h3>
               </header>
-              <h1 className="text-black/80 dark:text-white px-10 mt-2">
-                Teste
-              </h1>
+              <div className="text-black/80 dark:text-white px-6">
+                <AreaChart />
+              </div>
             </div>
           </div>
           <div className="lg:flex justify-between mt-2 gap-2">
@@ -175,8 +177,8 @@ function Dashboard() {
                 </h3>
               </header>
             </div>
-            <div className="bg-white rounded-lg lg:w-1/2 h-96 dark:bg-primary-blue">
-              <header className="flex justify-between">
+            <div className="bg-white rounded-lg dark:bg-primary-blue w-full lg:w-[978px] mt-2 lg:mt-0">
+              <header className="flex justify-between mb-5">
                 <h3
                   className="dark:text-white/70 pt-5 pb-2 border-b-[1px]
                   border-secundary-purple/20 dark:border-secundary-purple/20 w-full
@@ -185,6 +187,9 @@ function Dashboard() {
                   Vendas por plataformas
                 </h3>
               </header>
+              <div className="text-black/80 dark:text-white px-6">
+                <DonutChart />
+              </div>
             </div>
           </div>
         </main>
