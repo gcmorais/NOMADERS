@@ -76,14 +76,6 @@ export default function AreaChart() {
         show: false,
       },
     },
-    responsive: [{
-      breakpoint: 480,
-      options: {
-        chart: {
-          width: '100%',
-        },
-      },
-    }],
   };
   const chartSeries = [{
     name: 'R$',

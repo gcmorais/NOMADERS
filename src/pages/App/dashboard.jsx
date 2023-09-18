@@ -16,7 +16,7 @@ function Dashboard() {
   const { theme, handleToggleTheme } = useContext(ThemeContext);
 
   return (
-    <section className="mt-2 lg:mt-0 rounded-lg bg-secundary-white dark:bg-secundary-blue w-full">
+    <section className="mt-2 lg:mt-0 rounded-lg bg-secundary-white dark:bg-secundary-blue">
       <header className="flex justify-between items-center p-5">
         <div>
           <button type="button" className="text-2xl text-secundary-gray">
@@ -59,7 +59,7 @@ function Dashboard() {
           </button>
         </header>
         <main>
-          <div className="lg:flex justify-between mt-10 gap-[2px]">
+          <div className="lg:flex justify-between mt-10 gap-2">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
               <div className="flex flex-col gap-3   lg:w-72 p-5 rounded-lg bg-white dark:bg-primary-blue">
                 <header className="flex justify-between">
@@ -150,7 +150,7 @@ function Dashboard() {
                 </footer>
               </div>
             </div>
-            <div className="bg-white rounded-lg dark:bg-primary-blue w-[960px] mt-2 lg:mt-0">
+            <div className="bg-white rounded-lg dark:bg-primary-blue w-full lg:w-[978px] mt-2 lg:mt-0">
               <header className="flex justify-between mb-10">
                 <h3
                   className="dark:text-white/70 pt-5 pb-2 border-b-[1px]
