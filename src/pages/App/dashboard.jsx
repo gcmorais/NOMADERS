@@ -11,6 +11,7 @@ import { MdOutlineWallet } from 'react-icons/md';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import AreaChart from '../../components/chart/areaChart';
 import DonutChart from '../../components/chart/donutChart';
+import Table from '../../components/table';
 
 function Dashboard() {
   const { theme, handleToggleTheme } = useContext(ThemeContext);
@@ -176,8 +177,9 @@ function Dashboard() {
                   Resumo de vendas recentes
                 </h3>
               </header>
+              <Table />
             </div>
-            <div className="bg-white rounded-lg dark:bg-primary-blue w-full xl:w-[500px] 2xl:w-[978px] mt-2 lg:mt-0">
+            <div className="bg-white rounded-lg dark:bg-primary-blue w-full xl:w-[500px] 2xl:w-[778px] mt-2 lg:mt-0">
               <header className="flex justify-between mb-5">
                 <h3
                   className="dark:text-white/70 pt-5 pb-2 border-b-[1px]
