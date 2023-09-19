@@ -77,27 +77,27 @@ const TableData = [
 
 function Table() {
   return (
-    <div className="px-4 pt-3 pb-4 flex-1 dark:text-secundary-gray/80">
+    <div className="px-4 pt-3 flex-1 dark:text-secundary-gray/80 overflow-auto">
       <table className="w-full">
         <thead className="text-[10px] opacity-60">
           <tr>
-            <td className="border-l-[1px] border-primary-white/20 pl-2">Nome</td>
-            <td className="hidden lg:block border-l-[1px] border-primary-white/20 pl-2">EAN</td>
+            <td className="border-l-[1px] border-primary-white/20">Nome</td>
+            <td className="border-l-[1px] border-primary-white/20">EAN</td>
             <td className="border-l-[1px] border-primary-white/20 pl-2">Custo</td>
             <td className="border-l-[1px] border-primary-white/20 pl-2">Preço Venda</td>
             <td className="border-l-[1px] border-primary-white/20 pl-2">Lucro</td>
-            <td className="border-l-[1px] border-primary-white/20 pl-2">Plataforma</td>
+            <td className="border-l-[1px] border-primary-white/20 pl-2 flex items-center justify-center">Plataforma</td>
           </tr>
         </thead>
-        <tbody className="text-[12px]">
+        <tbody className="text-[12px] divide-y divide-gray-100 dark:divide-primary-white/10">
           {TableData.map((item) => (
             <tr key={item.id}>
-              <td className="lg:pt-4 text-[9px] lg:text-[11px]">{item.name}</td>
-              <td className="hidden lg:block lg:pt-4 text-[9px] lg:text-[11px]">{item.ean}</td>
-              <td className="lg:pt-4 text-red-500  text-[9px] lg:text-[11px]">{item.cost}</td>
-              <td className="lg:pt-4 text-[9px] lg:text-[11px] flex ml-3">{item.priceSale}</td>
-              <td className="lg:pt-4 text-green-500 text-[9px] lg:text-[11px]">{item.profit}</td>
-              <td className="bg-[#e3e2e3] dark:bg-[#151929] flex justify-center  lg:rounded-2xl text-primary-indigo lg:mt-4">{item.platform}</td>
+              <td className="pt-4 pr-3 text-[9px] lg:text-[11px] whitespace-nowrap">{item.name}</td>
+              <td className="pt-4 pr-3 text-[9px] lg:text-[11px] whitespace-nowrap">{item.ean}</td>
+              <td className="pt-4 pr-3 text-red-500  text-[9px] lg:text-[11px] whitespace-nowrap">{item.cost}</td>
+              <td className="pt-4 pr-3 text-[9px] lg:text-[11px] flex ml-3 whitespace-nowrap">{item.priceSale}</td>
+              <td className="pt-4 pr-3 text-green-500 text-[9px] lg:text-[11px] whitespace-nowrap">{item.profit}</td>
+              <td className="lg:bg-[#e3e2e3] lg:dark:bg-[#151929] flex justify-center rounded-2xl text-primary-indigo mt-4 whitespace-nowrap">{item.platform}</td>
             </tr>
           ))}
         </tbody>

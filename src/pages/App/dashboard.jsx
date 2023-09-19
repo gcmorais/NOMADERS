@@ -48,7 +48,7 @@ function Dashboard() {
           </button>
         </div>
       </header>
-      <main className="p-6 lg:px-14 2xl:p-6">
+      <main className="p-6 lg:2xl:p-6">
         <header className="flex justify-between">
           <div>
             <h1 className="text-2xl uppercase font-inter font-semibold text-primary-black dark:text-white/80">Dashboard</h1>
@@ -61,7 +61,7 @@ function Dashboard() {
         </header>
         <main>
           <div className="lg:flex lg:flex-col xl:flex-row justify-between mt-10 gap-2">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 xl:w-1/2">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 xl:w-[55%]">
               <div className="flex flex-col gap-3 p-5 rounded-lg bg-white dark:bg-primary-blue">
                 <header className="flex justify-between">
                   <h3 className="dark:text-white/70">Vendas Totais</h3>
@@ -167,7 +167,7 @@ function Dashboard() {
             </div>
           </div>
           <div className="lg:flex lg:flex-col xl:flex-row justify-between mt-2 gap-2">
-            <div className="bg-white rounded-lg xl:w-1/2 h-96 dark:bg-primary-blue">
+            <div className="bg-white rounded-lg xl:w-[58%] h-96 dark:bg-primary-blue">
               <header className="flex justify-between">
                 <h3
                   className="dark:text-white/70 pt-5 pb-2 border-b-[1px]
@@ -179,7 +179,7 @@ function Dashboard() {
               </header>
               <Table />
             </div>
-            <div className="bg-white rounded-lg dark:bg-primary-blue w-full xl:w-[500px] 2xl:w-[778px] mt-2 lg:mt-0">
+            <div className="bg-white rounded-lg dark:bg-primary-blue w-full xl:w-[500px] 2xl:w-[650px] mt-2 lg:mt-0">
               <header className="flex justify-between mb-5">
                 <h3
                   className="dark:text-white/70 pt-5 pb-2 border-b-[1px]
