@@ -1,17 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
-import Login from '.';
+import { Link, useNavigate } from 'react-router-dom';
+import Login from './Layout';
 import Input from '../input';
 
 function SignUp({ isOpen }) {
+  const navigate = useNavigate();
+  const onClose = () => {
+    navigate('/app');
+  };
   if (isOpen) {
     return (
-      <Login>
-        <header className="flex flex-col gap-8 mb-9">
-          <h1 className="font-inter font-semibold text-2xl">Criar sua conta</h1>
-          <button type="button" className="rounded-xl border-2 w-16 h-16 flex justify-center items-center text-3xl">
+      <Login navLink={onClose} width="lg:w-[500px]" height="h-[900px]">
+        <header className="mb-9 flex flex-col gap-8">
+          <h1 className="font-inter text-2xl font-semibold">Criar sua conta</h1>
+          <button
+            type="button"
+            className="flex h-16 w-16 items-center justify-center rounded-xl border-2 text-3xl"
+          >
             <FcGoogle />
           </button>
         </header>
@@ -22,13 +29,22 @@ function SignUp({ isOpen }) {
             <Input text="Senha" />
             <Input text="Confirmar Senha" />
 
-            <button type="submit" className="flex px-13 justify-center bg-primary-indigo rounded-md p-2 w-[85%] mt-2 text-primary-white">
+            <button
+              type="submit"
+              className="px-13 mt-2 flex w-[85%] justify-center rounded-md bg-primary-indigo p-2 text-primary-white"
+            >
               continuar
             </button>
           </form>
-          <p className="text-sm opacity-60 mt-5 mb-10">
+          <p className="mb-10 mt-5 text-sm opacity-60">
             Já tem uma conta ?
-            <Link to="/app/signin" className="text-primary-indigo font-semibold"> Entrar</Link>
+            <Link
+              to="/app/signin"
+              className="font-semibold text-primary-indigo"
+            >
+              {' '}
+              Entrar
+            </Link>
           </p>
         </main>
       </Login>

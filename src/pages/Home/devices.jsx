@@ -1,8 +1,8 @@
-import React from 'react';
-import Framer from '../../components/framer';
-import GooglePlay from '../../assets/googleplay.svg';
-import AppStore from '../../assets/appstore.svg';
-import Demo from '../../assets/disponivel.svg';
+import React from "react";
+import Framer from "../../components/framer";
+import GooglePlay from "../../assets/googleplay.svg";
+import AppStore from "../../assets/appstore.svg";
+import Demo from "../../assets/disponivel.svg";
 
 function Devices() {
   return (
@@ -18,8 +18,12 @@ function Devices() {
             <img src={Demo} alt="Demo-Imgs" />
           </div>
           <div className="flex justify-center">
-            <button type="button"><img src={GooglePlay} alt="googleplay" /></button>
-            <button type="button"><img src={AppStore} alt="appstore" /></button>
+            <button type="button">
+              <img src={GooglePlay} alt="googleplay" />
+            </button>
+            <button type="button">
+              <img src={AppStore} alt="appstore" />
+            </button>
           </div>
         </div>
       </Framer>

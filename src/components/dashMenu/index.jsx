@@ -1,9 +1,9 @@
-import React from 'react';
-import { FaHome, FaDatabase } from 'react-icons/fa';
-import { BsArrowRight } from 'react-icons/bs';
-import { NavLink } from 'react-router-dom';
-import { BiSolidDownArrow } from 'react-icons/bi';
-import User from '../../assets/user.svg';
+import React from "react";
+import { FaHome, FaDatabase } from "react-icons/fa";
+import { BsArrowRight } from "react-icons/bs";
+import { NavLink } from "react-router-dom";
+import { BiSolidDownArrow } from "react-icons/bi";
+import User from "../../assets/user.svg";
 
 function DashMenu() {
   return (
@@ -25,13 +25,18 @@ function DashMenu() {
         </div>
       </div>
       <div className="hidden lg:block pt-5 lg:h-full bg-secundary-white rounded-lg dark:bg-secundary-blue">
-        <NavLink to="dashboard" className={({ isActive }) => (isActive ? 'w-[90%] flex justify-center gap-10 items-center px-20 py-2 mb-2 lg:mb-10 rounded-r-full bg-primary-indigo text-white' : 'w-[90%] flex justify-center gap-10 items-center px-20 py-2 mb-10 text-[#7E86A8]')}>
+        <NavLink
+          to="dashboard"
+          className={({ isActive }) =>
+            isActive
+              ? "w-[90%] flex justify-center gap-10 items-center px-20 py-2 mb-2 lg:mb-10 rounded-r-full bg-primary-indigo text-white"
+              : "w-[90%] flex justify-center gap-10 items-center px-20 py-2 mb-10 text-[#7E86A8]"
+          }
+        >
           <span className="text-2xl">
             <FaHome />
           </span>
-          <p className="text-md font-inter font-medium">
-            Dashboard
-          </p>
+          <p className="text-md font-inter font-medium">Dashboard</p>
           <span className="text-2xl">
             <BsArrowRight />
           </span>
@@ -39,13 +44,18 @@ function DashMenu() {
         <p className="hidden lg:block text-[10px] uppercase tracking-widest ml-8  pb-4 text-[#7E86A8]/80">
           Vendas
         </p>
-        <NavLink to="products" className={({ isActive }) => (isActive ? 'hidden w-[90%] lg:flex justify-center items-center gap-10 py-2 rounded-r-full text-white bg-primary-indigo' : 'hidden w-[90%] lg:flex justify-center items-center gap-10 py-2 text-[#7E86A8]')}>
+        <NavLink
+          to="products"
+          className={({ isActive }) =>
+            isActive
+              ? "hidden w-[90%] lg:flex justify-center items-center gap-10 py-2 rounded-r-full text-white bg-primary-indigo"
+              : "hidden w-[90%] lg:flex justify-center items-center gap-10 py-2 text-[#7E86A8]"
+          }
+        >
           <span className="text-xl mr-2">
             <FaDatabase />
           </span>
-          <p className="mr-[70px] text-md font-inter font-medium">
-            Produtos
-          </p>
+          <p className="mr-[70px] text-md font-inter font-medium">Produtos</p>
         </NavLink>
       </div>
     </div>

@@ -1,29 +1,28 @@
-import React from 'react';
+import React from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
-import ApexChart from 'react-apexcharts';
+import ApexChart from "react-apexcharts";
 
 export default function AreaChart() {
   const chartOptions = {
     chart: {
-      type: 'area',
+      type: "area",
       height: 280,
       toolbar: {
         show: true,
-        colors: ['#000'],
+        colors: ["#000"],
       },
       zoom: false,
-
     },
     tooltip: {
-      custom({
-        series, seriesIndex, dataPointIndex,
-      }) {
-        return '<div class="arrow_box">'
-          + `
+      custom({ series, seriesIndex, dataPointIndex }) {
+        return (
+          '<div class="arrow_box">' +
+          `
           <span style="color:green;">
             R$: ${series[seriesIndex][dataPointIndex]}
-          </span>`
-          + '</div>';
+          </span>` +
+          "</div>"
+        );
       },
     },
     dataLabels: {
@@ -31,10 +30,11 @@ export default function AreaChart() {
     },
     events: {
       mouseMove(event, chartContext, config) {
-        const tooltip = chartContext.el.querySelector('.apexcharts-tooltip');
+        const tooltip = chartContext.el.querySelector(".apexcharts-tooltip");
         const { pointsArray } = config.globals;
         const { seriesIndex } = config;
-        const dataPointIndex = config.dataPointIndex === -1 ? 0 : config.dataPointIndex;
+        const dataPointIndex =
+          config.dataPointIndex === -1 ? 0 : config.dataPointIndex;
 
         if (seriesIndex !== -1) {
           const position = pointsArray[seriesIndex][dataPointIndex];
@@ -44,47 +44,68 @@ export default function AreaChart() {
         }
       },
     },
-    colors: ['#6366F1'],
-    stroke: { width: 3, curve: 'smooth' },
+    colors: ["#6366F1"],
+    stroke: { width: 3, curve: "smooth" },
     xaxis: {
-      categories: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+      categories: [
+        "Jan",
+        "Fev",
+        "Mar",
+        "Abr",
+        "Mai",
+        "Jun",
+        "Jul",
+        "Ago",
+        "Set",
+        "Out",
+        "Nov",
+        "Dez",
+      ],
       axisBorder: { show: false },
       tooltip: {
         enabled: false,
       },
       labels: {
         style: {
-          colors: '#a7a7a7',
-          fontFamily: 'Inter',
+          colors: "#a7a7a7",
+          fontFamily: "Inter",
         },
       },
     },
     yaxis: {
       labels: {
         style: {
-          colors: '#a7a7a7',
-          fontFamily: 'Inter',
+          colors: "#a7a7a7",
+          fontFamily: "Inter",
         },
       },
     },
     grid: {
-      borderColor: 'rgba(0,0,0,0)',
+      borderColor: "rgba(0,0,0,0)",
       padding: {
-        top: -20, bottom: -8, left: 12, right: 12,
+        top: -20,
+        bottom: -8,
+        left: 12,
+        right: 12,
       },
       markers: {
         show: false,
       },
     },
   };
-  const chartSeries = [{
-    name: 'R$',
-    data: [
-      100, 200, 100, 400, 100, 600, 400, 100, 40, 100, 500, 200,
-    ],
-  }];
+  const chartSeries = [
+    {
+      name: "R$",
+      data: [100, 200, 100, 400, 100, 600, 400, 100, 40, 100, 500, 200],
+    },
+  ];
 
   return (
-    <ApexChart options={chartOptions} series={chartSeries} height={230} type="area" />
+    <ApexChart
+      options={chartOptions}
+      series={chartSeries}
+      height={230}
+      type="area"
+    />
   );
 }

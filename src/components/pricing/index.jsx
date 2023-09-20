@@ -1,130 +1,190 @@
-import React from 'react';
-import { FaMoneyBillWave } from 'react-icons/fa';
-import { BsCheck } from 'react-icons/bs';
-import { IoIosClose } from 'react-icons/io';
-import Packages from '../packages';
+import React from "react";
+import { FaMoneyBillWave } from "react-icons/fa";
+import { BsCheck } from "react-icons/bs";
+import { IoIosClose } from "react-icons/io";
+import Packages from "../packages";
 
 function Pricing() {
   const basic = [
     {
-      id: '1',
-      icon: <p className="text-primary-indigo text-2xl"><BsCheck /></p>,
+      id: "1",
+      icon: (
+        <p className="text-primary-indigo text-2xl">
+          <BsCheck />
+        </p>
+      ),
       text: <p className="text-secundary-gray">Funcionalidade 1</p>,
     },
     {
-      id: '2',
-      icon: <p className="text-secundary-gray text-2xl"><IoIosClose /></p>,
+      id: "2",
+      icon: (
+        <p className="text-secundary-gray text-2xl">
+          <IoIosClose />
+        </p>
+      ),
       text: <p className="text-secundary-gray opacity-50">Funcionalidade 2</p>,
     },
     {
-      id: '3',
-      icon: <p className="text-secundary-gray text-2xl"><IoIosClose /></p>,
+      id: "3",
+      icon: (
+        <p className="text-secundary-gray text-2xl">
+          <IoIosClose />
+        </p>
+      ),
       text: <p className="text-secundary-gray opacity-50">Funcionalidade 3</p>,
     },
     {
-      id: '4',
-      icon: <p className="text-secundary-gray text-2xl"><IoIosClose /></p>,
+      id: "4",
+      icon: (
+        <p className="text-secundary-gray text-2xl">
+          <IoIosClose />
+        </p>
+      ),
       text: <p className="text-secundary-gray opacity-50">Funcionalidade 4</p>,
     },
     {
-      id: '5',
-      icon: <p className="text-secundary-gray text-2xl"><IoIosClose /></p>,
+      id: "5",
+      icon: (
+        <p className="text-secundary-gray text-2xl">
+          <IoIosClose />
+        </p>
+      ),
       text: <p className="text-secundary-gray opacity-50">Funcionalidade 5</p>,
     },
   ];
   const standard = [
     {
-      id: '1',
-      icon: <p className="text-primary-indigo text-2xl"><BsCheck /></p>,
+      id: "1",
+      icon: (
+        <p className="text-primary-indigo text-2xl">
+          <BsCheck />
+        </p>
+      ),
       text: <p className="text-secundary-gray">Funcionalidade 1</p>,
     },
     {
-      id: '2',
-      icon: <p className="text-primary-indigo text-2xl"><BsCheck /></p>,
+      id: "2",
+      icon: (
+        <p className="text-primary-indigo text-2xl">
+          <BsCheck />
+        </p>
+      ),
       text: <p className="text-secundary-gray">Funcionalidade 2</p>,
     },
     {
-      id: '3',
-      icon: <p className="text-primary-indigo text-2xl"><BsCheck /></p>,
+      id: "3",
+      icon: (
+        <p className="text-primary-indigo text-2xl">
+          <BsCheck />
+        </p>
+      ),
       text: <p className="text-secundary-gray">Funcionalidade 3</p>,
     },
     {
-      id: '4',
-      icon: <p className="text-secundary-gray text-2xl"><IoIosClose /></p>,
+      id: "4",
+      icon: (
+        <p className="text-secundary-gray text-2xl">
+          <IoIosClose />
+        </p>
+      ),
       text: <p className="text-secundary-gray opacity-50">Funcionalidade 4</p>,
     },
     {
-      id: '5',
-      icon: <p className="text-secundary-gray text-2xl"><IoIosClose /></p>,
+      id: "5",
+      icon: (
+        <p className="text-secundary-gray text-2xl">
+          <IoIosClose />
+        </p>
+      ),
       text: <p className="text-secundary-gray opacity-50">Funcionalidade 5</p>,
     },
   ];
   const enterprise = [
     {
-      id: '1',
-      icon: <p className="text-primary-indigo text-2xl"><BsCheck /></p>,
+      id: "1",
+      icon: (
+        <p className="text-primary-indigo text-2xl">
+          <BsCheck />
+        </p>
+      ),
       text: <p className="text-secundary-gray">Funcionalidade 1</p>,
     },
     {
-      id: '2',
-      icon: <p className="text-primary-indigo text-2xl"><BsCheck /></p>,
+      id: "2",
+      icon: (
+        <p className="text-primary-indigo text-2xl">
+          <BsCheck />
+        </p>
+      ),
       text: <p className="text-secundary-gray">Funcionalidade 2</p>,
     },
     {
-      id: '3',
-      icon: <p className="text-primary-indigo text-2xl"><BsCheck /></p>,
+      id: "3",
+      icon: (
+        <p className="text-primary-indigo text-2xl">
+          <BsCheck />
+        </p>
+      ),
       text: <p className="text-secundary-gray">Funcionalidade 3</p>,
     },
     {
-      id: '4',
-      icon: <p className="text-primary-indigo text-2xl"><BsCheck /></p>,
+      id: "4",
+      icon: (
+        <p className="text-primary-indigo text-2xl">
+          <BsCheck />
+        </p>
+      ),
       text: <p className="text-secundary-gray">Funcionalidade 4</p>,
     },
     {
-      id: '5',
-      icon: <p className="text-primary-indigo text-2xl"><BsCheck /></p>,
+      id: "5",
+      icon: (
+        <p className="text-primary-indigo text-2xl">
+          <BsCheck />
+        </p>
+      ),
       text: <p className="text-secundary-gray">Funcionalidade 5</p>,
     },
   ];
   const feature = [
     {
-      id: '1',
+      id: "1",
       icon: <FaMoneyBillWave />,
-      base: 'Basic',
-      price: 'R$ 0,00',
+      base: "Basic",
+      price: "R$ 0,00",
       text: basic.map((item) => (
         <span className="flex items-center" key={item.id}>
           {item.icon}
           {item.text}
         </span>
       )),
-      btn: 'Iniciar plano grátis',
+      btn: "Iniciar plano grátis",
     },
     {
-      id: '2',
+      id: "2",
       icon: <FaMoneyBillWave />,
-      base: 'Standard',
-      price: 'R$ 0,00',
+      base: "Standard",
+      price: "R$ 0,00",
       text: standard.map((item) => (
         <span className="flex items-center" key={item.id}>
           {item.icon}
           {item.text}
         </span>
       )),
-      btn: 'Em breve',
+      btn: "Em breve",
     },
     {
-      id: '3',
+      id: "3",
       icon: <FaMoneyBillWave />,
-      base: 'Enterprise',
-      price: 'R$ 0,00',
+      base: "Enterprise",
+      price: "R$ 0,00",
       text: enterprise.map((item) => (
         <span className="flex items-center" key={item.id}>
           {item.icon}
           {item.text}
         </span>
       )),
-      btn: 'Em breve',
+      btn: "Em breve",
     },
   ];
   return (

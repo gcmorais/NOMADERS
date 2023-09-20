@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
-import {
-  useLocation,
-  Routes,
-  Route,
-  Outlet,
-} from 'react-router-dom';
-import Layout from '../pages/Home/layout';
-import LoginPage from '../pages/Login';
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
-import SignIn from '../components/modal/signIn';
-import SignUp from '../components/modal/signUp';
-import DashMenu from '../components/dashMenu';
-import Dashboard from '../pages/App/dashboard';
-import Products from '../pages/App/products';
+import React, { useState } from "react";
+import { useLocation, Routes, Route, Outlet } from "react-router-dom";
+import Layout from "../pages/Home/layout";
+import LoginPage from "../pages/Login";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
+import SignIn from "../components/modal/signIn";
+import SignUp from "../components/modal/signUp";
+import DashMenu from "../components/dashMenu";
+import Dashboard from "../pages/App/dashboard";
+import Products from "../pages/App/products";
 
 function AppDash() {
   return (

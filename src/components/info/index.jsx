@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 function Info({ title, text, icon }) {
   return (
@@ -7,9 +7,7 @@ function Info({ title, text, icon }) {
       <span className=" w-[70px] h-[69px] flex justify-center items-center m-auto rounded-lg bg-primary-white text-primary-indigo text-3xl">
         {icon}
       </span>
-      <h1 className="text-xl text-primary-black font-semibold">
-        {title}
-      </h1>
+      <h1 className="text-xl text-primary-black font-semibold">{title}</h1>
       <span className="m-auto text-secundary-gray tracking-wider  font-semibold text-xs">
         {text}
       </span>

@@ -1,7 +1,7 @@
-import React from 'react';
-import Button from '../../components/button';
-import Platform from '../../components/platform';
-import Framer from '../../components/framer';
+import React from "react";
+import Button from "../../components/button";
+import Platform from "../../components/platform";
+import Framer from "../../components/framer";
 
 function Integration() {
   return (

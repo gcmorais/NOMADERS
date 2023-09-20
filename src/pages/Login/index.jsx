@@ -26,12 +26,8 @@ function LoginPage() {
           <div className="lg:w-[30%] flex flex-col gap-5">
             <div className="flex m-auto lg:m-0">
               <div className="flex flex-col text-3xl m-auto lg:text-5xl lg:m-0 font-black text-primary-black">
-                <h1>
-                  Seja Livre.
-                </h1>
-                <h1>
-                  Use NOMADERS.
-                </h1>
+                <h1>Seja Livre.</h1>
+                <h1>Use NOMADERS.</h1>
               </div>
               <img src={StarsIndigo} alt="stars" />
             </div>
@@ -41,18 +37,26 @@ function LoginPage() {
             <div className="lg:flex mt-2 mb-14 lg:mb-0">
               <div className="flex flex-col gap-2 items-center lg:items-start">
                 <Link to="/app/signup">
-                  <button type="button" className="flex justify-center text-center items-center rounded-full bg-primary-indigo text-white 2xl:w-[280px] px-[43px] h-10 " onClick={() => setOpenUpModal(true)}>
+                  <button
+                    type="button"
+                    className="flex justify-center text-center items-center rounded-full bg-primary-indigo text-white 2xl:w-[280px] px-[43px] h-10 "
+                    onClick={() => setOpenUpModal(true)}
+                  >
                     Criar conta
                   </button>
                 </Link>
                 <p className="w-[280px] text-[10px] 2xl:text-[9.5px] lg:text-[8px] text-primary-gray lg:w-[94%] text-center">
-                  Ao se inscrever, você concorda com os Termos de Serviço
-                  e a Política de Privacidade, incluindo o Uso de Cookies.
+                  Ao se inscrever, você concorda com os Termos de Serviço e a
+                  Política de Privacidade, incluindo o Uso de Cookies.
                 </p>
               </div>
               <div className="flex flex-col gap-2 mt-7 lg:mt-0 items-center">
                 <Link to="/app/signin">
-                  <button type="button" className="flex justify-center text-center items-center rounded-full bg-primary-indigo text-white 2xl:w-[270px] px-[62px] h-10" onClick={() => setOpenInModal(true)}>
+                  <button
+                    type="button"
+                    className="flex justify-center text-center items-center rounded-full bg-primary-indigo text-white 2xl:w-[270px] px-[62px] h-10"
+                    onClick={() => setOpenInModal(true)}
+                  >
                     Entrar
                   </button>
                 </Link>
@@ -65,8 +69,14 @@ function LoginPage() {
         </main>
       </section>
       <Outlet />
-      <SignUp isOpen={openUpModal} setModalOpen={() => setOpenUpModal(!openUpModal)} />
-      <SignIn isOpen={openInModal} setModalOpen={() => setOpenInModal(!openInModal)} />
+      <SignUp
+        isOpen={openUpModal}
+        setModalOpen={() => setOpenUpModal(!openUpModal)}
+      />
+      <SignIn
+        isOpen={openInModal}
+        setModalOpen={() => setOpenInModal(!openInModal)}
+      />
     </>
   );
 }

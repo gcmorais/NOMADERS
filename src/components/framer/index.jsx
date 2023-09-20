@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import { motion, useAnimation, useInView } from 'framer-motion';
-import PropTypes from 'prop-types';
+import React, { useEffect, useRef } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
+import PropTypes from "prop-types";
 
 function Framer({ children }) {
   const ref = useRef(null);
@@ -10,7 +10,7 @@ function Framer({ children }) {
 
   useEffect(() => {
     if (isInView) {
-      mainControls.start('visible');
+      mainControls.start("visible");
     }
   }, [isInView]);
 

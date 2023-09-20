@@ -1,7 +1,14 @@
 import React from 'react';
-import { BiSolidBarChartAlt2, BiSolidDoughnutChart, BiSolidWallet } from 'react-icons/bi';
+import {
+  BiSolidBarChartAlt2,
+  BiSolidDoughnutChart,
+  BiSolidWallet,
+} from 'react-icons/bi';
 import { MdOutlineWallet } from 'react-icons/md';
-import { IoIosArrowDropupCircle, IoIosArrowDropdownCircle } from 'react-icons/io';
+import {
+  IoIosArrowDropupCircle,
+  IoIosArrowDropdownCircle,
+} from 'react-icons/io';
 import AreaChart from '../../components/chart/areaChart';
 import DonutChart from '../../components/chart/donutChart';
 import Table from '../../components/table';
@@ -13,7 +20,10 @@ function Dashboard() {
     <section className="mt-2 lg:mt-0 rounded-lg bg-secundary-white dark:bg-secundary-blue w-full">
       <HeaderApp />
       <main className="p-6 lg:2xl:p-6">
-        <HeaderSection title="Dashboard" subtitle="Bem vindo ao seu dashboard" />
+        <HeaderSection
+          title="Dashboard"
+          subtitle="Bem vindo ao seu dashboard"
+        />
         <main>
           <div className="lg:flex lg:flex-col xl:flex-row justify-between mt-10 gap-2">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 xl:w-[55%]">
@@ -64,7 +74,10 @@ function Dashboard() {
               <div className="flex flex-col gap-3 p-5 rounded-lg bg-white dark:bg-primary-blue">
                 <header className="flex justify-between">
                   <h3 className="dark:text-white/70">Lucro total</h3>
-                  <span type="button" className=" text-secundary-gray/80 bg-primary-white rounded-full p-2 drop-shadow-lg dark:bg-secundary-blue">
+                  <span
+                    type="button"
+                    className=" text-secundary-gray/80 bg-primary-white rounded-full p-2 drop-shadow-lg dark:bg-secundary-blue"
+                  >
                     <BiSolidWallet />
                   </span>
                 </header>
