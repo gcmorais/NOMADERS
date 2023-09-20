@@ -30,6 +30,8 @@ export default {
         sora: ['Sora', 'sans-serif'],
       },
       screens: {
+        '1md': '800px',
+        '2.5xl': '1480px',
         '3xl': '1600px',
       },
     },

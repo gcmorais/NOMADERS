@@ -1,64 +1,19 @@
-import React, { useContext } from 'react';
-import {
-  BiMenu, BiSolidBarChartAlt2, BiSolidDoughnutChart, BiSolidWallet,
-  BiSun,
-} from 'react-icons/bi';
-import { PiGearSixBold } from 'react-icons/pi';
-import { IoIosNotifications, IoIosArrowDropupCircle, IoIosArrowDropdownCircle } from 'react-icons/io';
-import { BsFillMoonStarsFill } from 'react-icons/bs';
-import { AiOutlineSearch, AiOutlineDownload } from 'react-icons/ai';
+import React from 'react';
+import { BiSolidBarChartAlt2, BiSolidDoughnutChart, BiSolidWallet } from 'react-icons/bi';
 import { MdOutlineWallet } from 'react-icons/md';
-import { ThemeContext } from '../../contexts/ThemeContext';
+import { IoIosArrowDropupCircle, IoIosArrowDropdownCircle } from 'react-icons/io';
 import AreaChart from '../../components/chart/areaChart';
 import DonutChart from '../../components/chart/donutChart';
 import Table from '../../components/table';
+import HeaderApp from '../../components/headerApp';
+import HeaderSection from '../../components/headerSection';
 
 function Dashboard() {
-  const { theme, handleToggleTheme } = useContext(ThemeContext);
-
   return (
     <section className="mt-2 lg:mt-0 rounded-lg bg-secundary-white dark:bg-secundary-blue w-full">
-      <header className="flex justify-between items-center p-5">
-        <div>
-          <button type="button" className="text-2xl text-secundary-gray">
-            <BiMenu />
-          </button>
-        </div>
-        <div className="hidden sm:block">
-          <form className="flex">
-            <input className="lg:w-[300px] bg-white py-2 px-5 text-[12px] rounded-l-full dark:bg-primary-blue dark:text-white/80" placeholder="Pesquisar..." />
-            <button type="submit" className="bg-white p-1 pr-3 rounded-r-full dark:bg-primary-blue dark:text-white">
-              <AiOutlineSearch />
-            </button>
-          </form>
-        </div>
-        <div className="flex gap-3 lg:mb-2 text-[15px]">
-          <button
-            type="button"
-            className=" text-secundary-gray/80 bg-primary-white rounded-full p-2 drop-shadow-lg dark:bg-primary-blue"
-            onClick={handleToggleTheme}
-          >
-            {theme === 'dark' ? <BiSun /> : <BsFillMoonStarsFill />}
-          </button>
-          <button type="button" className=" text-secundary-gray/80 bg-primary-white rounded-full p-2 drop-shadow-lg dark:bg-primary-blue">
-            <PiGearSixBold />
-          </button>
-          <button type="button" className=" text-secundary-gray/80 bg-primary-white rounded-full p-2 drop-shadow-lg dark:bg-primary-blue">
-            <IoIosNotifications />
-          </button>
-        </div>
-      </header>
+      <HeaderApp />
       <main className="p-6 lg:2xl:p-6">
-        <header className="flex justify-between">
-          <div>
-            <h1 className="text-2xl uppercase font-inter font-semibold text-primary-black dark:text-white/80">Dashboard</h1>
-            <p className="text-sm text-secundary-gray">Bem vindo ao seu dashboard</p>
-          </div>
-          <button type="button" className="flex items-center gap-2 bg-primary-indigo rounded-md text-white text-[13px] px-5 mt-2">
-            <AiOutlineDownload />
-            Download Reports
-          </button>
-        </header>
+        <HeaderSection title="Dashboard" subtitle="Bem vindo ao seu dashboard" />
         <main>
           <div className="lg:flex lg:flex-col xl:flex-row justify-between mt-10 gap-2">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 xl:w-[55%]">

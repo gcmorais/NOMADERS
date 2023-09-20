@@ -81,15 +81,15 @@ function Table() {
       <table className="w-full">
         <thead className="text-[10px] opacity-60">
           <tr>
-            <td className="border-l-[1px] border-primary-white/20">Nome</td>
-            <td className="border-l-[1px] border-primary-white/20">EAN</td>
+            <td className="border-l-[1px] border-primary-white/20 pl-2">Nome</td>
+            <td className="border-l-[1px] border-primary-white/20 pl-2">EAN</td>
             <td className="border-l-[1px] border-primary-white/20 pl-2">Custo</td>
             <td className="border-l-[1px] border-primary-white/20 pl-2">Preço Venda</td>
             <td className="border-l-[1px] border-primary-white/20 pl-2">Lucro</td>
             <td className="border-l-[1px] border-primary-white/20 pl-2 flex items-center justify-center">Plataforma</td>
           </tr>
         </thead>
-        <tbody className="text-[12px] divide-y divide-gray-100 dark:divide-primary-white/10">
+        <tbody className="text-[12px] divide-y divide-gray-100 dark:divide-primary-white/5">
           {TableData.map((item) => (
             <tr key={item.id}>
               <td className="pt-4 pr-3 text-[9px] lg:text-[11px] whitespace-nowrap">{item.name}</td>
