@@ -29,7 +29,7 @@ function SignIn({ isOpen }) {
 
             <Link
               to="/app/nomaders/dashboard"
-              className="px-13 mt-2 flex w-[85%] justify-center rounded-md bg-primary-indigo p-2 text-primary-white"
+              className="px-13 mt-2 flex w-full justify-center rounded-md bg-primary-indigo p-2 text-primary-white"
             >
               continuar
             </Link>

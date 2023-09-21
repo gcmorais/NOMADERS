@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GrFormClose } from 'react-icons/gr';
+import ReactDOM from 'react-dom';
 
 function Login({
-  children, navLink, width, height,
+  children, navLink, width,
 }) {
-  return (
-    <div className={`absolute top-0 left-0 flex ${height} w-full flex-col items-center justify-center px-2 backdrop-blur-sm md:h-full lg:bg-secundary-gray/50`}>
-      <div className={`rounded-xl border-2 bg-white lg:h-auto ${width} lg:border-0 w-full`}>
+  return ReactDOM.createPortal(
+    <div className="fixed inset-0 flex justify-center items-center px-2 backdrop-blur-sm bg-secundary-gray/50">
+      <div className={`rounded-xl bg-white lg:h-auto ${width} lg:border-0 w-full`}>
         <div className="m-2">
           <button
             type="button"
@@ -21,7 +22,8 @@ function Login({
           {children}
         </div>
       </div>
-    </div>
+    </div>,
+    document.getElementById('modal-root'),
   );
 }
 
@@ -30,7 +32,6 @@ export default Login;
 Login.propTypes = {
   children: PropTypes.node.isRequired,
   width: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired,
   navLink: PropTypes.node,
 };
 

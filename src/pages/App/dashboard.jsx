@@ -135,18 +135,7 @@ function Dashboard() {
             </div>
           </div>
           <div className="lg:flex lg:flex-col xl:flex-row justify-between mt-2 gap-2">
-            <div className="bg-white rounded-lg xl:w-[58%] h-96 dark:bg-primary-blue">
-              <header className="flex justify-between">
-                <h3
-                  className="dark:text-white/70 pt-5 pb-2 border-b-[1px]
-                  border-secundary-purple/20 dark:border-secundary-purple/20 w-full
-                  px-10"
-                >
-                  Resumo de vendas recentes
-                </h3>
-              </header>
-              <Table />
-            </div>
+            <Table />
             <div className="bg-white rounded-lg dark:bg-primary-blue w-full xl:w-[500px] 2xl:w-[650px] mt-2 lg:mt-0">
               <header className="flex justify-between mb-5">
                 <h3

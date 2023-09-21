@@ -22,3 +22,7 @@ Input.propTypes = {
   text: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
 };
+
+Input.defaultProps = {
+  placeholder: '',
+};

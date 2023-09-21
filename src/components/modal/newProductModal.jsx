@@ -8,11 +8,13 @@ function NewProductModal({ isOpen, closed }) {
     return (
       <Login navLink={() => closed(!isOpen)} width="lg:w-[900px]">
         <header className="mb-9 flex flex-col gap-8">
-          <h1 className="font-inter text-2xl font-semibold">Novo Produto</h1>
+          <h1 className="font-inter text-2xl font-semibold m-auto ">
+            Novo Produto
+          </h1>
         </header>
         <main>
           <form className="flex flex-col gap-5">
-            <div className="flex gap-5">
+            <div className="flex flex-col md:flex-row gap-5">
               <Input text="Nome" />
               <Input text="Ean" />
             </div>
