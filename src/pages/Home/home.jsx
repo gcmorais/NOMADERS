@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import MainImage from "../../assets/image.svg";
-import Stars from "../../assets/Vector.svg";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import MainImage from '../../assets/image.svg';
+import Stars from '../../assets/Vector.svg';
 
 function Home() {
   return (

@@ -17,7 +17,7 @@ function SignIn({ isOpen }) {
           <h1 className="font-inter text-2xl font-semibold">Entrar</h1>
           <button
             type="button"
-            className="flex h-16 w-16 items-center justify-center rounded-xl border-2 text-3xl"
+            className="flex h-16 w-16 items-center justify-center rounded-xl border-2 text-3xl border-primary-gray/30"
           >
             <FcGoogle />
           </button>

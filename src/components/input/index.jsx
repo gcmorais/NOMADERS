@@ -10,7 +10,7 @@ function Input({ text, placeholder }) {
       <input
         type="text"
         placeholder={placeholder}
-        className="border-2 rounded-lg p-2 text-sm opacity-70 w-full"
+        className="border-2 border-primary-gray/30 rounded-lg p-2 text-sm opacity-70 w-full"
       />
     </div>
   );
