@@ -1,20 +1,12 @@
-import React, { createContext, useMemo, useState } from 'react';
+import React, { createContext, useMemo } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material';
+import PropTypes from 'prop-types';
 import useLocalState from '../hooks/localState';
 
 export const ColorModeContext = createContext({
   toggleMode: () => {},
   mode: 'light',
 });
-
-const themeObj = {
-  dark: {
-    background: {
-      default: '#1c2438',
-      primary: '#1c2438',
-    },
-  },
-};
 const getDesignTokens = (mode) => ({
   palette: {
     mode,
@@ -41,8 +33,8 @@ const getDesignTokens = (mode) => ({
     text: {
       ...(mode === 'dark'
         ? {
-          primary: '#d11414',
-          secondary: '#d11414',
+          primary: '#6366f1',
+          secondary: '#fff',
         }
         : {
           primary: '#d11414',
@@ -81,3 +73,7 @@ export function ColorContextProvider({ children }) {
     </ColorModeContext.Provider>
   );
 }
+
+ColorContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

@@ -1,9 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  ThemeProvider, alpha, createTheme,
-} from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -22,9 +20,11 @@ import Tooltip from '@mui/material/Tooltip';
 // import FormControlLabel from '@mui/material/FormControlLabel';
 // import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { Stack } from '@mui/material';
+
+import AddToggleMenu from './addToggleMenu';
 
 function createData(name, ean, cost, price, profit, platform) {
   return {
@@ -213,7 +213,7 @@ function EnhancedTableToolbar(props) {
           Produtos
         </Typography>
       )}
-      <div className="rounded-full border-[1px] border-black/10 dark:border-white/10 mr-10">
+      <div className="hidden md:block rounded-full border-[1px] border-black/10 dark:border-white/10 mr-10">
         <form className="flex">
           <input
             className="w-[150px] rounded-l-full bg-white px-5 py-2 text-[12px] dark:bg-primary-blue dark:text-white/80 lg:w-[300px]"
@@ -235,12 +235,13 @@ function EnhancedTableToolbar(props) {
           </IconButton>
         </Tooltip>
       ) : (
-        <Tooltip title="Opções">
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
+        <Tooltip>
+          <Stack direction="row" spacing={2}>
+            <AddToggleMenu />
+          </Stack>
         </Tooltip>
       )}
+
     </Toolbar>
   );
 }
@@ -317,8 +318,6 @@ export default function EnhancedTable() {
     ),
     [order, orderBy, page, rowsPerPage],
   );
-
-  
 
   return (
     <Box sx={{

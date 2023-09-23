@@ -1,57 +1,72 @@
-import React from "react";
+import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import ApexChart from "react-apexcharts";
+import ApexChart from 'react-apexcharts';
 
 export default function DonutChart() {
   const chartOptions = {
     chart: {
-      background: "0",
+      background: '0',
     },
     plotOptions: {
       pie: {
         expandOnClick: true,
         donut: {
-          background: "transparent",
-          size: "60px",
+          background: 'transparent',
+          size: '60px',
           labels: {
             show: true,
             total: {
               show: true,
               showAlways: true,
-              fontSize: "17px",
-              color: "#a7a7a7",
+              fontSize: '17px',
+              color: '#a7a7a7',
             },
             value: {
               show: true,
-              fontSize: "16px",
-              fontFamily: "Helvetica, Arial, sans-serif",
+              fontSize: '16px',
+              fontFamily: 'Helvetica, Arial, sans-serif',
               fontWeight: 600,
-              color: "#6366F1",
+              color: '#6366F1',
             },
           },
         },
       },
     },
+    responsive: [{
+      breakpoint: 480,
+      options: {
+        chart: {
+          width: 300,
+        },
+        legend: {
+          position: 'bottom',
+        },
+      },
+    }],
     stroke: {
-      colors: ["transparent"],
+      colors: ['transparent'],
     },
     colors: [
-      "rgba(163, 160, 161, 0.3)",
-      "#6366F1",
-      "rgba(163, 160, 161, 0.3)",
-      "#6366F1",
+      'rgba(163, 160, 161, 0.3)',
+      '#6366F1',
+      'rgba(163, 160, 161, 0.3)',
+      '#6366F1',
     ],
     tooltip: {
       fillSeriesColor: true,
     },
-    labels: ["Mercado Livre", "Shopify", "Americanas", "Magalu"],
+    labels: ['Mercado Livre', 'Shopify', 'Americanas', 'Magalu'],
+    legend: {
+      position: 'bottom',
+    },
   };
 
   return (
     <ApexChart
       options={chartOptions}
       series={[44, 55, 41, 17]}
-      height={290}
+      height={400}
+      width={450}
       type="donut"
     />
   );

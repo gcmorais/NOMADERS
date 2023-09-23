@@ -7,7 +7,7 @@ function Login({
   children, navLink, width,
 }) {
   return ReactDOM.createPortal(
-    <div className="fixed inset-0 flex justify-center items-center px-2 backdrop-blur-sm bg-secundary-gray/50">
+    <div className="fixed inset-0 flex justify-center items-center px-2 backdrop-blur-sm bg-secundary-gray/50 z-30">
       <div className={`rounded-xl bg-white lg:h-auto ${width} lg:border-0 w-full`}>
         <div className="m-2 ">
           <button

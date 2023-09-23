@@ -6,7 +6,7 @@ import Input from '../input';
 function NewPlatformModal({ isOpen, closed }) {
   if (isOpen) {
     return (
-      <Login navLink={() => closed(!isOpen)} width="lg:w-[500px]">
+      <Login navLink={closed} width="lg:w-[500px]">
         <header className="mb-9 flex flex-col gap-8">
           <h1 className="m-auto font-inter text-2xl font-semibold">Nova plataforma</h1>
         </header>

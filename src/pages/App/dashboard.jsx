@@ -146,7 +146,7 @@ function Dashboard() {
                   Vendas por plataformas
                 </h3>
               </header>
-              <div className="text-black/80 dark:text-white px-6">
+              <div className="flex justify-center items-center  h-full text-black/80 dark:text-white pb-10 md:pb-20">
                 <DonutChart />
               </div>
             </div>
