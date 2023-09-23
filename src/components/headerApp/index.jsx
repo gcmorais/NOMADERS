@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { PiGearSixBold } from 'react-icons/pi';
-import { BiMenu, BiSun } from 'react-icons/bi';
+import { BiMenu } from 'react-icons/bi';
 import { IoIosNotifications } from 'react-icons/io';
-import { BsFillMoonStarsFill } from 'react-icons/bs';
+
 import { AiOutlineDownload } from 'react-icons/ai';
-import { ThemeContext } from '../../contexts/ThemeContext';
+import ThemeToggler from './themetoggler';
 
 function HeaderApp() {
-  const { theme, handleToggleTheme } = useContext(ThemeContext);
-
   return (
     <header className="flex items-center justify-between p-5">
       <div>
@@ -24,19 +22,16 @@ function HeaderApp() {
         >
           <AiOutlineDownload />
         </button>
-        <button
-          type="button"
-          className="rounded-full bg-primary-white p-2 text-secundary-gray/80 drop-shadow-lg dark:bg-primary-blue"
-          onClick={handleToggleTheme}
-        >
-          {theme === 'dark' ? <BiSun /> : <BsFillMoonStarsFill />}
-        </button>
+
+        <ThemeToggler />
+
         <button
           type="button"
           className=" rounded-full bg-primary-white p-2 text-secundary-gray/80 drop-shadow-lg dark:bg-primary-blue"
         >
           <PiGearSixBold />
         </button>
+
         <button
           type="button"
           className=" flex rounded-full bg-primary-white p-2 text-secundary-gray/80 drop-shadow-lg dark:bg-primary-blue"
