@@ -6,22 +6,21 @@ import Input from '../input';
 function NewProductModal({ isOpen, closed }) {
   if (isOpen) {
     return (
-      <Login navLink={() => closed(!isOpen)} width="lg:w-[900px]">
+      <Login navLink={() => closed(!isOpen)} width="lg:w-[500px]" theme="dark:bg-primary-blue dark:fill-white">
         <header className="mb-9 flex flex-col gap-8">
-          <h1 className="font-inter text-2xl font-semibold m-auto ">
+          <h1 className="font-inter text-2xl font-semibold m-auto dark:text-white">
             Novo Produto
           </h1>
         </header>
         <main>
           <form className="flex flex-col gap-5">
-            <div className="flex flex-col md:flex-row gap-5">
-              <Input text="Nome" />
-              <Input text="Ean" />
+            <div className="flex flex-col gap-5">
+              <Input text="Nome" styles="dark:text-white" />
+              <Input text="Ean" styles="dark:text-white" />
             </div>
             <div className="flex gap-5">
-              <Input text="Custo" placeholder="R$" />
-              <Input text="Preço de venda" placeholder="R$" />
-              <Input text="Plataforma" placeholder="Selecionar" />
+              <Input text="Custo" placeholder="R$" styles="dark:text-white" />
+              <Input text="Preço de venda" placeholder="R$" styles="dark:text-white" />
             </div>
             <button
               type="submit"
@@ -42,5 +41,9 @@ export default NewProductModal;
 
 NewProductModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  closed: PropTypes.node.isRequired,
+  closed: PropTypes.node,
+};
+
+NewProductModal.defaultProps = {
+  closed: false,
 };

@@ -1,49 +1,49 @@
-import React from "react";
-import { AiFillWindows } from "react-icons/ai";
-import Framer from "../../components/framer";
-import Info from "../../components/info";
+import React from 'react';
+import { AiFillWindows } from 'react-icons/ai';
+import Framer from '../../components/framer';
+import Info from '../../components/info';
 
 function Overview() {
   const info = [
     {
-      id: "1",
+      id: '1',
       icon: <AiFillWindows />,
-      title: "Windows",
+      title: 'Windows',
       text: `It is a long established fact that a reader will be
       distracted by the readable content of a page when looking at its`,
     },
     {
-      id: "2",
+      id: '2',
       icon: <AiFillWindows />,
-      title: "Windows",
+      title: 'Windows',
       text: `It is a long established fact that a reader will be
       distracted by the readable content of a page when looking at its`,
     },
     {
-      id: "3",
+      id: '3',
       icon: <AiFillWindows />,
-      title: "Windows",
+      title: 'Windows',
       text: `It is a long established fact that a reader will be
       distracted by the readable content of a page when looking at its`,
     },
     {
-      id: "4",
+      id: '4',
       icon: <AiFillWindows />,
-      title: "Windows",
+      title: 'Windows',
       text: `It is a long established fact that a reader will be
       distracted by the readable content of a page when looking at its`,
     },
     {
-      id: "5",
+      id: '5',
       icon: <AiFillWindows />,
-      title: "Windows",
+      title: 'Windows',
       text: `It is a long established fact that a reader will be
       distracted by the readable content of a page when looking at its`,
     },
     {
-      id: "6",
+      id: '6',
       icon: <AiFillWindows />,
-      title: "Windows",
+      title: 'Windows',
       text: `It is a long established fact that a reader will be
       distracted by the readable content of a page when looking at its`,
     },

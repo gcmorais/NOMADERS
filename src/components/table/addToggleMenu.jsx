@@ -7,11 +7,11 @@ import MenuItem from '@mui/material/MenuItem';
 import EditIcon from '@mui/icons-material/Edit';
 import Divider from '@mui/material/Divider';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useState } from 'react';
 import RegisterProductModal from '../modal/newProductModal';
 import RegisterPlataformModal from '../modal/newPlatformModal';
+import AddProductModal from '../modal/addProductModal';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -59,6 +59,7 @@ export default function CustomizedMenus() {
   const open = Boolean(anchorEl);
   const [openRegisterProduct, setOpenRegisterProduct] = useState(false);
   const [openRegisterPlataform, setOpenRegisterPlataform] = useState(false);
+  const [openAddRegisterProduct, setOpenAddRegisterProduct] = useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -69,6 +70,10 @@ export default function CustomizedMenus() {
   };
   const plataformModal = () => {
     setOpenRegisterPlataform(true);
+    setAnchorEl(null);
+  };
+  const plataformAddModal = () => {
+    setOpenAddRegisterProduct(true);
     setAnchorEl(null);
   };
   const handleClose = () => {
@@ -98,24 +103,29 @@ export default function CustomizedMenus() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={productModal} disableRipple>
+        <MenuItem onClick={plataformAddModal} disableRipple>
           <EditIcon />
           Produto
         </MenuItem>
+        <Divider sx={{ my: 0.5 }} />
+        <MenuItem onClick={productModal} disableRipple>
+          <EditIcon />
+          Novo Produto
+        </MenuItem>
         <MenuItem onClick={plataformModal} disableRipple>
           <FileCopyIcon />
-          Plataforma
-        </MenuItem>
-        <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
-          <MoreHorizIcon />
-          Ver tudo
+          Nova Plataforma
         </MenuItem>
       </StyledMenu>
       <RegisterProductModal
         isOpen={openRegisterProduct}
         setModalOpen={() => setOpenRegisterProduct(!openRegisterProduct)}
         closed={() => setOpenRegisterProduct(!openRegisterProduct)}
+      />
+      <AddProductModal
+        isOpen={openAddRegisterProduct}
+        setModalOpen={() => setOpenAddRegisterProduct(!openAddRegisterProduct)}
+        closed={() => setOpenAddRegisterProduct(!openAddRegisterProduct)}
       />
       <RegisterPlataformModal
         isOpen={openRegisterPlataform}
