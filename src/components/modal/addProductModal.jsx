@@ -2,12 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Login from './Layout';
 import Input from '../input';
-
-const data = [
-  {
-    id: '1',
-  },
-];
+import List from '../list';
 
 function NewProductModal({ isOpen, closed }) {
   if (isOpen) {
@@ -18,9 +13,9 @@ function NewProductModal({ isOpen, closed }) {
             Adicionar Produto
           </h1>
         </header>
-        <main className="flex justify-between">
+        <main className="flex flex-col md:flex-row justify-between gap-10">
           <div>
-            teste
+            <List />
           </div>
           <form className="flex flex-col gap-5">
             <div>
