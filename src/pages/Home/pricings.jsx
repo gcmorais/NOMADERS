@@ -1,6 +1,6 @@
-import React from "react";
-import Framer from "../../components/framer";
-import Pricing from "../../components/pricing";
+import React from 'react';
+import Framer from '../../components/framer';
+import Pricing from '../../components/pricing';
 
 function Pricings() {
   return (

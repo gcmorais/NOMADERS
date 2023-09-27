@@ -1,7 +1,7 @@
-import React from "react";
-import { Accordion } from "@prismane/core";
-import background from "../../assets/stars-background.svg";
-import Framer from "../../components/framer";
+import React from 'react';
+import { Accordion } from '@prismane/core';
+import background from '../../assets/stars-background.svg';
+import Framer from '../../components/framer';
 
 function Faq() {
   return (

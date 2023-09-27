@@ -1,11 +1,12 @@
 import { render } from '@testing-library/react';
 import React from 'react';
-import App from '../App';
 import '../../.jest/mocks/intersectionObserverMock';
 
+import AddProductModal from '../components/modal/addProductModal';
 /* eslint-disable no-undef */
-describe('Jest', () => {
-  it('should display elements', () => {
-    render(<App />);
-  });
+
+test('renders react component', async () => {
+  render(
+    <AddProductModal />,
+  );
 });

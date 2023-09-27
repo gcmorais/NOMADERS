@@ -120,7 +120,6 @@ export default function CustomizedMenus() {
       <RegisterProductModal
         isOpen={openRegisterProduct}
         setModalOpen={() => setOpenRegisterProduct(!openRegisterProduct)}
-        closed={() => setOpenRegisterProduct(!openRegisterProduct)}
       />
       <AddProductModal
         isOpen={openAddRegisterProduct}

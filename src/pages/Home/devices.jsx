@@ -1,8 +1,8 @@
-import React from "react";
-import Framer from "../../components/framer";
-import GooglePlay from "../../assets/googleplay.svg";
-import AppStore from "../../assets/appstore.svg";
-import Demo from "../../assets/disponivel.svg";
+import React from 'react';
+import Framer from '../../components/framer';
+import GooglePlay from '../../assets/googleplay.svg';
+import AppStore from '../../assets/appstore.svg';
+import Demo from '../../assets/disponivel.svg';
 
 function Devices() {
   return (

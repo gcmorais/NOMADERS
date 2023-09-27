@@ -1,19 +1,10 @@
 import React from 'react';
-import {
-  BiSolidBarChartAlt2,
-  BiSolidDoughnutChart,
-  BiSolidWallet,
-} from 'react-icons/bi';
-import { MdOutlineWallet } from 'react-icons/md';
-import {
-  IoIosArrowDropupCircle,
-  IoIosArrowDropdownCircle,
-} from 'react-icons/io';
 import AreaChart from '../../components/chart/areaChart';
 import DonutChart from '../../components/chart/donutChart';
 import Table from '../../components/table';
 import HeaderApp from '../../components/headerApp';
 import HeaderSection from '../../components/headerSection';
+import DashInfo from '../../components/dashInfo';
 
 function Dashboard() {
   return (
@@ -27,97 +18,10 @@ function Dashboard() {
         <main>
           <div className="lg:flex lg:flex-col xl:flex-row justify-between mt-10 gap-2">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 xl:w-[55%]">
-              <div className="flex flex-col gap-3 p-5 rounded-lg bg-white dark:bg-primary-blue">
-                <header className="flex justify-between">
-                  <h3 className="dark:text-white/70">Vendas Totais</h3>
-                  <span className=" text-secundary-gray/80 bg-primary-white rounded-full p-2 drop-shadow-lg dark:bg-secundary-blue">
-                    <BiSolidBarChartAlt2 />
-                  </span>
-                </header>
-                <main>
-                  <h1 className="text-3xl font-medium dark:text-white">
-                    R$ 34,500
-                  </h1>
-                </main>
-                <footer className="flex items-center gap-2 mt-2">
-                  <span className="text-xl text-green-500">
-                    <IoIosArrowDropupCircle />
-                  </span>
-                  <p className="text-primary-gray/80 lg:text-sm 2xl:text-base">
-                    <strong className="text-green-500">4% </strong>
-                    nas vendas totais
-                  </p>
-                </footer>
-              </div>
-              <div className="flex flex-col gap-3 p-5 rounded-lg bg-white dark:bg-primary-blue">
-                <header className="flex justify-between">
-                  <h3 className="dark:text-white/70">Vendas Mensais</h3>
-                  <span className="text-secundary-gray/80 bg-primary-white rounded-full p-2 drop-shadow-lg dark:bg-secundary-blue">
-                    <BiSolidDoughnutChart />
-                  </span>
-                </header>
-                <main>
-                  <h1 className="text-3xl font-medium dark:text-white">
-                    R$ 4,500
-                  </h1>
-                </main>
-                <footer className="flex items-center gap-2 mt-2">
-                  <span className="text-xl text-green-500">
-                    <IoIosArrowDropupCircle />
-                  </span>
-                  <p className="text-primary-gray/80 lg:text-sm 2xl:text-base">
-                    <strong className="text-green-500">7% </strong>
-                    nas vendas mensais
-                  </p>
-                </footer>
-              </div>
-              <div className="flex flex-col gap-3 p-5 rounded-lg bg-white dark:bg-primary-blue">
-                <header className="flex justify-between">
-                  <h3 className="dark:text-white/70">Lucro total</h3>
-                  <span
-                    type="button"
-                    className=" text-secundary-gray/80 bg-primary-white rounded-full p-2 drop-shadow-lg dark:bg-secundary-blue"
-                  >
-                    <BiSolidWallet />
-                  </span>
-                </header>
-                <main>
-                  <h1 className="text-3xl font-medium dark:text-white">
-                    R$ 34,500
-                  </h1>
-                </main>
-                <footer className="flex items-center gap-2 mt-2">
-                  <span className="text-xl text-green-500">
-                    <IoIosArrowDropupCircle />
-                  </span>
-                  <p className="text-primary-gray/80 lg:text-sm 2xl:text-base">
-                    <strong className="text-green-500">4% </strong>
-                    nos lucros totais
-                  </p>
-                </footer>
-              </div>
-              <div className="flex flex-col gap-3 p-5 rounded-lg bg-white dark:bg-primary-blue">
-                <header className="flex justify-between">
-                  <h3 className="dark:text-white/70">Lucro Mensal</h3>
-                  <span className=" text-secundary-gray/80 bg-primary-white rounded-full p-2 drop-shadow-lg dark:bg-secundary-blue">
-                    <MdOutlineWallet />
-                  </span>
-                </header>
-                <main>
-                  <h1 className="text-3xl font-medium dark:text-white">
-                    R$ 34,500
-                  </h1>
-                </main>
-                <footer className="flex items-center gap-2 mt-2">
-                  <span className="text-xl text-red-500">
-                    <IoIosArrowDropdownCircle />
-                  </span>
-                  <p className="text-primary-gray/80 lg:text-sm 2xl:text-base">
-                    <strong className="text-red-500">4% </strong>
-                    nos lucros mensais
-                  </p>
-                </footer>
-              </div>
+              <DashInfo headerText="Vendas Totais" mainValue="R$ 34,000" footerValue="5%" footerText="nas vendas totais" icon="green" />
+              <DashInfo headerText="Vendas Mensais" mainValue="R$ 4,500" footerValue="7%" footerText="nas vendas mensais" icon="green" />
+              <DashInfo headerText="Lucro Total" mainValue="R$ 34,500" footerValue="4%" footerText="nos lucros totais" icon="green" />
+              <DashInfo headerText="Lucro Mensal" mainValue="R$ 7,500" footerValue="4%" footerText="nos lucros mensais" icon="red" />
             </div>
             <div className="bg-white rounded-lg dark:bg-primary-blue w-full xl:w-[500px] 2xl:w-[960px] mt-2 lg:mt-0">
               <header className="flex justify-between mb-10">

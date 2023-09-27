@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Login from './Layout';
 import Input from '../input';
 
-function NewProductModal({ isOpen, closed }) {
+function NewProductModal({ isOpen, setModalOpen }) {
   if (isOpen) {
     return (
-      <Login navLink={() => closed(!isOpen)} width="lg:w-[500px]" theme="dark:bg-primary-blue dark:fill-white">
+      <Login navLink={setModalOpen} width="lg:w-[500px]" theme="dark:bg-primary-blue dark:fill-white">
         <header className="mb-9 flex flex-col gap-8">
           <h1 className="font-inter text-2xl font-semibold m-auto dark:text-white">
             Novo Produto
@@ -41,9 +41,9 @@ export default NewProductModal;
 
 NewProductModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  closed: PropTypes.node,
+  setModalOpen: PropTypes.node,
 };
 
 NewProductModal.defaultProps = {
-  closed: false,
+  setModalOpen: false,
 };
