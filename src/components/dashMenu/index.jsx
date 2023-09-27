@@ -1,11 +1,13 @@
 import React from 'react';
 import { FaHome, FaDatabase } from 'react-icons/fa';
 import { BsArrowRight } from 'react-icons/bs';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import User from '../../assets/user.svg';
 import PersonalMenu from './personalMenu';
 
 function DashMenu() {
+  const location = useLocation();
+
   return (
     <div className="flex flex-col gap-1.5 w-full lg:w-[270px] ">
       <div className="lg:h-[13.75vh] flex flex-col justify-center items-left gap-1 bg-secundary-white rounded-lg dark:bg-secundary-blue">

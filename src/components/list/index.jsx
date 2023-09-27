@@ -26,7 +26,7 @@ export default function CheckboxList() {
 
   return (
     <List sx={{
-      width: 380, maxWidth: 400, maxHeight: 300, bgcolor: 'background.paper', position: 'relative', overflow: 'auto',
+      width: 380, maxWidth: 400, maxHeight: 300, bgcolor: 'background.paper', position: 'relative', overflow: 'auto', color: '#9b9898',
     }}
     >
       {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => {

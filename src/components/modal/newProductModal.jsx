@@ -24,7 +24,7 @@ function NewProductModal({ isOpen, closed }) {
             </div>
             <button
               type="submit"
-              className="px-13 m-auto mb-10 mt-2 flex w-[50%] items-center justify-center rounded-md bg-primary-indigo p-2 text-primary-white"
+              className="px-13 m-auto mb-10 mt-2 flex w-full items-center justify-center rounded-md bg-primary-indigo p-2 text-primary-white"
             >
               Registrar produto
             </button>
