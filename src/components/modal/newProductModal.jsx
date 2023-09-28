@@ -45,5 +45,5 @@ NewProductModal.propTypes = {
 };
 
 NewProductModal.defaultProps = {
-  setModalOpen: false,
+  setModalOpen: '',
 };

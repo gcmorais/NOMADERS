@@ -37,6 +37,6 @@ Login.propTypes = {
 };
 
 Login.defaultProps = {
-  navLink: false,
+  navLink: '',
   theme: '',
 };

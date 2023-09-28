@@ -4,10 +4,10 @@ import Login from './Layout';
 import Input from '../input';
 import List from '../list';
 
-function NewProductModal({ isOpen, closed }) {
+function AddProductModal({ isOpen, setModalOpen }) {
   if (isOpen) {
     return (
-      <Login navLink={() => closed(!isOpen)} width="lg:w-[969px]" theme="dark:bg-primary-blue dark:fill-white">
+      <Login navLink={setModalOpen} width="lg:w-[969px]" theme="dark:bg-primary-blue dark:fill-white">
         <header className="mb-9 flex flex-col gap-8">
           <h1 className="font-inter text-2xl font-semibold m-auto dark:text-white">
             Adicionar Produto
@@ -65,13 +65,13 @@ function NewProductModal({ isOpen, closed }) {
   return null;
 }
 
-export default NewProductModal;
+export default AddProductModal;
 
-NewProductModal.propTypes = {
+AddProductModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  closed: PropTypes.node,
+  setModalOpen: PropTypes.node,
 };
 
-NewProductModal.defaultProps = {
-  closed: false,
+AddProductModal.defaultProps = {
+  setModalOpen: false,
 };

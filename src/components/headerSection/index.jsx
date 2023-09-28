@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineDownload } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 
 function HeaderSection({ title, subtitle }) {
+  const [message, setMessage] = useState('Download Reports');
   return (
     <header className="flex flex-col justify-between md:flex-row">
       <div>
@@ -14,9 +15,10 @@ function HeaderSection({ title, subtitle }) {
       <button
         type="button"
         className="mt-2 hidden items-center gap-2 rounded-md bg-primary-indigo px-5 text-[13px] text-white md:flex"
+        onClick={() => setMessage('Downloaded')}
       >
         <AiOutlineDownload />
-        Download Reports
+        {message}
       </button>
     </header>
   );

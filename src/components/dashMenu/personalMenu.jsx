@@ -65,10 +65,12 @@ export default function MenuListComposition() {
           aria-haspopup="true"
           size="small"
           onClick={handleToggle}
+          data-testid="open-popup"
         >
           <BiSolidDownArrow />
         </Button>
         <Popper
+          data-testid="popup-is-open"
           open={open}
           anchorEl={anchorRef.current}
           role={undefined}
@@ -94,7 +96,7 @@ export default function MenuListComposition() {
                   >
                     <MenuItem onClick={handleClose}>Perfil</MenuItem>
                     <MenuItem onClick={handleClose}>Minha conta</MenuItem>
-                    <MenuItem onClick={onClose}>Sair</MenuItem>
+                    <MenuItem onClick={onClose} data-testid="close-popup">Sair</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import { useContext } from 'react';
 import { BiSun } from 'react-icons/bi';
 import { BsFillMoonStarsFill } from 'react-icons/bs';
@@ -8,7 +7,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 function ThemeToggler() {
   const { mode, toggleMode } = useContext(ColorModeContext);
-  const { theme, handleToggleTheme } = useContext(ThemeContext);
+  const { handleToggleTheme } = useContext(ThemeContext);
 
   function handleClick(e) {
     toggleMode();
@@ -17,6 +16,7 @@ function ThemeToggler() {
 
   return (
     <button
+      data-testid="theme-toggler"
       type="button"
       className="rounded-full bg-primary-white p-2 text-secundary-gray/80 drop-shadow-lg dark:bg-primary-blue"
       onClick={handleClick}

@@ -8,7 +8,10 @@ import DashInfo from '../../components/dashInfo';
 
 function Dashboard() {
   return (
-    <section className="mt-2 lg:mt-0 rounded-lg bg-secundary-white dark:bg-secundary-blue w-full">
+    <section
+      data-testid="dashboard-background"
+      className="mt-2 lg:mt-0 rounded-lg bg-secundary-white dark:bg-secundary-blue w-full"
+    >
       <HeaderApp />
       <main className="p-6 lg:2xl:p-6">
         <HeaderSection

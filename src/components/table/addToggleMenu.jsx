@@ -79,7 +79,6 @@ export default function CustomizedMenus() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   return (
     <div>
       <Button
@@ -124,12 +123,10 @@ export default function CustomizedMenus() {
       <AddProductModal
         isOpen={openAddRegisterProduct}
         setModalOpen={() => setOpenAddRegisterProduct(!openAddRegisterProduct)}
-        closed={() => setOpenAddRegisterProduct(!openAddRegisterProduct)}
       />
       <RegisterPlataformModal
         isOpen={openRegisterPlataform}
         setModalOpen={() => setOpenRegisterPlataform(!openRegisterPlataform)}
-        closed={() => setOpenRegisterPlataform(!openRegisterPlataform)}
       />
     </div>
   );

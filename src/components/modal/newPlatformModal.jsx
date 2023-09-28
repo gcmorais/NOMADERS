@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Login from './Layout';
 import Input from '../input';
 
-function NewPlatformModal({ isOpen, closed }) {
+function NewPlatformModal({ isOpen, setModalOpen }) {
   if (isOpen) {
     return (
-      <Login navLink={closed} width="lg:w-[500px]" theme="dark:bg-primary-blue dark:fill-white">
+      <Login navLink={setModalOpen} width="lg:w-[500px]" theme="dark:bg-primary-blue dark:fill-white">
         <header className="mb-9 flex flex-col gap-8">
           <h1 className="m-auto font-inter text-2xl font-semibold dark:text-white/90">
             Nova plataforma
@@ -35,9 +35,9 @@ export default NewPlatformModal;
 
 NewPlatformModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  closed: PropTypes.node,
+  setModalOpen: PropTypes.node,
 };
 
 NewPlatformModal.defaultProps = {
-  closed: false,
+  setModalOpen: false,
 };
