@@ -41,9 +41,5 @@ export default NewProductModal;
 
 NewProductModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  setModalOpen: PropTypes.node,
-};
-
-NewProductModal.defaultProps = {
-  setModalOpen: '',
+  setModalOpen: PropTypes.func.isRequired,
 };

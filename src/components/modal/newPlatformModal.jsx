@@ -35,9 +35,5 @@ export default NewPlatformModal;
 
 NewPlatformModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  setModalOpen: PropTypes.node,
-};
-
-NewPlatformModal.defaultProps = {
-  setModalOpen: false,
+  setModalOpen: PropTypes.func.isRequired,
 };
