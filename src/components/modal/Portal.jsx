@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { AiOutlineClose } from 'react-icons/ai';
 import ReactDOM from 'react-dom';
 
-function Login({
+export default function PortalCreate({
   children, navLink, width, theme,
 }) {
   return ReactDOM.createPortal(
@@ -27,16 +27,14 @@ function Login({
   );
 }
 
-export default Login;
-
-Login.propTypes = {
+PortalCreate.propTypes = {
   children: PropTypes.node.isRequired,
   width: PropTypes.string.isRequired,
-  navLink: PropTypes.node,
+  navLink: PropTypes.func,
   theme: PropTypes.string,
 };
 
-Login.defaultProps = {
-  navLink: '',
+PortalCreate.defaultProps = {
+  navLink: () => {},
   theme: '',
 };

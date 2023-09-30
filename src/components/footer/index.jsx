@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 import {
   AiFillFacebook,
   AiFillInstagram,
   AiFillYoutube,
   AiOutlineTwitter,
-} from "react-icons/ai";
-import NavButton from "../navbutton";
-import BrazilFlag from "../../assets/Brazil.svg";
+} from 'react-icons/ai';
+import NavButton from '../navbutton';
+import BrazilFlag from '../../assets/Brazil.svg';
 
 function Footer() {
   return (

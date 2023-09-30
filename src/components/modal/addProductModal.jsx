@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Login from './Layout';
+import Login from './Portal';
 import Input from '../input';
 import List from '../list';
+import Select from '../input/select';
 
 function AddProductModal({ isOpen, setModalOpen }) {
   if (isOpen) {
@@ -45,7 +46,10 @@ function AddProductModal({ isOpen, setModalOpen }) {
             </div>
             <div className="flex gap-5">
               <Input text="Data de venda" styles="dark:text-white" />
-              <Input text="Plataforma" placeholder="Expandir" styles="dark:text-white" />
+
+              <div className="w-full">
+                <Select title="Plataforma" value="Mercado livre" />
+              </div>
             </div>
             <div className="flex flex-row-reverse">
               <button

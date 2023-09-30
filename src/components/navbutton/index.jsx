@@ -1,7 +1,7 @@
-import React from "react";
-import { AiOutlineUser } from "react-icons/ai";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { AiOutlineUser } from 'react-icons/ai';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function NavButton({ bgcolor, text, link }) {
   return (

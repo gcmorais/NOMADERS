@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Login from './Layout';
+import Login from './Portal';
 import Input from '../input';
 
 function NewProductModal({ isOpen, setModalOpen }) {

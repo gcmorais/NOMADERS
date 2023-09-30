@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Login from './Layout';
+import Login from './Portal';
 import Input from '../input';
+import Select from '../input/select';
 
 function NewPlatformModal({ isOpen, setModalOpen }) {
   if (isOpen) {
@@ -15,7 +16,7 @@ function NewPlatformModal({ isOpen, setModalOpen }) {
         <main>
           <form className="flex flex-col gap-5">
             <Input text="Nome" styles="dark:text-white" />
-            <Input text="Subcategoria de:" placeholder="Selecionar" styles="dark:text-white" />
+            <Select title="Subcategoria" value="Americanas" />
             <button
               type="submit"
               className="mb-10 mt-2 flex items-center justify-center rounded-md bg-primary-indigo p-2 text-primary-white"

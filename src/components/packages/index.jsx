@@ -1,7 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-function Packages({ icon, base, price, funcs, btntext }) {
+function Packages({
+  icon, base, price, funcs, btntext,
+}) {
   return (
     <div className="packages">
       <div className="w-[35%] flex justify-center items-center m-auto bg-secundary-white rounded-full p-7">
