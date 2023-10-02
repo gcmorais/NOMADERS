@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function FormGroup({ children, error }) {
+export default function FormGroup({ children, error, styles }) {
   return (
-    <div>
+    <div className={`${styles}`}>
       {children}
       {error && <small className="text-red-600">{error}</small>}
     </div>
@@ -13,8 +13,10 @@ export default function FormGroup({ children, error }) {
 FormGroup.propTypes = {
   children: PropTypes.node.isRequired,
   error: PropTypes.string,
+  styles: PropTypes.string,
 };
 
 FormGroup.defaultProps = {
   error: '',
+  styles: '',
 };

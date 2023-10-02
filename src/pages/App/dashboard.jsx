@@ -19,14 +19,14 @@ function Dashboard() {
           subtitle="Bem vindo ao seu dashboard"
         />
         <main>
-          <div className="lg:flex lg:flex-col xl:flex-row justify-between mt-10 gap-2">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 xl:w-[55%]">
+          <div className="flex flex-col 2xl:flex-row justify-between mt-10 gap-2">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 2xl:w-[55%]">
               <DashInfo headerText="Vendas Totais" mainValue="R$ 34,000" footerValue="5%" footerText="nas vendas totais" icon="green" />
               <DashInfo headerText="Vendas Mensais" mainValue="R$ 4,500" footerValue="7%" footerText="nas vendas mensais" icon="green" />
               <DashInfo headerText="Lucro Total" mainValue="R$ 34,500" footerValue="4%" footerText="nos lucros totais" icon="green" />
               <DashInfo headerText="Lucro Mensal" mainValue="R$ 7,500" footerValue="4%" footerText="nos lucros mensais" icon="red" />
             </div>
-            <div className="bg-white rounded-lg dark:bg-primary-blue w-full xl:w-[500px] 2xl:w-[960px] mt-2 lg:mt-0">
+            <div className="bg-white rounded-lg dark:bg-primary-blue w-full 2xl:w-[70%] mt-2 lg:mt-0">
               <header className="flex justify-between mb-10">
                 <h3
                   className="dark:text-white/70 pt-5 pb-2 border-b-[1px]
@@ -41,9 +41,9 @@ function Dashboard() {
               </div>
             </div>
           </div>
-          <div className="lg:flex lg:flex-col xl:flex-row justify-between mt-2 gap-2">
+          <div className="flex flex-col 2xl:flex-row justify-between mt-2 gap-2">
             <Table />
-            <div className="bg-white rounded-lg dark:bg-primary-blue w-full xl:w-[500px] 2xl:w-[650px] mt-2 lg:mt-0">
+            <div className="bg-white rounded-lg dark:bg-primary-blue w-full 2xl:w-[50%] mt-2 lg:mt-0">
               <header className="flex justify-between mb-5">
                 <h3
                   className="dark:text-white/70 pt-5 pb-2 border-b-[1px]

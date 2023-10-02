@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
 import Login from './Portal';
-import Input from '../input';
+import Input from '../input/input';
 import useErrors from '../../hooks/useErrors';
 import isEmailValid from '../../utils/isEmailValid';
 import FormGroup from '../input/formgroup';
