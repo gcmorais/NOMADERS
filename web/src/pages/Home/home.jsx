@@ -15,14 +15,15 @@ function Home() {
         </div>
         <div className="flex justify-center flex-col items-center w-[100%] text-primary-white lg:w-[46%]">
           <h1 className="flex items-baseline font-extrabold text-5xl text-center lg:w-[80%] 2xl:w-[62%]">
-            PENSE EM UM APP…
+            PROBLEMAS NAS VENDAS?
             <img src={Stars} alt="starts" />
           </h1>
           <p className="mt-5 mb-10 text-center lg:w-[90%]">
-            …onde você possa pertencer a um clube escolar, um grupo de gamers,
-            ou uma comunidade artística mundial. Onde você e alguns amigos
-            possam passar um tempo juntos. Um lugar que torna fácil conversar
-            todos os dias e socializar com mais frequência.
+            já pensou um lugar onde você pode gerenciar todas suas vendas em um só lugar?
+            Seja bem vindo a NOMADERS!
+            Solução criada para centralizar
+            todas as informações necessárias para facilitar seu gerenciamento
+            e maior controle.
           </p>
 
           <div className="flex justify-center gap-3 ">
