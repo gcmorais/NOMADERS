@@ -1,9 +1,10 @@
-/* eslint-disable import/extensions */
-import express from 'express';
+const express = require('express');
 
-import routes from './routes.js';
+const routes = require('./routes');
 
 const app = express();
+
+app.use(express.json());
 app.use(routes);
 
 app.listen(5174, () => console.log('Server started at http://localhost:5174'));

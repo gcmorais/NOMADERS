@@ -13,13 +13,11 @@ CREATE TABLE IF NOT EXISTS products (
   id UUID NOT NULL UNIQUE DEFAULT uuid_generate_v4(),
   name VARCHAR NOT NULL,
   ean BIGINT NOT NULL UNIQUE,
-  cost MONEY NOT NULL,
-  salePrice MONEY NOT NULL
+  cost NUMERIC(6,2) NOT NULL,
+  salePrice NUMERIC(6,2) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS platforms (
   id UUID NOT NULL UNIQUE DEFAULT uuid_generate_v4(),
-  name VARCHAR NOT NULL,
-  subcategory VARCHAR
+  name VARCHAR NOT NULL
 );
-
