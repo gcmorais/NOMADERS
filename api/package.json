@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "license": "MIT",
-  "type": "module",
+  "type": "commonjs",
   "dependencies": {
     "express": "^4.18.2",
-    "uuidv4": "^6.2.13"
+    "pg": "^8.11.3",
+    "uuid": "^9.0.1"
   },
   "scripts": {
     "start": "npx nodemon src/index.js"
