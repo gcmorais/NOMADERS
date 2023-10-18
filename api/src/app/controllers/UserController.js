@@ -1,6 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable consistent-return */
-/* eslint-disable class-methods-use-this */
 const UserRepository = require('../repositories/UserRepository');
 
 class UserController {

@@ -1,7 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable class-methods-use-this */
-
 const db = require('../../database');
 
 class UserRepository {
