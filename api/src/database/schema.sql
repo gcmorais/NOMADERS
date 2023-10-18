@@ -9,6 +9,11 @@ CREATE TABLE IF NOT EXISTS users (
   password VARCHAR NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS platforms (
+  id UUID NOT NULL UNIQUE DEFAULT uuid_generate_v4(),
+  name VARCHAR NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS products (
   id UUID NOT NULL UNIQUE DEFAULT uuid_generate_v4(),
   name VARCHAR NOT NULL,
@@ -17,7 +22,3 @@ CREATE TABLE IF NOT EXISTS products (
   salePrice NUMERIC(6,2) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS platforms (
-  id UUID NOT NULL UNIQUE DEFAULT uuid_generate_v4(),
-  name VARCHAR NOT NULL
-);
