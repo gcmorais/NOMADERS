@@ -27,6 +27,7 @@ import { Stack } from '@mui/material';
 import { useCallback, useEffect } from 'react';
 import AddToggleMenu from './addToggleMenu';
 import ProductsService from '../../services/ProductsService';
+import EmptyBox from '../../assets/empty-box.svg';
 
 function createData(name, ean, cost, price, profit, platform, id) {
   return {
@@ -246,6 +247,7 @@ export default function EnhancedTable() {
   const [dense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(8);
   const [products, setProducts] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const rows = [];
 
@@ -259,13 +261,14 @@ export default function EnhancedTable() {
       'Americanas',
       item.id,
     ))
-
   ));
 
   const loadProducts = useCallback(async () => {
     try {
       const productList = await ProductsService.listProducts();
       setProducts(productList);
+
+      setIsLoading(false);
     } catch {
       console.log('deu erro');
     }
@@ -348,67 +351,70 @@ export default function EnhancedTable() {
       p: 3,
     }}
     >
+      {isLoading && (
+        <p className="h-[600px] flex items-center justify-center">carregando...</p>
+      )}
+      {!isLoading && (
+        <Paper sx={{ width: '100%', mb: 0 }}>
+          <EnhancedTableToolbar numSelected={selected.length} />
+          <TableContainer>
+            <Table
+              sx={{ minWidth: 750 }}
+              aria-labelledby="tableTitle"
+              size={dense ? 'small' : 'medium'}
+            >
+              <EnhancedTableHead
+                numSelected={selected.length}
+                order={order}
+                orderBy={orderBy}
+                onSelectAllClick={handleSelectAllClick}
+                onRequestSort={handleRequestSort}
+                rowCount={rows.length}
+              />
+              {products.length > 0 && (
+              <TableBody key={products.id}>
+                {visibleRows.map((row, index) => {
+                  const isItemSelected = isSelected(row.name);
+                  const labelId = `enhanced-table-checkbox-${index}`;
 
-      <Paper sx={{ width: '100%', mb: 0 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
-        <TableContainer>
-          <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
-          >
-
-            <EnhancedTableHead
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
-            />
-            <TableBody key={products.id}>
-              {visibleRows.map((row, index) => {
-                const isItemSelected = isSelected(row.name);
-                const labelId = `enhanced-table-checkbox-${index}`;
-
-                return (
-                  <TableRow
-                    hover
-                    onClick={(event) => handleClick(event, row.name)}
-                    role="checkbox"
-                    aria-checked={isItemSelected}
-                    tabIndex={-1}
-                    key={row.id}
-                    selected={isItemSelected}
-                    sx={{ cursor: 'pointer' }}
-                  >
-
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        color="primary"
-                        checked={isItemSelected}
-                        inputProps={{
-                          'aria-labelledby': labelId,
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      id={labelId}
-                      scope="row"
-                      padding="none"
+                  return (
+                    <TableRow
+                      hover
+                      onClick={(event) => handleClick(event, row.name)}
+                      role="checkbox"
+                      aria-checked={isItemSelected}
+                      tabIndex={-1}
+                      key={row.id}
+                      selected={isItemSelected}
+                      sx={{ cursor: 'pointer' }}
                     >
-                      {row.name}
-                    </TableCell>
-                    <TableCell align="right">{row.ean}</TableCell>
-                    <TableCell align="right">{row.cost}</TableCell>
-                    <TableCell align="right">{row.price}</TableCell>
-                    <TableCell align="right">{row.profit}</TableCell>
-                    <TableCell align="right">{row.platform}</TableCell>
-                  </TableRow>
-                );
-              })}
-              {emptyRows > 0 && (
+
+                      <TableCell padding="checkbox">
+                        <Checkbox
+                          color="primary"
+                          checked={isItemSelected}
+                          inputProps={{
+                            'aria-labelledby': labelId,
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell
+                        component="th"
+                        id={labelId}
+                        scope="row"
+                        padding="none"
+                      >
+                        {row.name}
+                      </TableCell>
+                      <TableCell align="right">{row.ean}</TableCell>
+                      <TableCell align="right">{row.cost}</TableCell>
+                      <TableCell align="right">{row.price}</TableCell>
+                      <TableCell align="right">{row.profit}</TableCell>
+                      <TableCell align="right">{row.platform}</TableCell>
+                    </TableRow>
+                  );
+                })}
+                {emptyRows > 0 && (
                 <TableRow
                   style={{
                     height: (dense ? 33 : 53) * emptyRows,
@@ -416,20 +422,35 @@ export default function EnhancedTable() {
                 >
                   <TableCell colSpan={6} />
                 </TableRow>
+                )}
+              </TableBody>
               )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[8, 10, 25]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
+              {(products.length <= 0 && !isLoading) && (
+              <caption className="mt-24 mb-8">
+                <img src={EmptyBox} alt="box" className="ml-[46%]" />
+                <p className="mt-5 text-center">
+                  Você ainda não tem nenhum produto cadastrado!
+                  Clique no botão
+                  <br />
+                  <strong className="text-primary-indigo">‟ADICIONAR” </strong>
+                  para
+                  cadastrar o seu primeiro!
+                </p>
+              </caption>
+              )}
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[8, 10, 25]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Paper>
+      )}
       {/* <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
