@@ -24,9 +24,11 @@ import { visuallyHidden } from '@mui/utils';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Stack } from '@mui/material';
 
+import { useCallback, useEffect } from 'react';
 import AddToggleMenu from './addToggleMenu';
+import ProductsService from '../../services/ProductsService';
 
-function createData(name, ean, cost, price, profit, platform) {
+function createData(name, ean, cost, price, profit, platform, id) {
   return {
     name,
     ean,
@@ -34,23 +36,9 @@ function createData(name, ean, cost, price, profit, platform) {
     price,
     profit,
     platform,
+    id,
   };
 }
-
-const rows = [
-  createData('Liquidificador Brastemp CVMA', '0799439112766', 120, 220, 100, 'Mercado Livre'),
-  createData('PlayStation 5', '0149432112766', 3200, 5200, 2000, 'Americanas'),
-  createData('Xbox Series X', '0129432113766', 2200, 4000, 1800, 'Americanas'),
-  createData('Nintendo Switch', '1229432113766', 1200, 2200, 1000, 'Mercado Livre'),
-  createData('Liquidificador Brastemp CVMB', '0799439112766', 120, 220, 100, 'Mercado Livre'),
-  createData('PlayStation 6', '0149432112766', 3200, 5200, 2000, 'Americanas'),
-  createData('Xbox Series G', '0129432113766', 2200, 4000, 1800, 'Americanas'),
-  createData('Nintendo Switcz', '1229432113766', 1200, 2200, 1000, 'Mercado Livre'),
-  createData('Liquidificador Brastemp CVMC', '0799439112766', 120, 220, 100, 'Mercado Livre'),
-  createData('PlayStation 7', '0149432112766', 3200, 5200, 2000, 'Americanas'),
-  createData('Xbox Series S', '0129432113766', 2200, 4000, 1800, 'Americanas'),
-  createData('Nintendo SwitcT', '1229432113766', 1200, 2200, 1000, 'Mercado Livre'),
-];
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -257,6 +245,35 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [dense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(8);
+  const [products, setProducts] = React.useState([]);
+
+  const rows = [];
+
+  products.map((item) => (
+    rows.push(createData(
+      item.name,
+      item.ean,
+      item.cost,
+      item.saleprice,
+      item.saleprice - item.cost,
+      'Americanas',
+      item.id,
+    ))
+
+  ));
+
+  const loadProducts = useCallback(async () => {
+    try {
+      const productList = await ProductsService.listProducts();
+      setProducts(productList);
+    } catch {
+      console.log('deu erro');
+    }
+  }, []);
+
+  useEffect(() => {
+    loadProducts();
+  }, [loadProducts]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -316,7 +333,7 @@ export default function EnhancedTable() {
       page * rowsPerPage,
       page * rowsPerPage + rowsPerPage,
     ),
-    [order, orderBy, page, rowsPerPage],
+    [order, orderBy, page, rowsPerPage, rows],
   );
 
   return (
@@ -331,6 +348,7 @@ export default function EnhancedTable() {
       p: 3,
     }}
     >
+
       <Paper sx={{ width: '100%', mb: 0 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
@@ -348,7 +366,7 @@ export default function EnhancedTable() {
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
             />
-            <TableBody>
+            <TableBody key={products.id}>
               {visibleRows.map((row, index) => {
                 const isItemSelected = isSelected(row.name);
                 const labelId = `enhanced-table-checkbox-${index}`;
@@ -360,10 +378,11 @@ export default function EnhancedTable() {
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
-                    key={row.name}
+                    key={row.id}
                     selected={isItemSelected}
                     sx={{ cursor: 'pointer' }}
                   >
+
                     <TableCell padding="checkbox">
                       <Checkbox
                         color="primary"
@@ -416,5 +435,6 @@ export default function EnhancedTable() {
         label="Dense padding"
       /> */}
     </Box>
+
   );
 }
