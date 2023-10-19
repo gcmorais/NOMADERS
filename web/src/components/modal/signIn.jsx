@@ -65,6 +65,7 @@ function SignIn({ isOpen }) {
             <FormGroup error={getErrorMessageByFieldName('email')}>
               <Input
                 text="Email"
+                type="email"
                 value={email}
                 change={handleEmailChange}
                 error={getErrorMessageByFieldName('email') ? 'text-red-600' : 'text-black'}
@@ -74,6 +75,7 @@ function SignIn({ isOpen }) {
             <FormGroup error={getErrorMessageByFieldName('senha')}>
               <Input
                 text="Senha"
+                type="password"
                 value={password}
                 change={handlePasswordChange}
                 error={getErrorMessageByFieldName('senha') ? 'text-red-600' : 'text-black'}

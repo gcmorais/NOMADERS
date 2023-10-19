@@ -95,6 +95,7 @@ function SignUp({ isOpen }) {
             <FormGroup error={getErrorMessageByFieldName('email')}>
               <Input
                 text="Email"
+                type="email"
                 value={email}
                 change={handleEmailChange}
                 error={getErrorMessageByFieldName('email') ? 'text-red-600' : 'text-black'}
@@ -113,6 +114,7 @@ function SignUp({ isOpen }) {
             <FormGroup error={getErrorMessageByFieldName('confirmar-senha')}>
               <Input
                 text="Confirmar Senha"
+                type="password"
                 value={passconfirm}
                 change={handleConfirmPasswordChange}
                 error={getErrorMessageByFieldName('confirmar-senha') ? 'text-red-600' : 'text-black'}

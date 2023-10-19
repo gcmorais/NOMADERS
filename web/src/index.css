@@ -58,6 +58,7 @@
       opacity: 60%;
       transition: all 0.2s ease;
       cursor: default;
+      border-color: #ececec;
 
       /* &:hover{
         background-color: #6366F1;

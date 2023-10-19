@@ -33,7 +33,7 @@ function Faq() {
                 </div>
               </Accordion.Control>
               <Accordion.Panel className="m-auto lg:w-[95%]">
-                <div className="border-t-[1px] pt-2">
+                <div className="border-t-[1px] border-[#cccccc] pt-2 ">
                   Sim, nosso app gerencia as vendas mensais/anuais e você pode
                   no momento que desejar imprimir o histórico, facilitando a
                   organização dos documentos necessários para pagamentos de
@@ -54,7 +54,7 @@ function Faq() {
                 </div>
               </Accordion.Control>
               <Accordion.Panel className="m-auto lg:w-[95%]">
-                <div className="border-t-[1px] pt-2">
+                <div className="border-t-[1px] border-[#cccccc] pt-2">
                   Sim, nosso app gerencia as vendas mensais/anuais e você pode
                   no momento que desejar imprimir o histórico, facilitando a
                   organização dos documentos necessários para pagamentos de
@@ -74,7 +74,7 @@ function Faq() {
                 </div>
               </Accordion.Control>
               <Accordion.Panel className="m-auto lg:w-[95%]">
-                <div className="border-t-[1px] pt-2">
+                <div className="border-t-[1px] border-[#cccccc] pt-2">
                   Sim, nosso app gerencia as vendas mensais/anuais e você pode
                   no momento que desejar imprimir o histórico, facilitando a
                   organização dos documentos necessários para pagamentos de
@@ -94,7 +94,7 @@ function Faq() {
                 </div>
               </Accordion.Control>
               <Accordion.Panel className="m-auto lg:w-[95%]">
-                <div className="border-t-[1px] pt-2">
+                <div className="border-t-[1px] border-[#cccccc] pt-2">
                   Sim, nosso app gerencia as vendas mensais/anuais e você pode
                   no momento que desejar imprimir o histórico, facilitando a
                   organização dos documentos necessários para pagamentos de

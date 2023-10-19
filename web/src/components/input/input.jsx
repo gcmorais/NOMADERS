@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Input({
-  text, placeholder, styles, value, change, error,
+  text, placeholder, styles, value, change, error, type,
 }) {
   return (
     <div className="w-full">
@@ -11,7 +11,7 @@ export default function Input({
       </p>
 
       <input
-        type="text"
+        type={type}
         value={value}
         placeholder={placeholder}
         className={`border-2 border-primary-gray/30 rounded-lg p-2 text-sm opacity-70 w-full ${error} ${styles}`}
@@ -28,6 +28,7 @@ Input.propTypes = {
   value: PropTypes.node,
   change: PropTypes.func,
   error: PropTypes.string,
+  type: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -36,4 +37,5 @@ Input.defaultProps = {
   styles: '',
   value: '',
   error: '',
+  type: 'text',
 };
