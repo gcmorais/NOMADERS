@@ -1,10 +1,16 @@
-class ProductsService {
-  async listProducts() {
-    const response = await fetch(
-      'http://localhost:5174/product',
-    );
+import HttpCLient from './utils/HttpClient';
 
-    return response.json();
+class ProductsService {
+  constructor() {
+    this.httpClient = new HttpCLient('http://localhost:5174');
+  }
+
+  async listProducts() {
+    return this.httpClient.get('/product');
+  }
+
+  async createProduct(product) {
+    return this.httpClient.post('/product', product);
   }
 }
 
