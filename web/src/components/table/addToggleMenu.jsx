@@ -12,6 +12,7 @@ import { useState } from 'react';
 import RegisterProductModal from '../modal/newProductModal';
 import RegisterPlataformModal from '../modal/newPlatformModal';
 import AddProductModal from '../modal/addProductModal';
+import ProductsService from '../../services/ProductsService';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -79,6 +80,9 @@ export default function CustomizedMenus() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  // async function handleSubmit(formData) {
+  //   const response = await ProductsService.createProduct(formData);
+  // }
   return (
     <div>
       <Button
@@ -119,6 +123,7 @@ export default function CustomizedMenus() {
       <RegisterProductModal
         isOpen={openRegisterProduct}
         setModalOpen={() => setOpenRegisterProduct(!openRegisterProduct)}
+        // onSubmit={handleSubmit}
       />
       <AddProductModal
         isOpen={openAddRegisterProduct}

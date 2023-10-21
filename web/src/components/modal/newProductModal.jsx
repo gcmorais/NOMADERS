@@ -5,7 +5,7 @@ import Input from '../input/input';
 import useErrors from '../../hooks/useErrors';
 import FormGroup from '../input/formgroup';
 
-function NewProductModal({ isOpen, setModalOpen }) {
+function NewProductModal({ isOpen, setModalOpen, onSubmit }) {
   const [name, setName] = useState([]);
   const [ean, setEan] = useState([]);
   const [cost, setCost] = useState([]);
@@ -55,6 +55,9 @@ function NewProductModal({ isOpen, setModalOpen }) {
   }
   function handleSubmit(event) {
     event.preventDefault();
+    onSubmit({
+      name, ean, cost, salePrice,
+    });
   }
 
   if (isOpen) {
@@ -128,4 +131,5 @@ export default NewProductModal;
 NewProductModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   setModalOpen: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };

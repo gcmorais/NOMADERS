@@ -106,6 +106,12 @@ const headCells = [
     disablePadding: false,
     label: 'Plataforma',
   },
+  {
+    id: 'actions',
+    numeric: true,
+    disablePadding: true,
+    label: '',
+  },
 ];
 
 function EnhancedTableHead(props) {
@@ -220,7 +226,7 @@ function EnhancedTableToolbar(props) {
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>
-            <DeleteIcon />
+            <DeleteIcon width={1} />
           </IconButton>
         </Tooltip>
       ) : (
@@ -248,6 +254,7 @@ export default function EnhancedTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(8);
   const [products, setProducts] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [deleteProduct, setDeleteProduct] = React.useState(false);
 
   const rows = [];
 
@@ -269,8 +276,8 @@ export default function EnhancedTable() {
       setProducts(productList);
 
       setIsLoading(false);
-    } catch {
-      console.log('deu erro');
+    } catch (error) {
+      console.log('Caiu no catch', error);
     }
   }, []);
 
@@ -286,7 +293,7 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.name);
+      const newSelected = rows.map((n) => n.id);
       setSelected(newSelected);
       return;
     }
@@ -339,6 +346,11 @@ export default function EnhancedTable() {
     [order, orderBy, page, rowsPerPage, rows],
   );
 
+  function handleRemove(row) {
+    setDeleteProduct(row);
+    console.log(deleteProduct.id);
+  }
+
   return (
     <Box sx={{
       display: 'flex',
@@ -374,13 +386,13 @@ export default function EnhancedTable() {
               {products.length > 0 && (
               <TableBody key={products.id}>
                 {visibleRows.map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.id);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.id)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -411,6 +423,14 @@ export default function EnhancedTable() {
                       <TableCell align="right">{row.price}</TableCell>
                       <TableCell align="right">{row.profit}</TableCell>
                       <TableCell align="right">{row.platform}</TableCell>
+                      <TableCell align="right">
+                        <Tooltip title="Delete">
+                          <IconButton onClick={() => handleRemove(row)}>
+                            <DeleteIcon width={1} />
+                          </IconButton>
+                        </Tooltip>
+                      </TableCell>
+
                     </TableRow>
                   );
                 })}
