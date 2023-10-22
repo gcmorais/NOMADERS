@@ -24,7 +24,7 @@ import { visuallyHidden } from '@mui/utils';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Stack } from '@mui/material';
 
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import AddToggleMenu from './addToggleMenu';
 import ProductsService from '../../services/ProductsService';
 import EmptyBox from '../../assets/empty-box.svg';
@@ -270,20 +270,19 @@ export default function EnhancedTable() {
     ))
   ));
 
-  const loadProducts = useCallback(async () => {
-    try {
-      const productList = await ProductsService.listProducts();
-      setProducts(productList);
-
-      setIsLoading(false);
-    } catch (error) {
-      console.log('Caiu no catch', error);
-    }
-  }, []);
-
   useEffect(() => {
+    async function loadProducts() {
+      try {
+        const productList = await ProductsService.listProducts();
+        setProducts(productList);
+
+        setIsLoading(false);
+      } catch (error) {
+        console.log('Caiu no catch', error);
+      }
+    }
     loadProducts();
-  }, [loadProducts]);
+  }, []);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -348,7 +347,7 @@ export default function EnhancedTable() {
 
   function handleRemove(row) {
     setDeleteProduct(row);
-    console.log(deleteProduct.id);
+    console.log(row.id);
   }
 
   return (

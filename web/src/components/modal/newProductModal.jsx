@@ -131,5 +131,9 @@ export default NewProductModal;
 NewProductModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   setModalOpen: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
+};
+
+NewProductModal.defaultProps = {
+  onSubmit: () => {},
 };
