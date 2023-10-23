@@ -24,10 +24,12 @@ import { visuallyHidden } from '@mui/utils';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Stack } from '@mui/material';
 
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
+import EditIcon from '@mui/icons-material/Edit';
 import AddToggleMenu from './addToggleMenu';
 import ProductsService from '../../services/ProductsService';
 import EmptyBox from '../../assets/empty-box.svg';
+import EditProductModal from '../modal/editProductModal';
 
 function createData(name, ean, cost, price, profit, platform, id) {
   return {
@@ -116,7 +118,12 @@ const headCells = [
 
 function EnhancedTableHead(props) {
   const {
-    onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort,
+    onSelectAllClick,
+    order,
+    orderBy,
+    numSelected,
+    rowCount,
+    onRequestSort,
   } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -208,7 +215,7 @@ function EnhancedTableToolbar(props) {
           Produtos
         </Typography>
       )}
-      <div className="hidden md:block rounded-full border-[1px] border-black/10 dark:border-white/10 mr-10">
+      <div className="mr-10 hidden rounded-full border-[1px] border-black/10 dark:border-white/10 md:block">
         <form className="flex">
           <input
             className="w-[150px] rounded-l-full bg-white px-5 py-2 text-[12px] dark:bg-primary-blue dark:text-white/80 lg:w-[300px]"
@@ -236,7 +243,6 @@ function EnhancedTableToolbar(props) {
           </Stack>
         </Tooltip>
       )}
-
     </Toolbar>
   );
 }
@@ -254,12 +260,17 @@ export default function EnhancedTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(8);
   const [products, setProducts] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  // eslint-disable-next-line no-unused-vars
   const [deleteProduct, setDeleteProduct] = React.useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [editProduct, setEditProduct] = React.useState(false);
+  const [openRegisterProduct, setOpenRegisterProduct] = React.useState(false);
+  const [product, setProduct] = React.useState([]);
 
   const rows = [];
 
-  products.map((item) => (
-    rows.push(createData(
+  products.map((item) => rows.push(
+    createData(
       item.name,
       item.ean,
       item.cost,
@@ -267,20 +278,20 @@ export default function EnhancedTable() {
       item.saleprice - item.cost,
       'Americanas',
       item.id,
-    ))
+    ),
   ));
 
-  useEffect(() => {
-    async function loadProducts() {
-      try {
-        const productList = await ProductsService.listProducts();
-        setProducts(productList);
-
-        setIsLoading(false);
-      } catch (error) {
-        console.log('Caiu no catch', error);
-      }
+  const loadProducts = useCallback(async () => {
+    try {
+      const productList = await ProductsService.listProducts();
+      setIsLoading(false);
+      setProducts(productList);
+    } catch (error) {
+      console.log('Caiu no catch', error);
     }
+  }, []);
+
+  useEffect(() => {
     loadProducts();
   }, []);
 
@@ -350,22 +361,45 @@ export default function EnhancedTable() {
     console.log(row.id);
   }
 
+  const editProducts = useCallback(async (row) => {
+    try {
+      if (row === undefined) { return; }
+
+      const productData = await ProductsService.getProductById(row.id);
+
+      setEditProduct(row);
+      setOpenRegisterProduct(true);
+      setProduct(productData);
+    } catch (error) {
+      console.log('Caiu no catch', error);
+    }
+  }, []);
+
+  useEffect(() => {
+    editProducts();
+  }, [editProducts]);
+
   return (
-    <Box sx={{
-      display: 'flex',
-      width: '100%',
-      alignItems: 'center',
-      justifyContent: 'center',
-      bgcolor: 'background.default',
-      color: 'text.primary',
-      borderRadius: 1,
-      p: 3,
-    }}
-    >
-      {isLoading && (
-        <p className="h-[600px] flex items-center justify-center">carregando...</p>
-      )}
-      {!isLoading && (
+
+    <>
+      <Box
+        sx={{
+          display: 'flex',
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          bgcolor: 'background.default',
+          color: 'text.primary',
+          borderRadius: 1,
+          p: 3,
+        }}
+      >
+        {isLoading && (
+        <p className="flex h-[600px] items-center justify-center">
+          carregando...
+        </p>
+        )}
+        {!isLoading && (
         <Paper sx={{ width: '100%', mb: 0 }}>
           <EnhancedTableToolbar numSelected={selected.length} />
           <TableContainer>
@@ -383,79 +417,84 @@ export default function EnhancedTable() {
                 rowCount={rows.length}
               />
               {products.length > 0 && (
-              <TableBody key={products.id}>
-                {visibleRows.map((row, index) => {
-                  const isItemSelected = isSelected(row.id);
-                  const labelId = `enhanced-table-checkbox-${index}`;
+                <TableBody key={products.id}>
+                  {visibleRows.map((row, index) => {
+                    const isItemSelected = isSelected(row.id);
+                    const labelId = `enhanced-table-checkbox-${index}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.id)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.id}
-                      selected={isItemSelected}
-                      sx={{ cursor: 'pointer' }}
-                    >
-
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
+                    return (
+                      <TableRow
+                        hover
+                        onClick={(event) => handleClick(event, row.id)}
+                        role="checkbox"
+                        aria-checked={isItemSelected}
+                        tabIndex={-1}
+                        key={row.id}
+                        selected={isItemSelected}
+                        sx={{ cursor: 'pointer' }}
                       >
-                        {row.name}
-                      </TableCell>
-                      <TableCell align="right">{row.ean}</TableCell>
-                      <TableCell align="right">{row.cost}</TableCell>
-                      <TableCell align="right">{row.price}</TableCell>
-                      <TableCell align="right">{row.profit}</TableCell>
-                      <TableCell align="right">{row.platform}</TableCell>
-                      <TableCell align="right">
-                        <Tooltip title="Delete">
-                          <IconButton onClick={() => handleRemove(row)}>
-                            <DeleteIcon width={1} />
-                          </IconButton>
-                        </Tooltip>
-                      </TableCell>
-
+                        <TableCell padding="checkbox">
+                          <Checkbox
+                            color="primary"
+                            checked={isItemSelected}
+                            inputProps={{
+                              'aria-labelledby': labelId,
+                            }}
+                          />
+                        </TableCell>
+                        <TableCell
+                          component="th"
+                          id={labelId}
+                          scope="row"
+                          padding="none"
+                        >
+                          {row.name}
+                        </TableCell>
+                        <TableCell align="right">{row.ean}</TableCell>
+                        <TableCell align="right">{row.cost}</TableCell>
+                        <TableCell align="right">{row.price}</TableCell>
+                        <TableCell align="right">{row.profit}</TableCell>
+                        <TableCell align="right">{row.platform}</TableCell>
+                        <TableCell align="right">
+                          <Tooltip title="Deletar">
+                            <IconButton onClick={() => handleRemove(row)}>
+                              <DeleteIcon />
+                            </IconButton>
+                          </Tooltip>
+                          <Tooltip title="Editar">
+                            <IconButton onClick={() => editProducts(row)}>
+                              <EditIcon />
+                            </IconButton>
+                          </Tooltip>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                  {emptyRows > 0 && (
+                    <TableRow
+                      style={{
+                        height: (dense ? 33 : 53) * emptyRows,
+                      }}
+                    >
+                      <TableCell colSpan={6} />
                     </TableRow>
-                  );
-                })}
-                {emptyRows > 0 && (
-                <TableRow
-                  style={{
-                    height: (dense ? 33 : 53) * emptyRows,
-                  }}
-                >
-                  <TableCell colSpan={6} />
-                </TableRow>
-                )}
-              </TableBody>
+                  )}
+                </TableBody>
               )}
-              {(products.length <= 0 && !isLoading) && (
-              <caption className="mt-24 mb-8">
-                <img src={EmptyBox} alt="box" className="ml-[46%]" />
-                <p className="mt-5 text-center">
-                  Você ainda não tem nenhum produto cadastrado!
-                  Clique no botão
-                  <br />
-                  <strong className="text-primary-indigo">‟ADICIONAR” </strong>
-                  para
-                  cadastrar o seu primeiro!
-                </p>
-              </caption>
+              {products.length <= 0 && !isLoading && (
+                <caption className="mb-8 mt-24">
+                  <img src={EmptyBox} alt="box" className="ml-[46%]" />
+                  <p className="mt-5 text-center">
+                    Você ainda não tem nenhum produto cadastrado! Clique no
+                    botão
+                    <br />
+                    <strong className="text-primary-indigo">
+                      ‟ADICIONAR”
+                      {' '}
+                    </strong>
+                    para cadastrar o seu primeiro!
+                  </p>
+                </caption>
               )}
             </Table>
           </TableContainer>
@@ -469,12 +508,19 @@ export default function EnhancedTable() {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Paper>
-      )}
-      {/* <FormControlLabel
+        )}
+        {/* <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       /> */}
-    </Box>
-
+      </Box>
+      <EditProductModal
+        key={product.id}
+        isOpen={openRegisterProduct}
+        setModalOpen={() => setOpenRegisterProduct(!openRegisterProduct)}
+        onSubmit={editProducts}
+        product={product}
+      />
+    </>
   );
 }
