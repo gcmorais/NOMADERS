@@ -1,4 +1,5 @@
 const ProductRepository = require('../repositories/ProductRepository');
+const isValidUUID = require('../utils/isValidUUID');
 
 /* eslint-disable class-methods-use-this */
 class ProductController {
@@ -41,6 +42,10 @@ class ProductController {
   async show(request, response) {
     const { id } = request.params;
 
+    if (!isValidUUID(id)) {
+      return response.status(400).json({ error: 'Product ID inválido!' });
+    }
+
     const product = await ProductRepository.findById(id);
 
     if (!product) {
@@ -55,6 +60,10 @@ class ProductController {
     const {
       name, ean, cost, salePrice,
     } = request.body;
+
+    if (!isValidUUID(id)) {
+      return response.status(400).json({ error: 'Product ID inválido!' });
+    }
 
     const findProductById = await ProductRepository.findById(id);
 
@@ -90,6 +99,10 @@ class ProductController {
 
   async delete(request, response) {
     const { id } = request.params;
+
+    if (!isValidUUID(id)) {
+      return response.status(400).json({ error: 'Product ID inválido!' });
+    }
 
     const findProductById = await ProductRepository.findById(id);
 
