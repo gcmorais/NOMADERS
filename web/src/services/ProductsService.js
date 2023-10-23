@@ -5,11 +5,15 @@ class ProductsService {
     this.httpClient = new HttpCLient('http://localhost:5174');
   }
 
-  async listProducts() {
+  listProducts() {
     return this.httpClient.get('/product');
   }
 
-  async createProduct(product) {
+  getProductById(id) {
+    return this.httpClient.get(`/product/${id}`);
+  }
+
+  createProduct(product) {
     return this.httpClient.post('/product', product);
   }
 }
