@@ -5,8 +5,10 @@ import Login from './Portal';
 import Input from '../input/input';
 import useErrors from '../../hooks/useErrors';
 import FormGroup from '../input/formgroup';
+import ProductsService from '../../services/ProductsService';
 
 function EditProductModal({
+  // eslint-disable-next-line no-unused-vars
   isOpen, setModalOpen, onSubmit, product,
 }) {
   const [name, setName] = useState(product.name);
@@ -57,11 +59,25 @@ function EditProductModal({
     }
   }
 
-  function handleSubmit(event) {
+  const { id } = product;
+
+  async function handleSubmit(event) {
     event.preventDefault();
-    onSubmit({
-      name, ean, cost, salePrice,
-    });
+    if (product.name === undefined) { return; }
+    try {
+      const data = {
+        name: product.name,
+        ean: product.ean,
+        cost: product.cost,
+        salePrice: product.saleprice,
+      };
+
+      const response = await ProductsService.updateProduct(id, data);
+
+      console.log(response);
+    } catch {
+      console.log('ocorreu erro ao editar produto');
+    }
   }
 
   if (isOpen) {

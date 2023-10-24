@@ -4,8 +4,12 @@ import Login from './Portal';
 import Input from '../input/input';
 import useErrors from '../../hooks/useErrors';
 import FormGroup from '../input/formgroup';
+import ProductsService from '../../services/ProductsService';
 
-function NewProductModal({ isOpen, setModalOpen, onSubmit }) {
+function NewProductModal({
+  // eslint-disable-next-line no-unused-vars
+  isOpen, setModalOpen, onSubmit,
+}) {
   const [name, setName] = useState([]);
   const [ean, setEan] = useState([]);
   const [cost, setCost] = useState([]);
@@ -53,11 +57,22 @@ function NewProductModal({ isOpen, setModalOpen, onSubmit }) {
       removeError('sale-price');
     }
   }
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    onSubmit({
-      name, ean, cost, salePrice,
-    });
+    try {
+      const product = {
+        name,
+        ean,
+        cost,
+        salePrice,
+      };
+
+      const response = await ProductsService.createProduct(product);
+
+      console.log(response);
+    } catch {
+      console.log('ocorreu erro ao cadastrar produto');
+    }
   }
 
   if (isOpen) {

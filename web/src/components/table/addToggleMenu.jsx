@@ -61,6 +61,7 @@ export default function CustomizedMenus() {
   const [openRegisterProduct, setOpenRegisterProduct] = useState(false);
   const [openRegisterPlataform, setOpenRegisterPlataform] = useState(false);
   const [openAddRegisterProduct, setOpenAddRegisterProduct] = useState(false);
+  const [products, setProducts] = React.useState([]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -80,22 +81,7 @@ export default function CustomizedMenus() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  async function handleSubmit(formData) {
-    try {
-      const product = {
-        name: formData.name,
-        ean: formData.ean,
-        cost: formData.cost,
-        salePrice: formData.salePrice,
-      };
 
-      const response = await ProductsService.createProduct(product);
-
-      console.log(response);
-    } catch {
-      console.log('ocorreu erro ao cadastrar produto');
-    }
-  }
   return (
     <div>
       <Button
@@ -136,7 +122,7 @@ export default function CustomizedMenus() {
       <RegisterProductModal
         isOpen={openRegisterProduct}
         setModalOpen={() => setOpenRegisterProduct(!openRegisterProduct)}
-        onSubmit={handleSubmit}
+        products={products}
       />
       <AddProductModal
         isOpen={openAddRegisterProduct}
