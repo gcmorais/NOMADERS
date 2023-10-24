@@ -16,6 +16,10 @@ class ProductsService {
   createProduct(product) {
     return this.httpClient.post('/product', product);
   }
+
+  updateProduct(id, product) {
+    return this.httpClient.put(`/product/${id}`, product);
+  }
 }
 
 export default new ProductsService();
