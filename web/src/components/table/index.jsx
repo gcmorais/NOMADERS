@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import { Link } from 'react-router-dom';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -29,7 +30,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import AddToggleMenu from './addToggleMenu';
 import ProductsService from '../../services/ProductsService';
 import EmptyBox from '../../assets/empty-box.svg';
-import EditProductModal from '../modal/editProductModal';
 
 function createData(name, ean, cost, price, profit, platform, id) {
   return {
@@ -262,10 +262,6 @@ export default function EnhancedTable() {
   const [isLoading, setIsLoading] = React.useState(true);
   // eslint-disable-next-line no-unused-vars
   const [deleteProduct, setDeleteProduct] = React.useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [editProduct, setEditProduct] = React.useState(false);
-  const [openRegisterProduct, setOpenRegisterProduct] = React.useState(false);
-  const [product, setProduct] = React.useState([]);
 
   const rows = [];
 
@@ -360,46 +356,26 @@ export default function EnhancedTable() {
     setDeleteProduct(row);
     console.log(row.id);
   }
-
-  const editProducts = useCallback(async (row) => {
-    try {
-      if (row === undefined) { return; }
-
-      const productData = await ProductsService.getProductById(row.id);
-
-      setEditProduct(row);
-      setOpenRegisterProduct(true);
-      setProduct(productData);
-    } catch (error) {
-      console.log('Caiu no catch', error);
-    }
-  }, []);
-
-  useEffect(() => {
-    editProducts();
-  }, [editProducts]);
-
   return (
 
-    <>
-      <Box
-        sx={{
-          display: 'flex',
-          width: '100%',
-          alignItems: 'center',
-          justifyContent: 'center',
-          bgcolor: 'background.default',
-          color: 'text.primary',
-          borderRadius: 1,
-          p: 3,
-        }}
-      >
-        {isLoading && (
+    <Box
+      sx={{
+        display: 'flex',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        bgcolor: 'background.default',
+        color: 'text.primary',
+        borderRadius: 1,
+        p: 3,
+      }}
+    >
+      {isLoading && (
         <p className="flex h-[600px] items-center justify-center">
           carregando...
         </p>
-        )}
-        {!isLoading && (
+      )}
+      {!isLoading && (
         <Paper sx={{ width: '100%', mb: 0 }}>
           <EnhancedTableToolbar numSelected={selected.length} />
           <TableContainer>
@@ -461,11 +437,13 @@ export default function EnhancedTable() {
                               <DeleteIcon />
                             </IconButton>
                           </Tooltip>
-                          <Tooltip title="Editar">
-                            <IconButton onClick={() => editProducts(row)}>
-                              <EditIcon />
-                            </IconButton>
-                          </Tooltip>
+                          <Link to={`/app/nomaders/edit/${row.id}`}>
+                            <Tooltip title="Editar">
+                              <IconButton>
+                                <EditIcon />
+                              </IconButton>
+                            </Tooltip>
+                          </Link>
                         </TableCell>
                       </TableRow>
                     );
@@ -508,19 +486,11 @@ export default function EnhancedTable() {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Paper>
-        )}
-        {/* <FormControlLabel
+      )}
+      {/* <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       /> */}
-      </Box>
-      <EditProductModal
-        key={product.id}
-        isOpen={openRegisterProduct}
-        setModalOpen={() => setOpenRegisterProduct(!openRegisterProduct)}
-        onSubmit={editProducts}
-        product={product}
-      />
-    </>
+    </Box>
   );
 }

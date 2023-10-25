@@ -11,6 +11,8 @@ import SignUp from '../components/modal/signUp';
 import DashMenu from '../components/dashMenu';
 import Dashboard from '../pages/App/dashboard';
 import Products from '../pages/App/products';
+import NewProduct from '../pages/App/newProduct';
+import EditProduct from '../pages/App/editProduct';
 
 function AppDash() {
   return (
@@ -48,6 +50,8 @@ function Rotas() {
       <Route path="app/nomaders" element={<AppDash />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="products" element={<Products />} />
+        <Route path="new" element={<NewProduct />} />
+        <Route path="edit/:id" element={<EditProduct />} />
       </Route>
       {/* <Route path="/app" element={<Appdash />}>
         <Route path="/dashboard" element={<Dashboard />} />

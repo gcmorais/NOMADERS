@@ -9,10 +9,9 @@ import Divider from '@mui/material/Divider';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useState } from 'react';
-import RegisterProductModal from '../modal/newProductModal';
+import { Link } from 'react-router-dom';
 import RegisterPlataformModal from '../modal/newPlatformModal';
 import AddProductModal from '../modal/addProductModal';
-import ProductsService from '../../services/ProductsService';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -58,17 +57,11 @@ const StyledMenu = styled((props) => (
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const [openRegisterProduct, setOpenRegisterProduct] = useState(false);
   const [openRegisterPlataform, setOpenRegisterPlataform] = useState(false);
   const [openAddRegisterProduct, setOpenAddRegisterProduct] = useState(false);
-  const [products, setProducts] = React.useState([]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-  };
-  const productModal = () => {
-    setOpenRegisterProduct(true);
-    setAnchorEl(null);
   };
   const plataformModal = () => {
     setOpenRegisterPlataform(true);
@@ -110,20 +103,17 @@ export default function CustomizedMenus() {
           Produto
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={productModal} disableRipple>
-          <EditIcon />
-          Novo Produto
+        <MenuItem disableRipple>
+          <Link to="/app/nomaders/new">
+            <EditIcon />
+            Novo Produto
+          </Link>
         </MenuItem>
         <MenuItem onClick={plataformModal} disableRipple>
           <FileCopyIcon />
           Nova Plataforma
         </MenuItem>
       </StyledMenu>
-      <RegisterProductModal
-        isOpen={openRegisterProduct}
-        setModalOpen={() => setOpenRegisterProduct(!openRegisterProduct)}
-        products={products}
-      />
       <AddProductModal
         isOpen={openAddRegisterProduct}
         setModalOpen={() => setOpenAddRegisterProduct(!openAddRegisterProduct)}
