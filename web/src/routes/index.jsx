@@ -10,9 +10,10 @@ import SignIn from '../components/modal/signIn';
 import SignUp from '../components/modal/signUp';
 import DashMenu from '../components/dashMenu';
 import Dashboard from '../pages/App/dashboard';
-import Products from '../pages/App/products';
 import NewProduct from '../pages/App/newProduct';
 import EditProduct from '../pages/App/editProduct';
+import Table from '../components/table';
+import LayoutPage from '../components/pageLayout';
 
 function AppDash() {
   return (
@@ -20,6 +21,14 @@ function AppDash() {
       <DashMenu />
       <Outlet />
     </div>
+  );
+}
+
+function ProductsDash() {
+  return (
+    <LayoutPage>
+      <Outlet />
+    </LayoutPage>
   );
 }
 
@@ -49,9 +58,11 @@ function Rotas() {
       </Route>
       <Route path="app/nomaders" element={<AppDash />}>
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="products" element={<Products />} />
-        <Route path="new" element={<NewProduct />} />
-        <Route path="edit/:id" element={<EditProduct />} />
+        <Route path="products" element={<ProductsDash />}>
+          <Route path="/app/nomaders/products" element={<Table />} />
+          <Route path="new" element={<NewProduct />} />
+          <Route path="edit/:id" element={<EditProduct />} />
+        </Route>
       </Route>
       {/* <Route path="/app" element={<Appdash />}>
         <Route path="/dashboard" element={<Dashboard />} />
