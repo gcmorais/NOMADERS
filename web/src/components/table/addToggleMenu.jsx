@@ -104,7 +104,7 @@ export default function CustomizedMenus() {
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem disableRipple>
-          <Link to="/app/nomaders/new">
+          <Link to="/app/nomaders/products/new">
             <EditIcon />
             Novo Produto
           </Link>

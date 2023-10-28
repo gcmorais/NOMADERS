@@ -53,17 +53,7 @@ function DashMenu() {
           </span>
           <p className="mr-[70px] text-md font-inter font-medium">Produtos</p>
         </NavLink>
-        <NavLink
-          to="new"
-          className={({ isActive }) => (isActive
-            ? 'hidden w-[90%] lg:flex justify-center items-center gap-10 py-2 rounded-r-full text-white bg-primary-indigo'
-            : 'hidden w-[90%] lg:flex justify-center items-center gap-10 py-2 text-[#7E86A8]')}
-        >
-          <span className="text-xl mr-2">
-            <FaDatabase />
-          </span>
-          <p className="mr-[35px] text-md font-inter font-medium">Novo Produto</p>
-        </NavLink>
+
       </div>
     </div>
   );
