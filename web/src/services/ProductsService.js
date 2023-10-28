@@ -20,6 +20,10 @@ class ProductsService {
   updateProduct(id, product) {
     return this.httpClient.put(`/product/${id}`, product);
   }
+
+  deleteProduct(id) {
+    return this.httpClient.delete(`/product/${id}`);
+  }
 }
 
 export default new ProductsService();

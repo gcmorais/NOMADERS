@@ -30,6 +30,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import AddToggleMenu from './addToggleMenu';
 import ProductsService from '../../services/ProductsService';
 import EmptyBox from '../../assets/empty-box.svg';
+import DeleteProductModal from '../modal/deleteProductModal';
+import Spinner from '../spinner';
 
 function createData(name, ean, cost, price, profit, platform, id) {
   return {
@@ -260,8 +262,8 @@ export default function EnhancedTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(8);
   const [products, setProducts] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  // eslint-disable-next-line no-unused-vars
   const [deleteProduct, setDeleteProduct] = React.useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
 
   const rows = [];
 
@@ -289,7 +291,7 @@ export default function EnhancedTable() {
 
   useEffect(() => {
     loadProducts();
-  }, []);
+  }, [loadProducts]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -354,28 +356,38 @@ export default function EnhancedTable() {
 
   function handleRemove(row) {
     setDeleteProduct(row);
-    console.log(row.id);
+    setOpenDeleteModal(true);
+  }
+  async function handleConfirm() {
+    try {
+      await ProductsService.deleteProduct(deleteProduct.id);
+      setOpenDeleteModal(false);
+      loadProducts();
+    } catch (error) {
+      console.log('Ocorreu um erro ao deletar o produto', error);
+    }
   }
   return (
-
-    <Box
-      sx={{
-        display: 'flex',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        bgcolor: 'background.default',
-        color: 'text.primary',
-        borderRadius: 1,
-        p: 3,
-      }}
-    >
-      {isLoading && (
-        <p className="flex h-[600px] items-center justify-center">
-          carregando...
-        </p>
-      )}
-      {!isLoading && (
+    <>
+      <Box
+        sx={{
+          display: 'flex',
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          bgcolor: 'background.default',
+          color: 'text.primary',
+          borderRadius: 1,
+          p: 3,
+        }}
+      >
+        {isLoading && (
+          <div className="flex flex-col h-[600px] items-center justify-center">
+            <Spinner />
+            <p>Carregando...</p>
+          </div>
+        )}
+        {!isLoading && (
         <Paper sx={{ width: '100%', mb: 0 }}>
           <EnhancedTableToolbar numSelected={selected.length} />
           <TableContainer>
@@ -437,7 +449,7 @@ export default function EnhancedTable() {
                               <DeleteIcon />
                             </IconButton>
                           </Tooltip>
-                          <Link to={`/app/nomaders/edit/${row.id}`}>
+                          <Link to={`/app/nomaders/products/edit/${row.id}`}>
                             <Tooltip title="Editar">
                               <IconButton>
                                 <EditIcon />
@@ -486,11 +498,19 @@ export default function EnhancedTable() {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Paper>
-      )}
-      {/* <FormControlLabel
+        )}
+        {/* <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       /> */}
-    </Box>
+      </Box>
+      <DeleteProductModal
+        title={`Deletar "${deleteProduct?.name}"`}
+        isOpen={openDeleteModal}
+        setModalOpen={() => setOpenDeleteModal(!openDeleteModal)}
+        onConfirm={handleConfirm}
+      />
+    </>
+
   );
 }
