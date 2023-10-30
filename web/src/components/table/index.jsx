@@ -25,13 +25,13 @@ import { visuallyHidden } from '@mui/utils';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Stack } from '@mui/material';
 
-import { useEffect, useCallback } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import AddToggleMenu from './addToggleMenu';
 import ProductsService from '../../services/ProductsService';
 import EmptyBox from '../../assets/empty-box.svg';
 import DeleteProductModal from '../modal/deleteProductModal';
 import Spinner from '../spinner';
+import { ApiContext } from '../../contexts/ApiContext';
 
 function createData(name, ean, cost, price, profit, platform, id) {
   return {
@@ -260,10 +260,9 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [dense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(8);
-  const [products, setProducts] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
   const [deleteProduct, setDeleteProduct] = React.useState(false);
   const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
+  const { products, isLoading, loadProducts } = React.useContext(ApiContext);
 
   const rows = [];
 
@@ -278,20 +277,6 @@ export default function EnhancedTable() {
       item.id,
     ),
   ));
-
-  const loadProducts = useCallback(async () => {
-    try {
-      const productList = await ProductsService.listProducts();
-      setIsLoading(false);
-      setProducts(productList);
-    } catch (error) {
-      console.log('Caiu no catch', error);
-    }
-  }, []);
-
-  useEffect(() => {
-    loadProducts();
-  }, [loadProducts]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';

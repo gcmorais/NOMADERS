@@ -7,6 +7,7 @@ import Rotas from './routes';
 
 import { ColorContextProvider } from './contexts/ThemeMaterial';
 import ThemeProvider from './contexts/ThemeContext';
+import ApiProvider from './contexts/ApiContext';
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
       <ColorContextProvider>
         <PrismaneProvider>
           <BrowserRouter>
-            <Rotas />
+            <ApiProvider>
+              <Rotas />
+            </ApiProvider>
           </BrowserRouter>
         </PrismaneProvider>
       </ColorContextProvider>

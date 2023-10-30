@@ -3,10 +3,12 @@ import { BsArrowLeft } from 'react-icons/bs';
 import { Link, useParams } from 'react-router-dom';
 import ProductForm from '../../components/productForm';
 import ProductsServices from '../../services/ProductsService';
+import { ApiContext } from '../../contexts/ApiContext';
 
 function EditProduct() {
   const productFormRef = useRef(null);
   const { id } = useParams();
+  const { loadProducts } = React.useContext(ApiContext);
 
   useEffect(() => {
     async function loadProduct() {
@@ -29,6 +31,7 @@ function EditProduct() {
         salePrice: formData.salePrice,
       };
       const response = await ProductsServices.updateProduct(id, data);
+      loadProducts();
       console.log(response);
     } catch (error) {
       console.log('Ocorreu um erro :(', error);

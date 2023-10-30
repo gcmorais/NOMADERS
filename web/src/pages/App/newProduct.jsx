@@ -3,8 +3,11 @@ import { BsArrowLeft } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import ProductForm from '../../components/productForm';
 import ProductsServices from '../../services/ProductsService';
+import { ApiContext } from '../../contexts/ApiContext';
 
 function NewProduct() {
+  const { loadProducts } = React.useContext(ApiContext);
+
   async function handleSubmit(formData) {
     try {
       const data = {
@@ -14,6 +17,7 @@ function NewProduct() {
         salePrice: formData.salePrice,
       };
       const response = await ProductsServices.createProduct(data);
+      loadProducts();
       console.log(response);
     } catch (error) {
       console.log('Ocorreu um erro :(', error);
