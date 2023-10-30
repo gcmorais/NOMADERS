@@ -22,22 +22,23 @@ function DashInfo({
         </h1>
       </main>
       <footer className="flex items-center gap-2 mt-2">
-        {icon === 'green' ? (
+        {icon === 'green' && (
           <span className="text-xl text-green-500">
             <IoIosArrowDropupCircle />
           </span>
-        ) : (
+        )}
+        {icon === 'red' && (
           <span className="text-xl text-red-500">
             <IoIosArrowDropdownCircle />
           </span>
         )}
-        <p className="text-primary-gray/80 lg:text-sm 2xl:text-base flex gap-2">
+        <p className="text-primary-gray/80 lg:text-sm 2xl:text-base flex">
           {icon === 'green' ? (
-            <strong className="text-green-500">
+            <strong className="text-green-500 mr-1">
               {footerValue}
             </strong>
           ) : (
-            <strong className="text-red-500">
+            <strong className="text-red-500 mr-1">
               {footerValue}
             </strong>
           )}
@@ -53,7 +54,12 @@ export default DashInfo;
 DashInfo.propTypes = {
   headerText: PropTypes.string.isRequired,
   mainValue: PropTypes.string.isRequired,
-  footerValue: PropTypes.string.isRequired,
-  footerText: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
+  footerValue: PropTypes.string,
+  footerText: PropTypes.string,
+  icon: PropTypes.string,
+};
+DashInfo.defaultProps = {
+  footerValue: '',
+  footerText: '',
+  icon: '',
 };
