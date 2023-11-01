@@ -1,4 +1,6 @@
 /* eslint-disable consistent-return */
+import APIError from '../../errors/APIError';
+
 class HttpCLient {
   constructor(baseURL) {
     this.baseURL = baseURL;
@@ -17,7 +19,7 @@ class HttpCLient {
       return body;
     }
 
-    throw new Error(body?.error || `${response.status}`);
+    throw new APIError(response, body);
   }
 
   async post(path, body) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   useLocation, Routes, Route, Outlet,
 } from 'react-router-dom';
@@ -14,10 +14,11 @@ import NewProduct from '../pages/App/newProduct';
 import EditProduct from '../pages/App/editProduct';
 import Table from '../components/table';
 import LayoutPage from '../components/pageLayout';
+import { ApiContext } from '../contexts/ApiContext';
 
 function AppDash() {
   return (
-    <div className="lg:flex lg:gap-1.5 p-[13.5px] pb-[50px]  dark:bg-primary-blue">
+    <div className="min-h-screen p-[13.5px] pb-[50px] dark:bg-primary-blue lg:flex lg:gap-1.5">
       <DashMenu />
       <Outlet />
     </div>
@@ -25,10 +26,20 @@ function AppDash() {
 }
 
 function ProductsDash() {
+  const { hasError } = useContext(ApiContext);
   return (
-    <LayoutPage>
-      <Outlet />
-    </LayoutPage>
+    <>
+      {hasError && (
+        <div className="flex w-full flex-col items-center justify-center">
+          <p className="dark:text-white">Aconteceu um erro!!!</p>
+        </div>
+      )}
+      {!hasError && (
+        <LayoutPage>
+          <Outlet />
+        </LayoutPage>
+      )}
+    </>
   );
 }
 
@@ -64,9 +75,6 @@ function Rotas() {
           <Route path="edit/:id" element={<EditProduct />} />
         </Route>
       </Route>
-      {/* <Route path="/app" element={<Appdash />}>
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Route> */}
     </Routes>
   );
 }

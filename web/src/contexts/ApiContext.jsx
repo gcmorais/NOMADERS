@@ -9,14 +9,16 @@ export const ApiContext = createContext({});
 function ApiProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
   const loadProducts = useCallback(async () => {
     try {
       const productList = await ProductsServices.listProducts();
       setProducts(productList);
+    } catch {
+      setHasError(true);
+    } finally {
       setIsLoading(false);
-    } catch (error) {
-      console.log('Caiu no catch', error);
     }
   }, []);
 
@@ -25,8 +27,10 @@ function ApiProvider({ children }) {
   }, [loadProducts]);
 
   const product = useMemo(
-    () => ({ products, isLoading, loadProducts }),
-    [products, isLoading, loadProducts],
+    () => ({
+      products, isLoading, loadProducts, hasError,
+    }),
+    [products, isLoading, loadProducts, hasError],
   );
 
   return (
