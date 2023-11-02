@@ -8,6 +8,7 @@ import HeaderSection from '../../components/headerSection';
 import DashInfo from '../../components/dashInfo';
 import { ApiContext } from '../../contexts/ApiContext';
 import Spinner from '../../components/spinner';
+import ErrorMessage from '../../components/errorMessage';
 
 function Dashboard() {
   const { products, isLoading, hasError } = useContext(ApiContext);
@@ -31,9 +32,7 @@ function Dashboard() {
         </div>
       )}
       {(hasError && !isLoading) && (
-        <div className="flex w-full flex-col items-center justify-center">
-          <p className="dark:text-white">Aconteceu um erro!!!</p>
-        </div>
+        <ErrorMessage />
       )}
       {(!isLoading && !hasError) && (
         <section
