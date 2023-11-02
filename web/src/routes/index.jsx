@@ -15,6 +15,7 @@ import EditProduct from '../pages/App/editProduct';
 import Table from '../components/table';
 import LayoutPage from '../components/pageLayout';
 import { ApiContext } from '../contexts/ApiContext';
+import ErrorMessage from '../components/errorMessage';
 
 function AppDash() {
   return (
@@ -30,9 +31,7 @@ function ProductsDash() {
   return (
     <>
       {hasError && (
-        <div className="flex w-full flex-col items-center justify-center">
-          <p className="dark:text-white">Aconteceu um erro!!!</p>
-        </div>
+        <ErrorMessage />
       )}
       {!hasError && (
         <LayoutPage>
