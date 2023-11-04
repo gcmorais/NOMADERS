@@ -29,6 +29,7 @@ function EditProduct() {
         ean: formData.ean,
         cost: formData.cost,
         salePrice: formData.salePrice,
+        dateValue: formData.dateValue,
       };
       const response = await ProductsServices.updateProduct(id, data);
       loadProducts();

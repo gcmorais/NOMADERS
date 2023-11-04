@@ -15,6 +15,7 @@ function NewProduct() {
         ean: formData.ean,
         cost: formData.cost,
         salePrice: formData.salePrice,
+        dateValue: formData.dateValue,
       };
       const response = await ProductsServices.createProduct(data);
       loadProducts();

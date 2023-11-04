@@ -10,7 +10,7 @@ class ProductController {
 
   async store(request, response) {
     const {
-      name, ean, cost, salePrice,
+      name, ean, cost, salePrice, dateValue,
     } = request.body;
 
     if (!name) {
@@ -25,6 +25,9 @@ class ProductController {
     if (!salePrice) {
       return response.status(400).json({ error: 'SalePrice é obrigatório!!' });
     }
+    if (!dateValue) {
+      return response.status(400).json({ error: 'DateValue é obrigatório!!' });
+    }
 
     const eanExists = await ProductRepository.findByEan(ean);
 
@@ -33,7 +36,7 @@ class ProductController {
     }
 
     const product = await ProductRepository.create({
-      name, ean, cost, salePrice,
+      name, ean, cost, salePrice, dateValue,
     });
 
     response.json(product);
@@ -58,7 +61,7 @@ class ProductController {
   async update(request, response) {
     const { id } = request.params;
     const {
-      name, ean, cost, salePrice,
+      name, ean, cost, salePrice, dateValue,
     } = request.body;
 
     if (!isValidUUID(id)) {
@@ -89,9 +92,12 @@ class ProductController {
     if (!salePrice) {
       response.status(404).json({ error: 'SalePrice é obrigatório.' });
     }
+    if (!dateValue) {
+      response.status(404).json({ error: 'DateValue é obrigatório.' });
+    }
 
     const product = await ProductRepository.update(id, {
-      name, ean, cost, salePrice,
+      name, ean, cost, salePrice, dateValue,
     });
 
     response.json(product);

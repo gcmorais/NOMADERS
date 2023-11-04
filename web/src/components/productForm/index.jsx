@@ -1,5 +1,5 @@
 import React, {
-  useState, forwardRef, useEffect, useImperativeHandle,
+  useState, forwardRef, useImperativeHandle,
 } from 'react';
 import PropTypes from 'prop-types';
 import Input from '../input/input';
@@ -11,6 +11,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
   const [ean, setEan] = useState('');
   const [cost, setCost] = useState('');
   const [salePrice, setSalePrice] = useState('');
+  const [dateValue, setDateValue] = useState('');
 
   const {
     setError, removeError, getErrorMessageByFieldName, errors,
@@ -24,6 +25,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
       setEan(data.ean);
       setCost(data.cost);
       setSalePrice(data.saleprice);
+      setDateValue(data.datevalue);
     },
   }), []);
 
@@ -63,11 +65,20 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
       removeError('sale-price');
     }
   }
+  function handleDateValueChange(event) {
+    setDateValue(event.target.value);
+
+    if (!event.target.value) {
+      setError({ field: 'date-value', message: 'Insira uma data válida' });
+    } else {
+      removeError('date-value');
+    }
+  }
   async function handleSubmit(event) {
     event.preventDefault();
 
     await onSubmit({
-      name, ean, cost, salePrice,
+      name, ean, cost, salePrice, dateValue,
     });
   }
   return (
@@ -114,6 +125,14 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
                 styles="dark:text-white"
                 value={salePrice}
                 change={handleSalePriceChange}
+              />
+            </FormGroup>
+            <FormGroup error={getErrorMessageByFieldName('date-value')}>
+              <Input
+                text="Data de venda"
+                styles="dark:text-white"
+                value={dateValue.substr(0, 10)}
+                change={handleDateValueChange}
               />
             </FormGroup>
           </div>

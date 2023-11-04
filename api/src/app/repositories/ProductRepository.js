@@ -2,7 +2,11 @@ const db = require('../../database');
 
 class ProductRepository {
   async findAll() {
-    const rows = await db.query('SELECT * FROM products');
+    // TO_CHAR(dateValue, 'DD-MM-YYYY') AS dateValue
+    const rows = await db.query(`
+      SELECT *
+      FROM products
+    `);
     return rows;
   }
 
@@ -23,26 +27,26 @@ class ProductRepository {
   }
 
   async create({
-    name, ean, cost, salePrice,
+    name, ean, cost, salePrice, dateValue,
   }) {
     const [row] = await db.query(`
-      INSERT INTO products(name, ean, cost, salePrice)
-      VALUES($1, $2, $3, $4)
+      INSERT INTO products(name, ean, cost, salePrice, dateValue)
+      VALUES($1, $2, $3, $4, to_date($5, 'DD-MM-YYYY'))
       RETURNING *
-    `, [name, ean, cost, salePrice]);
+    `, [name, ean, cost, salePrice, dateValue]);
 
     return row;
   }
 
   async update(id, {
-    name, ean, cost, salePrice,
+    name, ean, cost, salePrice, dateValue,
   }) {
     const [row] = await db.query(`
       UPDATE products
-      SET name = $1, ean = $2, cost = $3, salePrice = $4
-      WHERE id = $5
+      SET name = $1, ean = $2, cost = $3, salePrice = $4, dateValue = to_date($5, 'DD-MM-YYYY')
+      WHERE id = $6
       RETURNING *
-    `, [name, ean, cost, salePrice, id]);
+    `, [name, ean, cost, salePrice, dateValue, id]);
 
     return row;
   }

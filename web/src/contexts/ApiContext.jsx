@@ -15,6 +15,7 @@ function ApiProvider({ children }) {
     try {
       const productList = await ProductsServices.listProducts();
       setProducts(productList);
+      console.log(productList);
     } catch {
       setHasError(true);
     } finally {

@@ -33,7 +33,7 @@ import DeleteProductModal from '../modal/deleteProductModal';
 import Spinner from '../spinner';
 import { ApiContext } from '../../contexts/ApiContext';
 
-function createData(name, ean, cost, price, profit, platform, id) {
+function createData(name, ean, cost, price, profit, platform, id, date) {
   return {
     name,
     ean,
@@ -42,6 +42,7 @@ function createData(name, ean, cost, price, profit, platform, id) {
     profit,
     platform,
     id,
+    date,
   };
 }
 
@@ -105,10 +106,16 @@ const headCells = [
     label: 'Lucro',
   },
   {
-    id: 'protein',
+    id: 'platform',
     numeric: true,
     disablePadding: false,
     label: 'Plataforma',
+  },
+  {
+    id: 'date',
+    numeric: true,
+    disablePadding: false,
+    label: 'Data',
   },
   {
     id: 'actions',
@@ -254,8 +261,8 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function EnhancedTable() {
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [order, setOrder] = React.useState('desc');
+  const [orderBy, setOrderBy] = React.useState('date');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense] = React.useState(false);
@@ -275,6 +282,7 @@ export default function EnhancedTable() {
       item.saleprice - item.cost,
       'Americanas',
       item.id,
+      item.datevalue,
     ),
   ));
 
@@ -428,6 +436,7 @@ export default function EnhancedTable() {
                         <TableCell align="right">{row.price}</TableCell>
                         <TableCell align="right">{row.profit}</TableCell>
                         <TableCell align="right">{row.platform}</TableCell>
+                        <TableCell align="right">{row.date.substr(0, 10)}</TableCell>
                         <TableCell align="right">
                           <Tooltip title="Deletar">
                             <IconButton onClick={() => handleRemove(row)}>
