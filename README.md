@@ -1,8 +1,30 @@
-# React + Vite
+<h1 align="center">NOMADERS</h1>
+<p align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![preview](EM_BREVE)
 
-Currently, two official plugins are available:
+## Projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+NOMADERS é uma plataforma de gestão de vendas voltada para usuários comerciais.
+Uma solução que centraliza todas as informações que você precisa e permite gerenciar e controlar melhor o fluxo de transações nas diversas plataformas de forma simples e objetiva.
+
+Conheça mais pelo site: [EM BREVE]
+
+## Tecnologias
+
+    - ReactJS;
+    - TailwindCSS;
+    - Vite;
+    - PostgreSQL;
+    - Docker;
+    - Testes com Jest & Testing Library;
+
+## Feedback
+
+Se você tiver algum feedback, por favor me envie nos contatos que estarei disponibilizando no tópico abaixo, conto com sua ajuda !!!
+
+
+## Redes Sociais / Contato
+
+- Linkedin [@guilhermecmorais](https://www.linkedin.com/in/guilhermecmorais/)
+- Email guilhermeclarodemorais@gmail.com
