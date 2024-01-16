@@ -1,8 +1,9 @@
 import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ApexChart from 'react-apexcharts';
+import PropTypes from 'prop-types';
 
-export default function AreaChart() {
+export default function AreaChart({January, February, March, April, May, June, July, August, September, October,November, December}) {
   const chartOptions = {
     chart: {
       type: 'area',
@@ -95,7 +96,7 @@ export default function AreaChart() {
   const chartSeries = [
     {
       name: 'R$',
-      data: [100, 200, 100, 400, 100, 600, 400, 100, 40, 100, 500, 200],
+      data: [January, February, March, April, May, June, July, August, September, October, November, December],
     },
   ];
 
@@ -108,3 +109,18 @@ export default function AreaChart() {
     />
   );
 }
+
+AreaChart.propTypes = {
+  January: PropTypes.number.isRequired,
+  February: PropTypes.number.isRequired,
+  March: PropTypes.number.isRequired,
+  April: PropTypes.number.isRequired,
+  May: PropTypes.number.isRequired,
+  June: PropTypes.number.isRequired,
+  July: PropTypes.number.isRequired,
+  August: PropTypes.number.isRequired,
+  September: PropTypes.number.isRequired,
+  October: PropTypes.number.isRequired,
+  November: PropTypes.number.isRequired,
+  December: PropTypes.number.isRequired,
+};
