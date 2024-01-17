@@ -96,6 +96,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
               styles="dark:text-white"
               value={name}
               change={handleNameChange}
+              valueMask={"40"}
             />
           </FormGroup>
 
@@ -105,6 +106,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
               styles="dark:text-white"
               value={ean}
               change={handleEanChange}
+              valueMask={"13"}
             />
           </FormGroup>
           <div className="flex gap-5">
@@ -115,6 +117,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
                 styles="dark:text-white"
                 value={cost}
                 change={handleCostChange}
+                valueMask={"4"}
               />
             </FormGroup>
 
@@ -125,6 +128,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
                 styles="dark:text-white"
                 value={salePrice}
                 change={handleSalePriceChange}
+                valueMask={"4"}
               />
             </FormGroup>
             <FormGroup error={getErrorMessageByFieldName('date-value')}>
