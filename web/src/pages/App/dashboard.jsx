@@ -323,7 +323,7 @@ function Dashboard() {
                   <DashInfo
                     headerText="Vendas Mensais"
                     mainValue={`R$ ${valueDefault}`}
-                    footerValue={profitComp}
+                    footerValue={valueComp}
                     footerText="% em relação ao mês anterior"
                   />
                   <DashInfo
