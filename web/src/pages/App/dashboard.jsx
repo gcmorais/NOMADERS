@@ -139,6 +139,7 @@ function Dashboard() {
   }
  
   let profitDefault = 0;
+  let profitComp = 0;
 
   let profitJanuary = 0;
   let profitFebruary = 0;
@@ -160,6 +161,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           profitJanuary += Number(products[i].saleprice - products[i].cost);
           profitDefault = profitJanuary;
+          profitComp = 0;
         }
       }
       break;
@@ -168,6 +170,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           profitFebruary += Number(products[i].saleprice - products[i].cost);
           profitDefault = profitFebruary;
+          profitComp = [(profitFebruary / profitJanuary) -1 ] * 100;
         }
       }
       break;
@@ -176,6 +179,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           profitMarch += Number(products[i].saleprice - products[i].cost);
           profitDefault = profitMarch;
+          profitComp = [( profitMarch / profitFebruary) -1 ] * 100;
         }
       }
       break;
@@ -184,6 +188,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           profitApril += Number(products[i].saleprice - products[i].cost);
           profitDefault = profitApril;
+          profitComp = [( profitApril / profitMarch) -1 ] * 100;
         }
       }
       break;
@@ -192,6 +197,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           profitMay += Number(products[i].saleprice - products[i].cost);
           profitDefault = profitMay;
+          profitComp = [( profitMay / profitApril) -1 ] * 100;
         }
       }
       break;
@@ -200,6 +206,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           profitJune += Number(products[i].saleprice - products[i].cost);
           profitDefault = profitJune;
+          profitComp = [( profitJune / profitMay) -1 ] * 100;
         }
       }
       break;
@@ -208,6 +215,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           profitJuly += Number(products[i].saleprice - products[i].cost);
           profitDefault = profitJuly;
+          profitComp = [( profitJuly / profitJune) -1 ] * 100;
         }
       }
       break;
@@ -216,6 +224,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           profitAugust += Number(products[i].saleprice - products[i].cost);
           profitDefault = profitAugust;
+          profitComp = [( profitAugust / profitJuly) -1 ] * 100;
         }
       }
       break;
@@ -224,6 +233,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           profitSeptember += Number(products[i].saleprice - products[i].cost);
           profitDefault = profitSeptember;
+          profitComp = [( profitSeptember / profitAugust) -1 ] * 100;
         }
       }
       break;
@@ -232,6 +242,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           profitOctober += Number(products[i].saleprice - products[i].cost);
           profitDefault = profitOctober;
+          profitComp = [( profitOctober / profitSeptember) -1 ] * 100;
         }
       }
       break;
@@ -240,6 +251,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           profitNovember += Number(products[i].saleprice - products[i].cost);
           profitDefault = profitNovember;
+          profitComp = [( profitNovember / profitOctober) -1 ] * 100;
         }
       }
       break;
@@ -248,6 +260,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           profitDecember += Number(products[i].saleprice - products[i].cost);
           profitDefault = profitDecember;
+          profitComp = [( profitDecember / profitNovember) -1 ] * 100;
         }
       }
       break;
@@ -291,26 +304,26 @@ function Dashboard() {
                   <DashInfo
                     headerText="Vendas Totais"
                     mainValue={`R$ ${totalSales}`}
-                    footerText="Vendas em todas as plataformas"
+                    footerText="totais em todas as plataformas"
+                    icon={false}
                   />
                   <DashInfo
                     headerText="Vendas Mensais"
                     mainValue={`R$ ${valueDefault}`}
-                    footerValue="+7%"
-                    footerText="ao mês anterior"
-                    icon="green"
+                    footerValue={profitComp}
+                    footerText="% em relação ao mês anterior"
                   />
                   <DashInfo
                     headerText="Lucro Total"
                     mainValue={`R$ ${totalProfit}`}
-                    footerText="Lucro de todas as plataformas"
+                    footerText="totais de todas as plataformas"
+                    icon={false}
                   />
                   <DashInfo
                     headerText="Lucro Mensal"
                     mainValue={`R$ ${profitDefault}`}
-                    footerValue="-4%"
-                    footerText="ao mês anterior"
-                    icon="red"
+                    footerValue={profitComp}
+                    footerText="% em relação ao mês anterior"
                   />
                 </div>
                 <div className="mt-2 w-full rounded-lg bg-white dark:bg-primary-blue lg:mt-0 2xl:w-[70%]">
