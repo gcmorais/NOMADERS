@@ -18,6 +18,7 @@ function Dashboard() {
   // per month
 
   let valueDefault = 0;
+  let valueComp = 0;
 
   let valueJanuary = 0;
   let valueFebruary = 0;
@@ -45,6 +46,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           valueJanuary += Number(products[i].saleprice);
           valueDefault = valueJanuary;
+          valueComp = 0;
         }
       }
       break;
@@ -53,6 +55,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           valueFebruary += Number(products[i].saleprice);
           valueDefault = valueFebruary;
+          valueComp = [(valueFebruary / valueJanuary) -1 ] * 100;
         }
       }
       break;
@@ -61,6 +64,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           valueMarch += Number(products[i].saleprice);
           valueDefault = valueMarch;
+          valueComp = [( valueMarch / valueFebruary) -1 ] * 100;
         }
       }
       break;
@@ -69,6 +73,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           valueApril += Number(products[i].saleprice);
           valueDefault = valueApril;
+          valueComp = [( valueApril / valueMarch) -1 ] * 100;
         }
       }
       break;
@@ -77,6 +82,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           valueMay += Number(products[i].saleprice);
           valueDefault = valueMay;
+          valueComp = [( valueMay / valueApril) -1 ] * 100;
         }
       }
       break;
@@ -85,6 +91,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           valueJune += Number(products[i].saleprice);
           valueDefault = valueJune;
+          valueComp = [( valueJune / valueMay) -1 ] * 100;
         }
       }
       break;
@@ -93,6 +100,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           valueJuly += Number(products[i].saleprice);
           valueDefault = valueJuly;
+          valueComp = [( valueJuly / valueJune) -1 ] * 100;
         }
       }
       break;
@@ -101,6 +109,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           valueAugust += Number(products[i].saleprice);
           valueDefault = valueAugust;
+          valueComp = [( valueAugust / valueJuly) -1 ] * 100;
         }
       }
       break;
@@ -109,6 +118,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           valueSeptember += Number(products[i].saleprice);
           valueDefault = valueSeptember;
+          valueComp = [( valueSeptember / valueAugust) -1 ] * 100;
         }
       }
       break;
@@ -117,6 +127,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           valueOctober += Number(products[i].saleprice);
           valueDefault = valueOctober;
+          valueComp = [( valueOctober / valueSeptember) -1 ] * 100;
         }
       }
       break;
@@ -125,6 +136,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           valueNovember += Number(products[i].saleprice);
           valueDefault = valueNovember;
+          valueComp = [( valueNovember / valueOctober) -1 ] * 100;
         }
       }
       break;
@@ -133,6 +145,7 @@ function Dashboard() {
         for (let i = 0; i < products.length; i++) {
           valueDecember += Number(products[i].saleprice);
           valueDefault = valueDecember;
+          valueComp = [( valueDecember / valueNovember) -1 ] * 100;
         }
       }
       break;
