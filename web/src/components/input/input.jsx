@@ -4,7 +4,7 @@ import { IMaskInput } from "react-imask";
 
 
 export default function Input({
-  text, placeholder, styles, value, change, error, type, date
+  text, placeholder, styles, value, change, error, type, date, valueMask
 }) {
   return (
     <div className="w-full">
@@ -14,6 +14,7 @@ export default function Input({
 
       <IMaskInput
         mask={date ? "00-00-0000" : null}
+        maxlength={valueMask}
         type={type}
         value={value}
         placeholder={placeholder}
@@ -33,6 +34,7 @@ Input.propTypes = {
   error: PropTypes.string,
   type: PropTypes.string,
   date: PropTypes.bool,
+  valueMask: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -43,4 +45,5 @@ Input.defaultProps = {
   error: '',
   type: 'text',
   date: false,
+  valueMask: '',
 };
