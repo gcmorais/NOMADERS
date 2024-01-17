@@ -133,6 +133,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
                 styles="dark:text-white"
                 value={dateValue.substr(0, 10)}
                 change={handleDateValueChange}
+                date={true}
               />
             </FormGroup>
           </div>

@@ -1209,6 +1209,14 @@
   resolved "https://registry.yarnpkg.com/@babel/regjsgen/-/regjsgen-0.8.0.tgz#f0ba69b075e1f05fb2825b7fad991e7adbb18310"
   integrity sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==
 
+"@babel/runtime-corejs3@^7.23.6":
+  version "7.23.8"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.23.8.tgz#b8aa3d47570bdd08fed77fdfd69542118af0df26"
+  integrity sha512-2ZzmcDugdm0/YQKFVYsXiwUN7USPX8PM7cytpb4PFl87fM+qYPSvTZX//8tyeJB1j0YDmafBJEbl5f8NfLyuKw==
+  dependencies:
+    core-js-pure "^3.30.2"
+    regenerator-runtime "^0.14.0"
+
 "@babel/runtime@^7.10.1", "@babel/runtime@^7.10.4", "@babel/runtime@^7.11.1", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.16.7", "@babel/runtime@^7.18.0", "@babel/runtime@^7.18.3", "@babel/runtime@^7.20.0", "@babel/runtime@^7.20.7", "@babel/runtime@^7.21.0", "@babel/runtime@^7.22.15", "@babel/runtime@^7.22.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
   version "7.22.15"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.22.15.tgz"
@@ -3093,6 +3101,11 @@ core-js-compat@^3.31.0:
   dependencies:
     browserslist "^4.21.10"
 
+core-js-pure@^3.30.2:
+  version "3.35.0"
+  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.35.0.tgz#4660033304a050215ae82e476bd2513a419fbb34"
+  integrity sha512-f+eRYmkou59uh7BPcyJ8MC76DiGhspj1KMxVIcF24tzP8NA9HVa1uC7BTW2tgx7E1QVCzDzsgp7kArrzhlz8Ew==
+
 cosmiconfig@^7.0.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-7.1.0.tgz#1443b9afa596b670082ea46cbd8f6a62b84635f6"
@@ -4189,6 +4202,13 @@ ignore@^5.2.0:
   version "5.2.4"
   resolved "https://registry.npmjs.org/ignore/-/ignore-5.2.4.tgz"
   integrity sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==
+
+imask@^7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/imask/-/imask-7.3.0.tgz#2b851ae8dc517f92cdd0d6dea0447bec9f27731d"
+  integrity sha512-TG+/rfb62JaQDM2KVrzEHMb4lv2srbsby7vHndXhqgQFB1MgPIXl60VQUfly/Xv5iWfA9ytB+rfQ+skUgINw7A==
+  dependencies:
+    "@babel/runtime-corejs3" "^7.23.6"
 
 immediate@~3.0.5:
   version "3.0.6"
@@ -6021,6 +6041,14 @@ react-icons@^4.11.0:
   version "4.11.0"
   resolved "https://registry.npmjs.org/react-icons/-/react-icons-4.11.0.tgz"
   integrity sha512-V+4khzYcE5EBk/BvcuYRq6V/osf11ODUM2J8hg2FDSswRrGvqiYUYPRy4OdrWaQOBj4NcpJfmHZLNaD+VH0TyA==
+
+react-imask@^7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/react-imask/-/react-imask-7.3.0.tgz#c9c9dd67a1e3f49f6b7261ff20ef50b18c0381a7"
+  integrity sha512-AHoQUeXil6PfqDzJHN08hO2liWxNDRJosNUa2XSqliFY2tXGL/3Elm0msupDNAyNPItAnyF9G5FGFoCfiCn+AQ==
+  dependencies:
+    imask "^7.3.0"
+    prop-types "^15.8.1"
 
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"

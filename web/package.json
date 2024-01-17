@@ -2,7 +2,7 @@
   "name": "nomaders",
   "private": true,
   "version": "0.0.0",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -33,6 +33,7 @@
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
+    "react-imask": "^7.3.0",
     "react-router-dom": "^6.15.0",
     "sort-by": "^1.2.0",
     "styled-components": "^6.0.8",
