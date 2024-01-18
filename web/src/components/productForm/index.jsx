@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Input from '../input/input';
 import useErrors from '../../hooks/useErrors';
 import FormGroup from '../input/formgroup';
+import { DateMask } from '../../utils/DateMask';
 
 const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
   const [name, setName] = useState('');
@@ -28,6 +29,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
       setDateValue(data.datevalue);
     },
   }), []);
+  
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -66,7 +68,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
     }
   }
   function handleDateValueChange(event) {
-    setDateValue(event.target.value);
+    setDateValue(DateMask(event.target.value));
 
     if (!event.target.value) {
       setError({ field: 'date-value', message: 'Insira uma data válida' });
@@ -81,6 +83,8 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
       name, ean, cost, salePrice, dateValue,
     });
   }
+
+  console.log(dateValue)
   return (
     <>
       <header className="mb-9 flex flex-col gap-8">
@@ -96,7 +100,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
               styles="dark:text-white"
               value={name}
               change={handleNameChange}
-              valueMask={"40"}
+              valueMask={40}
             />
           </FormGroup>
 
@@ -106,7 +110,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
               styles="dark:text-white"
               value={ean}
               change={handleEanChange}
-              valueMask={"13"}
+              valueMask={13}
             />
           </FormGroup>
           <div className="flex gap-5">
@@ -117,7 +121,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
                 styles="dark:text-white"
                 value={cost}
                 change={handleCostChange}
-                valueMask={"4"}
+                valueMask={4}
               />
             </FormGroup>
 
@@ -128,16 +132,17 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
                 styles="dark:text-white"
                 value={salePrice}
                 change={handleSalePriceChange}
-                valueMask={"4"}
+                valueMask={4}
               />
             </FormGroup>
             <FormGroup error={getErrorMessageByFieldName('date-value')}>
               <Input
                 text="Data de venda"
                 styles="dark:text-white"
-                value={dateValue.substr(0, 10)}
+                value={dateValue.substr(0, 20)}
                 change={handleDateValueChange}
                 date={true}
+                valueMask={10}
               />
             </FormGroup>
           </div>
