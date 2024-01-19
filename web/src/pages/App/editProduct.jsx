@@ -54,6 +54,7 @@ function EditProduct() {
           title="Editar Produto"
           btnLabel="Confirmar alterações"
           onSubmit={handleSubmit}
+          edit={true}
         />
       </div>
     </div>

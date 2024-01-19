@@ -6,13 +6,17 @@ import Input from '../input/input';
 import useErrors from '../../hooks/useErrors';
 import FormGroup from '../input/formgroup';
 import { DateMask } from '../../utils/DateMask';
+import { useNavigate } from "react-router-dom";
 
-const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
+
+const ProductForm = forwardRef(({ title, btnLabel, onSubmit, edit }, ref) => {
   const [name, setName] = useState('');
   const [ean, setEan] = useState('');
   const [cost, setCost] = useState('');
   const [salePrice, setSalePrice] = useState('');
   const [dateValue, setDateValue] = useState('');
+
+  const navigate = useNavigate();
 
   const {
     setError, removeError, getErrorMessageByFieldName, errors,
@@ -29,6 +33,10 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
       setDateValue(data.datevalue);
     },
   }), []);
+  
+  const autoNavigate = () => {
+    navigate("/app/nomaders/products");
+  }
   
 
   function handleNameChange(event) {
@@ -82,6 +90,11 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit }, ref) => {
     await onSubmit({
       name, ean, cost, salePrice, dateValue,
     });
+
+    if(edit){
+      autoNavigate();
+    }
+    
   }
 
   console.log(dateValue)
@@ -166,6 +179,11 @@ ProductForm.propTypes = {
   title: PropTypes.string.isRequired,
   btnLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  edit: PropTypes.bool,
+};
+
+ProductForm.defaultProps = {
+  edit: false,
 };
 
 export default ProductForm;
