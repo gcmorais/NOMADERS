@@ -94,10 +94,13 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit, edit }, ref) => {
     if(edit){
       autoNavigate();
     }
-    
-  }
 
-  console.log(dateValue)
+    setName('');
+    setEan('');
+    setCost('');
+    setSalePrice('');
+    setDateValue('');
+  }
   return (
     <>
       <header className="mb-9 flex flex-col gap-8">
