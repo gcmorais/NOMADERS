@@ -381,7 +381,7 @@ export default function EnhancedTable() {
           </div>
         )}
         {!isLoading && (
-        <Paper sx={{ width: '100%', mb: 0 }}>
+        <Paper sx={{ width: '100%', mb: 0, minHeight: 500 }}>
           <EnhancedTableToolbar numSelected={selected.length} />
           <TableContainer>
             <Table
@@ -398,7 +398,9 @@ export default function EnhancedTable() {
                 rowCount={rows.length}
               />
               {products.length > 0 && (
-                <TableBody key={products.id}>
+                <TableBody 
+                  key={products.id}
+                >
                   {visibleRows.map((row, index) => {
                     const isItemSelected = isSelected(row.id);
                     const labelId = `enhanced-table-checkbox-${index}`;
