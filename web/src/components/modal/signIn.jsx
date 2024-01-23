@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import Input from '../input/input';
 import useErrors from '../../hooks/useErrors';
 import FormGroup from '../input/formgroup';
 import isEmailValid from '../../utils/isEmailValid';
+import { AuthContext } from '../../contexts/AuthContext';
 
 function SignIn({ isOpen }) {
   const navigate = useNavigate();
@@ -16,16 +17,14 @@ function SignIn({ isOpen }) {
   const {
     setError, removeError, getErrorMessageByFieldName, errors,
   } = useErrors();
+  const { signIn, signed } = useContext(AuthContext);
 
   const isFormValid = (email && password && errors.length === 0);
 
   const onClose = () => {
     navigate('/app');
   };
-  const onSubmit = () => {
-    navigate('/app/nomaders/dashboard');
-  };
-
+  
   function handleEmailChange(event) {
     setEmail(event.target.value);
 
@@ -44,10 +43,20 @@ function SignIn({ isOpen }) {
       removeError('senha');
     }
   }
-  function handleSubmit(event) {
+
+  async function handleSubmit(event) {
     event.preventDefault();
+    const data = {
+      email,
+      password,
+    };
+
+    await signIn(data);
   }
 
+  if(signed){
+    return navigate('/app/nomaders/dashboard');
+  }else{
   if (isOpen) {
     return (
       <Login navLink={onClose} width="lg:w-[500px]" height="h-[900px]">
@@ -88,7 +97,6 @@ function SignIn({ isOpen }) {
               className={isFormValid
                 ? 'px-13 mt-2 flex w-full justify-center rounded-md bg-primary-indigo p-2 text-primary-white'
                 : 'px-13 mt-2 flex w-full justify-center rounded-md bg-primary-indigo/70 p-2 text-primary-white'}
-              onClick={onSubmit}
             >
               continuar
             </button>
@@ -109,6 +117,7 @@ function SignIn({ isOpen }) {
   }
 
   return null;
+}
 }
 
 export default SignIn;

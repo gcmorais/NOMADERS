@@ -8,6 +8,7 @@ import Rotas from './routes';
 import { ColorContextProvider } from './contexts/ThemeMaterial';
 import ThemeProvider from './contexts/ThemeContext';
 import ApiProvider from './contexts/ApiContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   return (
@@ -15,9 +16,11 @@ function App() {
       <ColorContextProvider>
         <PrismaneProvider>
           <BrowserRouter>
-            <ApiProvider>
-              <Rotas />
-            </ApiProvider>
+            <AuthProvider>
+              <ApiProvider>
+                <Rotas />
+              </ApiProvider>
+            </AuthProvider>
           </BrowserRouter>
         </PrismaneProvider>
       </ColorContextProvider>

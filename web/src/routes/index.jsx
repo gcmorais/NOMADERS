@@ -16,6 +16,7 @@ import Table from '../components/table';
 import LayoutPage from '../components/pageLayout';
 import { ApiContext } from '../contexts/ApiContext';
 import ErrorMessage from '../components/errorMessage';
+import { PrivateRoute } from './privateRoutes';
 
 function AppDash() {
   return (
@@ -62,16 +63,20 @@ function Rotas() {
       <Route path="/" element={<Homedash />}>
         <Route path="/" element={<Layout />} />
       </Route>
-      <Route path="/app" element={<LoginPage />}>
-        <Route path="signup" element={<SignUp isOpen={openUpModal} />} />
-        <Route path="signin" element={<SignIn isOpen={openInModal} />} />
-      </Route>
-      <Route path="app/nomaders" element={<AppDash />}>
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="products" element={<ProductsDash />}>
-          <Route path="/app/nomaders/products" element={<Table />} />
-          <Route path="new" element={<NewProduct />} />
-          <Route path="edit/:id" element={<EditProduct />} />
+       
+        <Route path="/app" element={<LoginPage />}>
+          <Route path="signup" element={<SignUp isOpen={openUpModal} />} />
+          <Route path="signin" element={<SignIn isOpen={openInModal} />} />
+        </Route>
+        
+      <Route path="" element={<PrivateRoute />}> 
+        <Route path="app/nomaders" element={<AppDash />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="products" element={<ProductsDash />}>
+            <Route path="/app/nomaders/products" element={<Table />} />
+            <Route path="new" element={<NewProduct />} />
+            <Route path="edit/:id" element={<EditProduct />} />
+          </Route>
         </Route>
       </Route>
     </Routes>

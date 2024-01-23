@@ -8,6 +8,7 @@ import Input from '../input/input';
 import useErrors from '../../hooks/useErrors';
 import isEmailValid from '../../utils/isEmailValid';
 import FormGroup from '../input/formgroup';
+import UsersService from '../../services/UsersService';
 
 function SignUp({ isOpen }) {
   const [name, setName] = useState('');
@@ -25,6 +26,26 @@ function SignUp({ isOpen }) {
   const onClose = () => {
     navigate('/app');
   };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      const data = {
+        name,
+        email,
+        password,
+      };
+      const response = await UsersService.createUser(data);
+      console.log(response);
+    } catch (error) {
+      console.log('Ocorreu um erro no seu registro,tente novamente.', error);
+    }
+
+    setName('');
+    setEmail('');
+    setPassword('');
+    setPassConfirm('');
+  }
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -63,9 +84,6 @@ function SignUp({ isOpen }) {
     }
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
   if (isOpen) {
     return (
       <Login navLink={onClose} width="lg:w-[500px]" height="h-[900px]">

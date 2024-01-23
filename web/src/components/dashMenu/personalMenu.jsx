@@ -11,10 +11,13 @@ import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
 import { BiSolidDownArrow } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 
 export default function MenuListComposition() {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+  const { singOut } = useContext(AuthContext);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -29,11 +32,6 @@ export default function MenuListComposition() {
   };
 
   const navigate = useNavigate();
-  const onClose = () => {
-    navigate('/app/signin');
-
-    setOpen(false);
-  };
 
   function handleListKeyDown(event) {
     if (event.key === 'Tab') {
@@ -96,7 +94,7 @@ export default function MenuListComposition() {
                   >
                     <MenuItem onClick={handleClose}>Perfil</MenuItem>
                     <MenuItem onClick={handleClose}>Minha conta</MenuItem>
-                    <MenuItem onClick={onClose} data-testid="close-popup">Sair</MenuItem>
+                    <MenuItem onClick={() => singOut()} data-testid="close-popup">Sair</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
