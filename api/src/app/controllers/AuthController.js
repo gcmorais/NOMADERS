@@ -1,5 +1,5 @@
 const UserRepository = require("../repositories/UserRepository");
-const bcrypt = require("bcryptjs");
+const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 class AuthController {
@@ -12,10 +12,8 @@ class AuthController {
       return response.status(400).json({ error: "user not found" });
     }
 
-    const isPasswordValid = bcrypt.compare(password, user.password);
-
-    if (!isPasswordValid) {
-      return response.status(400).json({ error: "password invalid" });
+    if (password !== user.password) {
+      return response.status(400).json({ error: "password is wrong" });
     }
 
     const token = jwt.sign({ id: user.id }, "secret", { expiresIn: "1h" });
