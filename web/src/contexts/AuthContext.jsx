@@ -6,7 +6,8 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [infoUser, setInfoUser] = useState();
+  const [infoUserName, setInfoUserName] = useState();
+  const [infoUserEmail, setInfoUserEmail] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,7 +19,10 @@ export const AuthProvider = ({ children }) => {
         const obj = JSON.parse(storageUser);
         setUser(storageUser);
         const userName = obj.name;
-        setInfoUser(userName)
+        const userEmail = obj.email;
+        
+        setInfoUserName(userName)
+        setInfoUserEmail(userEmail)
       }
     };
 
@@ -39,7 +43,8 @@ export const AuthProvider = ({ children }) => {
       alert(response.error);
     }
 
-    setInfoUser(response.user.name);
+    setInfoUserName(response.user.name);
+    setInfoUserEmail(response.user.email);
     setUser(response.user);
     localStorage.setItem("@Auth:token", response.token);
     localStorage.setItem("@Auth:user", JSON.stringify(response.user));
@@ -59,7 +64,8 @@ export const AuthProvider = ({ children }) => {
   return(
     <AuthContext.Provider value={{
       user,
-      infoUser,
+      infoUserName,
+      infoUserEmail,
       signed: !!user,
       signIn,
       singOut

@@ -8,7 +8,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 function DashMenu() {
   const location = useLocation();
-  const { user, infoUser } = useContext(AuthContext);
+  const { infoUserName, infoUserEmail } = useContext(AuthContext);
 
   return (
     <div className="flex flex-col gap-1.5 w-full lg:w-[270px] ">
@@ -17,10 +17,10 @@ function DashMenu() {
           <img src={User} alt="profile-img" className="pl-1" />
           <div>
             <h1 className="font-inter font-semibold text-xl text-primary-black dark:text-white/80">
-              {infoUser}
+              {infoUserName}
             </h1>
             <p className="font-inter text-[10.5px] opacity-50 dark:text-secundary-neutral">
-              Imperatriz systems AD
+              {infoUserEmail}
             </p>
           </div>
           <PersonalMenu />
