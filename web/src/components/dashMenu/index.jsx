@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaHome, FaDatabase } from 'react-icons/fa';
 import { BsArrowRight } from 'react-icons/bs';
 import { NavLink, useLocation } from 'react-router-dom';
 import User from '../../assets/user.svg';
 import PersonalMenu from './personalMenu';
+import { AuthContext } from '../../contexts/AuthContext';
 
 function DashMenu() {
   const location = useLocation();
+  const { user, infoUser } = useContext(AuthContext);
 
   return (
     <div className="flex flex-col gap-1.5 w-full lg:w-[270px] ">
@@ -15,7 +17,7 @@ function DashMenu() {
           <img src={User} alt="profile-img" className="pl-1" />
           <div>
             <h1 className="font-inter font-semibold text-xl text-primary-black dark:text-white/80">
-              Antony Curt
+              {infoUser}
             </h1>
             <p className="font-inter text-[10.5px] opacity-50 dark:text-secundary-neutral">
               Imperatriz systems AD
