@@ -18,9 +18,9 @@ class AuthController {
 
     const token = jwt.sign({ id: user.id }, "secret", { expiresIn: "1h" });
 
-    const { id } = user;
+    const { id, name } = user;
 
-    return response.json({ user: { id, email }, token });
+    return response.json({ user: { id, email, name }, token });
   }
 }
 
