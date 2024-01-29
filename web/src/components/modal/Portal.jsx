@@ -4,7 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import ReactDOM from 'react-dom';
 
 export default function PortalCreate({
-  children, navLink, width, theme,
+  children, navLink, width, theme, boxStyle
 }) {
   return ReactDOM.createPortal(
     <div className="fixed inset-0 flex justify-center items-center px-2 backdrop-blur-sm bg-secundary-gray/50 z-30">
@@ -18,7 +18,7 @@ export default function PortalCreate({
             <AiOutlineClose className={`rounded-full fill-black ${theme}`} />
           </button>
         </div>
-        <div className="mt-10 px-10 lg:mt-0 lg:px-20">
+        <div className={`mt-10 px-10 lg:mt-0 ${boxStyle}`}>
           {children}
         </div>
       </div>
@@ -32,9 +32,11 @@ PortalCreate.propTypes = {
   width: PropTypes.string.isRequired,
   navLink: PropTypes.func,
   theme: PropTypes.string,
+  boxStyle: PropTypes.string,
 };
 
 PortalCreate.defaultProps = {
   navLink: () => {},
   theme: '',
+  boxStyle: '',
 };

@@ -1,5 +1,5 @@
 /* eslint-disable no-plusplus */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import AreaChart from '../../components/chart/areaChart';
 import DonutChart from '../../components/chart/donutChart';
 import Table from '../../components/table';
@@ -9,9 +9,13 @@ import DashInfo from '../../components/dashInfo';
 import { ApiContext } from '../../contexts/ApiContext';
 import Spinner from '../../components/spinner';
 import ErrorMessage from '../../components/errorMessage';
+import Reports from '../../components/modal/reports';
 
 function Dashboard() {
   const { products, isLoading, hasError } = useContext(ApiContext);
+  const [openModal, setOpenModal] = useState(false);
+
+
   let totalSales = 0;
   let totalProfit = 0;
 
@@ -310,6 +314,8 @@ function Dashboard() {
             <HeaderSection
               title="Dashboard"
               subtitle="Bem vindo ao seu dashboard"
+              click={() => setOpenModal(true)}
+              visible={true}
             />
             <main>
               <div className="mt-10 flex flex-col justify-between gap-2 2xl:flex-row">
@@ -388,6 +394,24 @@ function Dashboard() {
           </main>
         </section>
       )}
+      <Reports 
+        isOpen={openModal} 
+        setOpen={setOpenModal} 
+        totalSales={totalSales} 
+        totalProfit={totalProfit}
+        January={profitJanuary}
+        February={profitFebruary}
+        March={profitMarch}
+        April={profitApril}
+        May={profitMay}
+        June={profitJune}
+        July={profitJuly}
+        August={profitAugust}
+        September={profitSeptember}
+        October={profitOctober}
+        November={profitNovember}
+        December={profitDecember}
+      />
     </>
   );
 }
