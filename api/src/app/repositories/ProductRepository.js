@@ -32,28 +32,28 @@ class ProductRepository {
     return row;
   }
 
-  async create({ name, ean, cost, salePrice, dateValue }) {
+  async create({ name, ean, platform, cost, salePrice, dateValue }) {
     const [row] = await db.query(
       `
-      INSERT INTO products(name, ean, cost, salePrice, dateValue)
-      VALUES($1, $2, $3, $4, to_date($5, 'DD-MM-YYYY'))
+      INSERT INTO products(name, ean, platform, cost, salePrice, dateValue)
+      VALUES($1, $2, $3, $4, $5, to_date($6, 'DD-MM-YYYY'))
       RETURNING *
     `,
-      [name, ean, cost, salePrice, dateValue]
+      [name, ean, platform, cost, salePrice, dateValue]
     );
 
     return row;
   }
 
-  async update(id, { name, ean, cost, salePrice, dateValue }) {
+  async update(id, { name, ean, platform, cost, salePrice, dateValue }) {
     const [row] = await db.query(
       `
       UPDATE products
-      SET name = $1, ean = $2, cost = $3, salePrice = $4, dateValue = to_date($5, 'DD-MM-YYYY')
-      WHERE id = $6
+      SET name = $1, ean = $2, platform = $3, cost = $4, salePrice = $5, dateValue = to_date($6, 'DD-MM-YYYY')
+      WHERE id = $7
       RETURNING *
     `,
-      [name, ean, cost, salePrice, dateValue, id]
+      [name, ean, platform, cost, salePrice, dateValue, id]
     );
 
     return row;
