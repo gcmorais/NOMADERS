@@ -280,7 +280,7 @@ export default function EnhancedTable() {
       item.cost,
       item.saleprice,
       item.saleprice - item.cost,
-      'Americanas',
+      item.platform,
       item.id,
       item.datevalue,
     ),

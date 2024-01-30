@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 const ProductForm = forwardRef(({ title, btnLabel, onSubmit, edit }, ref) => {
   const [name, setName] = useState('');
   const [ean, setEan] = useState('');
+  const [platform, setPlatform] = useState('');
   const [cost, setCost] = useState('');
   const [salePrice, setSalePrice] = useState('');
   const [dateValue, setDateValue] = useState('');
@@ -22,12 +23,13 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit, edit }, ref) => {
     setError, removeError, getErrorMessageByFieldName, errors,
   } = useErrors();
 
-  const isFormValid = (name && ean && cost && salePrice && errors.length === 0);
+  const isFormValid = (name && ean && platform && cost && salePrice && errors.length === 0);
 
   useImperativeHandle(ref, () => ({
     setFieldsValues: (data) => {
       setName(data.name);
       setEan(data.ean);
+      setPlatform(data.platform);
       setCost(data.cost);
       setSalePrice(data.saleprice);
       setDateValue(data.datevalue);
@@ -55,6 +57,15 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit, edit }, ref) => {
       setError({ field: 'ean', message: 'Ean é obrigatório!' });
     } else {
       removeError('ean');
+    }
+  }
+  function handlePlatformChange(event) {
+    setPlatform(event.target.value);
+
+    if (!event.target.value) {
+      setError({ field: 'platform', message: 'Plataforma é obrigatória!' });
+    } else {
+      removeError('platform');
     }
   }
   function handleCostChange(event) {
@@ -88,7 +99,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit, edit }, ref) => {
     event.preventDefault();
 
     await onSubmit({
-      name, ean, cost, salePrice, dateValue,
+      name, ean, platform, cost, salePrice, dateValue,
     });
 
     if(edit){
@@ -97,6 +108,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit, edit }, ref) => {
 
     setName('');
     setEan('');
+    setPlatform('');
     setCost('');
     setSalePrice('');
     setDateValue('');
@@ -127,6 +139,16 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit, edit }, ref) => {
               value={ean}
               change={handleEanChange}
               valueMask={13}
+            />
+          </FormGroup>
+          
+          <FormGroup error={getErrorMessageByFieldName('platform')}>
+            <Input
+              text="Plataforma"
+              styles="dark:text-white"
+              value={platform}
+              change={handlePlatformChange}
+              valueMask={23}
             />
           </FormGroup>
           <div className="flex gap-5">

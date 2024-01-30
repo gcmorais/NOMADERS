@@ -27,6 +27,7 @@ function EditProduct() {
       const data = {
         name: formData.name,
         ean: formData.ean,
+        platform: formData.platform,
         cost: formData.cost,
         salePrice: formData.salePrice,
         dateValue: formData.dateValue,

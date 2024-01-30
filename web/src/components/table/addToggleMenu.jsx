@@ -57,17 +57,12 @@ const StyledMenu = styled((props) => (
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const [openRegisterPlataform, setOpenRegisterPlataform] = useState(false);
   const [openAddRegisterProduct, setOpenAddRegisterProduct] = useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const plataformModal = () => {
-    setOpenRegisterPlataform(true);
-    setAnchorEl(null);
-  };
-  const plataformAddModal = () => {
+  const productAddModal = () => {
     setOpenAddRegisterProduct(true);
     setAnchorEl(null);
   };
@@ -98,7 +93,7 @@ export default function CustomizedMenus() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={plataformAddModal} disableRipple>
+        <MenuItem onClick={productAddModal} disableRipple>
           <EditIcon />
           Produto
         </MenuItem>
@@ -109,18 +104,10 @@ export default function CustomizedMenus() {
             Novo Produto
           </Link>
         </MenuItem>
-        <MenuItem onClick={plataformModal} disableRipple>
-          <FileCopyIcon />
-          Nova Plataforma
-        </MenuItem>
       </StyledMenu>
       <AddProductModal
         isOpen={openAddRegisterProduct}
         setModalOpen={() => setOpenAddRegisterProduct(!openAddRegisterProduct)}
-      />
-      <RegisterPlataformModal
-        isOpen={openRegisterPlataform}
-        setModalOpen={() => setOpenRegisterPlataform(!openRegisterPlataform)}
       />
     </div>
   );
