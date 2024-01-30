@@ -15,7 +15,6 @@ function Dashboard() {
   const { products, isLoading, hasError } = useContext(ApiContext);
   const [openModal, setOpenModal] = useState(false);
 
-
   let totalSales = 0;
   let totalProfit = 0;
 

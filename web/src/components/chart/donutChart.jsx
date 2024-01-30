@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ApexChart from 'react-apexcharts';
+import { ApiContext } from '../../contexts/ApiContext';
 
 export default function DonutChart() {
+  const { products } = useContext(ApiContext);
+
+  let plataforma = products.map(item => {
+    return item.platform;
+  })
+
+  const novaArr = plataforma.filter((este, i) => {
+    return plataforma.indexOf(este) === i;
+  });
+
+  const quantidadeElementos = novaArr.map(item => {
+    return plataforma.filter(x => x === item).length
+  })
+
   const chartOptions = {
     chart: {
       background: '0',
@@ -55,7 +70,7 @@ export default function DonutChart() {
     tooltip: {
       fillSeriesColor: true,
     },
-    labels: ['Mercado Livre', 'Shopify', 'Americanas', 'Magalu'],
+    labels: [...novaArr],
     legend: {
       position: 'bottom',
     },
@@ -64,7 +79,7 @@ export default function DonutChart() {
   return (
     <ApexChart
       options={chartOptions}
-      series={[44, 55, 41, 17]}
+      series={[...quantidadeElementos]}
       height={400}
       width={450}
       type="donut"
