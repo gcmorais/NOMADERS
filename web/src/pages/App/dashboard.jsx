@@ -1,15 +1,15 @@
 /* eslint-disable no-plusplus */
-import React, { useContext, useState } from 'react';
-import AreaChart from '../../components/chart/areaChart';
-import DonutChart from '../../components/chart/donutChart';
-import Table from '../../components/table';
-import HeaderApp from '../../components/headerApp';
-import HeaderSection from '../../components/headerSection';
-import DashInfo from '../../components/dashInfo';
-import { ApiContext } from '../../contexts/ApiContext';
-import Spinner from '../../components/spinner';
-import ErrorMessage from '../../components/errorMessage';
-import Reports from '../../components/modal/reports';
+import React, { useContext, useEffect, useState } from "react";
+import AreaChart from "../../components/chart/areaChart";
+import DonutChart from "../../components/chart/donutChart";
+import Table from "../../components/table";
+import HeaderApp from "../../components/headerApp";
+import HeaderSection from "../../components/headerSection";
+import DashInfo from "../../components/dashInfo";
+import { ApiContext } from "../../contexts/ApiContext";
+import Spinner from "../../components/spinner";
+import ErrorMessage from "../../components/errorMessage";
+import Reports from "../../components/modal/reports";
 
 function Dashboard() {
   const { products, isLoading, hasError } = useContext(ApiContext);
@@ -35,125 +35,175 @@ function Dashboard() {
   let valueOctober = 0;
   let valueNovember = 0;
   let valueDecember = 0;
-  
-  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   const dateObj = new Date();
-  let monthIndex = (dateObj.getMonth());
+  let monthIndex = dateObj.getMonth();
   let monthName = monthNames[monthIndex];
   let monthYear = dateObj.getFullYear();
 
-  switch(monthName){
-    case 'January':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          valueJanuary += Number(products[i].saleprice);
-          valueDefault = valueJanuary;
-          valueComp = 0;
-        }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "01") {
+      valueJanuary += Number(products[i].saleprice);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "02") {
+      valueFebruary += Number(products[i].saleprice);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "03") {
+      valueMarch += Number(products[i].saleprice);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "04") {
+      valueApril += Number(products[i].saleprice);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "05") {
+      valueMay += Number(products[i].saleprice);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "06") {
+      valueJune += Number(products[i].saleprice);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "07") {
+      valueJuly += Number(products[i].saleprice);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "08") {
+      valueAugust += Number(products[i].saleprice);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "09") {
+      valueSeptember += Number(products[i].saleprice);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "10") {
+      valueOctober += Number(products[i].saleprice);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "11") {
+      valueNovember += Number(products[i].saleprice);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "12") {
+      valueDecember += Number(products[i].saleprice);
+    }
+  }
+
+  switch (monthName) {
+    case "January":
+      if (monthYear === 2024) {
+        valueDefault = valueJanuary;
+        valueComp = 0;
       }
       break;
-    case 'February':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          valueFebruary += Number(products[i].saleprice);
-          valueDefault = valueFebruary;
-          valueComp = [(valueFebruary / valueJanuary) -1 ] * 100;
-        }
+    case "February":
+      if (monthYear === 2024) {
+        valueDefault = valueFebruary;
+        valueComp = [valueFebruary / valueJanuary - 1] * 100;
       }
       break;
-    case 'March':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          valueMarch += Number(products[i].saleprice);
-          valueDefault = valueMarch;
-          valueComp = [( valueMarch / valueFebruary) -1 ] * 100;
-        }
+    case "March":
+      if (monthYear === 2024) {
+        valueDefault = valueMarch;
+        valueComp = [valueMarch / valueFebruary - 1] * 100;
       }
       break;
-    case 'April':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          valueApril += Number(products[i].saleprice);
-          valueDefault = valueApril;
-          valueComp = [( valueApril / valueMarch) -1 ] * 100;
-        }
+    case "April":
+      if (monthYear === 2024) {
+        valueDefault = valueApril;
+        valueComp = [valueApril / valueMarch - 1] * 100;
       }
       break;
-    case 'May':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          valueMay += Number(products[i].saleprice);
-          valueDefault = valueMay;
-          valueComp = [( valueMay / valueApril) -1 ] * 100;
-        }
+    case "May":
+      if (monthYear === 2024) {
+        valueDefault = valueMay;
+        valueComp = [valueMay / valueApril - 1] * 100;
       }
       break;
-    case 'June':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          valueJune += Number(products[i].saleprice);
-          valueDefault = valueJune;
-          valueComp = [( valueJune / valueMay) -1 ] * 100;
-        }
+    case "June":
+      if (monthYear === 2024) {
+        valueDefault = valueJune;
+        valueComp = [valueJune / valueMay - 1] * 100;
       }
       break;
-    case 'July':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          valueJuly += Number(products[i].saleprice);
-          valueDefault = valueJuly;
-          valueComp = [( valueJuly / valueJune) -1 ] * 100;
-        }
+    case "July":
+      if (monthYear === 2024) {
+        valueDefault = valueJuly;
+        valueComp = [valueJuly / valueJune - 1] * 100;
       }
       break;
-    case 'August':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          valueAugust += Number(products[i].saleprice);
-          valueDefault = valueAugust;
-          valueComp = [( valueAugust / valueJuly) -1 ] * 100;
-        }
+    case "August":
+      if (monthYear === 2024) {
+        valueDefault = valueAugust;
+        valueComp = [valueAugust / valueJuly - 1] * 100;
       }
       break;
-    case 'September':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          valueSeptember += Number(products[i].saleprice);
-          valueDefault = valueSeptember;
-          valueComp = [( valueSeptember / valueAugust) -1 ] * 100;
-        }
+    case "September":
+      if (monthYear === 2024) {
+        valueDefault = valueSeptember;
+        valueComp = [valueSeptember / valueAugust - 1] * 100;
       }
       break;
-    case 'October':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          valueOctober += Number(products[i].saleprice);
-          valueDefault = valueOctober;
-          valueComp = [( valueOctober / valueSeptember) -1 ] * 100;
-        }
+    case "October":
+      if (monthYear === 2024) {
+        valueDefault = valueOctober;
+        valueComp = [valueOctober / valueSeptember - 1] * 100;
       }
       break;
-    case 'November':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          valueNovember += Number(products[i].saleprice);
-          valueDefault = valueNovember;
-          valueComp = [( valueNovember / valueOctober) -1 ] * 100;
-        }
+    case "November":
+      if (monthYear === 2024) {
+        valueDefault = valueNovember;
+        valueComp = [valueNovember / valueOctober - 1] * 100;
       }
       break;
-    case 'December':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          valueDecember += Number(products[i].saleprice);
-          valueDefault = valueDecember;
-          valueComp = [( valueDecember / valueNovember) -1 ] * 100;
-        }
+    case "December":
+      if (monthYear === 2024) {
+        valueDefault = valueDecember;
+        valueComp = [valueDecember / valueNovember - 1] * 100;
       }
       break;
   }
- 
+
   let profitDefault = 0;
   let profitComp = 0;
 
@@ -170,114 +220,150 @@ function Dashboard() {
   let profitNovember = 0;
   let profitDecember = 0;
 
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "01") {
+      profitJanuary += Number(products[i].saleprice - products[i].cost);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "02") {
+      profitFebruary += Number(products[i].saleprice - products[i].cost);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "03") {
+      profitMarch += Number(products[i].saleprice - products[i].cost);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "04") {
+      profitApril += Number(products[i].saleprice - products[i].cost);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "05") {
+      profitMay += Number(products[i].saleprice - products[i].cost);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "06") {
+      profitJune += Number(products[i].saleprice - products[i].cost);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "07") {
+      profitJuly += Number(products[i].saleprice - products[i].cost);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "08") {
+      profitAugust += Number(products[i].saleprice - products[i].cost);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "09") {
+      profitSeptember += Number(products[i].saleprice - products[i].cost);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "10") {
+      profitOctober += Number(products[i].saleprice - products[i].cost);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "11") {
+      profitNovember += Number(products[i].saleprice - products[i].cost);
+    }
+  }
+  for (let i = 0; i < products.length; i++) {
+    const dateValue = products[i].datevalue;
+    if (dateValue.substring(3, 5) === "12") {
+      profitDecember += Number(products[i].saleprice - products[i].cost);
+    }
+  }
 
-  switch(monthName){
-    case 'January':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          profitJanuary += Number(products[i].saleprice - products[i].cost);
-          profitDefault = profitJanuary;
-          profitComp = 0;
-        }
+  switch (monthName) {
+    case "January":
+      if (monthYear === 2024) {
+        profitDefault = profitJanuary;
+        profitComp = 0;
       }
       break;
-    case 'February':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          profitFebruary += Number(products[i].saleprice - products[i].cost);
-          profitDefault = profitFebruary;
-          profitComp = [(profitFebruary / profitJanuary) -1 ] * 100;
-        }
+    case "February":
+      if (monthYear === 2024) {
+        profitDefault = profitFebruary;
+        profitComp = [profitFebruary / profitJanuary - 1] * 100;
       }
       break;
-    case 'March':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          profitMarch += Number(products[i].saleprice - products[i].cost);
-          profitDefault = profitMarch;
-          profitComp = [( profitMarch / profitFebruary) -1 ] * 100;
-        }
+    case "March":
+      if (monthYear === 2024) {
+        profitDefault = profitMarch;
+        profitComp = [profitMarch / profitFebruary - 1] * 100;
       }
       break;
-    case 'April':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          profitApril += Number(products[i].saleprice - products[i].cost);
-          profitDefault = profitApril;
-          profitComp = [( profitApril / profitMarch) -1 ] * 100;
-        }
+    case "April":
+      if (monthYear === 2024) {
+        profitDefault = profitApril;
+        profitComp = [profitApril / profitMarch - 1] * 100;
       }
       break;
-    case 'May':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          profitMay += Number(products[i].saleprice - products[i].cost);
-          profitDefault = profitMay;
-          profitComp = [( profitMay / profitApril) -1 ] * 100;
-        }
+    case "May":
+      if (monthYear === 2024) {
+        profitDefault = profitMay;
+        profitComp = [profitMay / profitApril - 1] * 100;
       }
       break;
-    case 'June':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          profitJune += Number(products[i].saleprice - products[i].cost);
-          profitDefault = profitJune;
-          profitComp = [( profitJune / profitMay) -1 ] * 100;
-        }
+    case "June":
+      if (monthYear === 2024) {
+        profitDefault = profitJune;
+        profitComp = [profitJune / profitMay - 1] * 100;
       }
       break;
-    case 'July':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          profitJuly += Number(products[i].saleprice - products[i].cost);
-          profitDefault = profitJuly;
-          profitComp = [( profitJuly / profitJune) -1 ] * 100;
-        }
+    case "July":
+      if (monthYear === 2024) {
+        profitDefault = profitJuly;
+        profitComp = [profitJuly / profitJune - 1] * 100;
       }
       break;
-    case 'August':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          profitAugust += Number(products[i].saleprice - products[i].cost);
-          profitDefault = profitAugust;
-          profitComp = [( profitAugust / profitJuly) -1 ] * 100;
-        }
+    case "August":
+      if (monthYear === 2024) {
+        profitDefault = profitAugust;
+        profitComp = [profitAugust / profitJuly - 1] * 100;
       }
       break;
-    case 'September':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          profitSeptember += Number(products[i].saleprice - products[i].cost);
-          profitDefault = profitSeptember;
-          profitComp = [( profitSeptember / profitAugust) -1 ] * 100;
-        }
+    case "September":
+      if (monthYear === 2024) {
+        profitDefault = profitSeptember;
+        profitComp = [profitSeptember / profitAugust - 1] * 100;
       }
       break;
-    case 'October':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          profitOctober += Number(products[i].saleprice - products[i].cost);
-          profitDefault = profitOctober;
-          profitComp = [( profitOctober / profitSeptember) -1 ] * 100;
-        }
+    case "October":
+      if (monthYear === 2024) {
+        profitDefault = profitOctober;
+        profitComp = [profitOctober / profitSeptember - 1] * 100;
       }
       break;
-    case 'November':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          profitNovember += Number(products[i].saleprice - products[i].cost);
-          profitDefault = profitNovember;
-          profitComp = [( profitNovember / profitOctober) -1 ] * 100;
-        }
+    case "November":
+      if (monthYear === 2024) {
+        profitDefault = profitNovember;
+        profitComp = [profitNovember / profitOctober - 1] * 100;
       }
       break;
-    case 'December':
-      if(monthYear === 2024){
-        for (let i = 0; i < products.length; i++) {
-          profitDecember += Number(products[i].saleprice - products[i].cost);
-          profitDefault = profitDecember;
-          profitComp = [( profitDecember / profitNovember) -1 ] * 100;
-        }
+    case "December":
+      if (monthYear === 2024) {
+        profitDefault = profitDecember;
+        profitComp = [profitDecember / profitNovember - 1] * 100;
       }
       break;
   }
@@ -300,10 +386,8 @@ function Dashboard() {
           <p className="dark:text-white">Carregando...</p>
         </div>
       )}
-      {(hasError && !isLoading) && (
-        <ErrorMessage />
-      )}
-      {(!isLoading && !hasError) && (
+      {hasError && !isLoading && <ErrorMessage />}
+      {!isLoading && !hasError && (
         <section
           data-testid="dashboard-background"
           className="mt-2 w-full rounded-lg bg-secundary-white dark:bg-secundary-blue lg:mt-0"
@@ -328,7 +412,7 @@ function Dashboard() {
                   <DashInfo
                     headerText="Vendas Mensais"
                     mainValue={`R$ ${valueDefault}`}
-                    footerValue={valueComp}
+                    footerValue={valueComp.toFixed(0)}
                     footerText="% em relação ao mês anterior"
                   />
                   <DashInfo
@@ -340,7 +424,7 @@ function Dashboard() {
                   <DashInfo
                     headerText="Lucro Mensal"
                     mainValue={`R$ ${profitDefault}`}
-                    footerValue={profitComp}
+                    footerValue={profitComp.toFixed(0)}
                     footerText="% em relação ao mês anterior"
                   />
                 </div>
@@ -355,7 +439,7 @@ function Dashboard() {
                     </h3>
                   </header>
                   <div className="px-6 text-black/80 dark:text-white">
-                    <AreaChart 
+                    <AreaChart
                       January={profitJanuary}
                       February={profitFebruary}
                       March={profitMarch}
@@ -393,10 +477,10 @@ function Dashboard() {
           </main>
         </section>
       )}
-      <Reports 
-        isOpen={openModal} 
-        setOpen={setOpenModal} 
-        totalSales={totalSales} 
+      <Reports
+        isOpen={openModal}
+        setOpen={setOpenModal}
+        totalSales={totalSales}
         totalProfit={totalProfit}
         January={profitJanuary}
         February={profitFebruary}
