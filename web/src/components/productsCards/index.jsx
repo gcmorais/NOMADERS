@@ -44,12 +44,16 @@ function ProductCards({ platform }) {
         </div>
         <div>
           <p className="text-[11px] dark:text-white/50">Lucro</p>
-          <h1 className="text-2xl font-medium dark:text-white md:pr-9">
+          <h1
+            className={`text-2xl font-medium md:pr-9 ${
+              lucro > 0 ? "text-green-500" : "text-red-500"
+            } ${lucro === 0 && "text-white"}`}
+          >
             R$ {lucro}
           </h1>
         </div>
       </main>
-      <footer className="mt-2 flex items-center justify-between gap-2">
+      {/* <footer className="mt-2 flex items-center justify-between gap-2">
         <div className="flex gap-2">
           <span className="text-lg text-green-500">
             <IoIosArrowDropupCircle />
@@ -68,7 +72,7 @@ function ProductCards({ platform }) {
             nos lucros totais
           </p>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 }
