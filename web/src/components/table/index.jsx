@@ -1,37 +1,37 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import { Link } from 'react-router-dom';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import * as React from "react";
+import PropTypes from "prop-types";
+import { alpha } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import { Link } from "react-router-dom";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import TableSortLabel from "@mui/material/TableSortLabel";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import Checkbox from "@mui/material/Checkbox";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 // import FormControlLabel from '@mui/material/FormControlLabel';
 // import Switch from '@mui/material/Switch';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { visuallyHidden } from '@mui/utils';
-import { AiOutlineSearch } from 'react-icons/ai';
-import { Stack } from '@mui/material';
+import DeleteIcon from "@mui/icons-material/Delete";
+import { visuallyHidden } from "@mui/utils";
+import { AiOutlineSearch } from "react-icons/ai";
+import { Stack } from "@mui/material";
 
-import EditIcon from '@mui/icons-material/Edit';
-import AddToggleMenu from './addToggleMenu';
-import ProductsService from '../../services/ProductsService';
-import EmptyBox from '../../assets/empty-box.svg';
-import DeleteProductModal from '../modal/deleteProductModal';
-import Spinner from '../spinner';
-import { ApiContext } from '../../contexts/ApiContext';
+import EditIcon from "@mui/icons-material/Edit";
+import AddToggleMenu from "./addToggleMenu";
+import ProductsService from "../../services/ProductsService";
+import EmptyBox from "../../assets/empty-box.svg";
+import DeleteProductModal from "../modal/deleteProductModal";
+import Spinner from "../spinner";
+import { ApiContext } from "../../contexts/ApiContext";
 
 function createData(name, ean, cost, price, profit, platform, id, date) {
   return {
@@ -57,7 +57,7 @@ function descendingComparator(a, b, orderBy) {
 }
 
 function getComparator(order, orderBy) {
-  return order === 'desc'
+  return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
@@ -76,52 +76,52 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'name',
+    id: "name",
     numeric: false,
     disablePadding: true,
-    label: 'Nome',
+    label: "Nome",
   },
   {
-    id: 'ean',
+    id: "ean",
     numeric: true,
     disablePadding: false,
-    label: 'Ean',
+    label: "Ean",
   },
   {
-    id: 'cost',
+    id: "cost",
     numeric: true,
     disablePadding: false,
-    label: 'Custo',
+    label: "Custo",
   },
   {
-    id: 'price',
+    id: "price",
     numeric: true,
     disablePadding: false,
-    label: 'Preço Venda',
+    label: "Preço Venda",
   },
   {
-    id: 'profit',
+    id: "profit",
     numeric: true,
     disablePadding: false,
-    label: 'Lucro',
+    label: "Lucro",
   },
   {
-    id: 'platform',
+    id: "platform",
     numeric: true,
     disablePadding: false,
-    label: 'Plataforma',
+    label: "Plataforma",
   },
   {
-    id: 'date',
+    id: "date",
     numeric: true,
     disablePadding: false,
-    label: 'Data',
+    label: "Data",
   },
   {
-    id: 'actions',
+    id: "actions",
     numeric: true,
     disablePadding: true,
-    label: '',
+    label: "",
   },
 ];
 
@@ -148,26 +148,26 @@ function EnhancedTableHead(props) {
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{
-              'aria-label': 'select all desserts',
+              "aria-label": "select all desserts",
             }}
           />
         </TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'normal'}
+            align={headCell.numeric ? "right" : "left"}
+            padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
+              direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                  {order === "desc" ? "sorted descending" : "sorted ascending"}
                 </Box>
               ) : null}
             </TableSortLabel>
@@ -182,7 +182,7 @@ EnhancedTableHead.propTypes = {
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
   onSelectAllClick: PropTypes.func.isRequired,
-  order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+  order: PropTypes.oneOf(["asc", "desc"]).isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
 };
@@ -196,27 +196,26 @@ function EnhancedTableToolbar(props) {
         pl: { sm: 2 },
         pr: { xs: 1, sm: 1 },
         ...(numSelected > 0 && {
-          bgcolor: (theme) => alpha(
-            theme.palette.primary.main,
-            theme.palette.action.activatedOpacity,
-          ),
+          bgcolor: (theme) =>
+            alpha(
+              theme.palette.primary.main,
+              theme.palette.action.activatedOpacity,
+            ),
         }),
       }}
     >
       {numSelected > 0 ? (
         <Typography
-          sx={{ flex: '1 1 100%' }}
+          sx={{ flex: "1 1 100%" }}
           color="inherit"
           variant="subtitle1"
           component="div"
         >
-          {numSelected}
-          {' '}
-          selected
+          {numSelected} selected
         </Typography>
       ) : (
         <Typography
-          sx={{ flex: '1 1 100%' }}
+          sx={{ flex: "1 1 100%" }}
           variant="h6"
           id="tableTitle"
           component="div"
@@ -261,8 +260,8 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function EnhancedTable() {
-  const [order, setOrder] = React.useState('desc');
-  const [orderBy, setOrderBy] = React.useState('date');
+  const [order, setOrder] = React.useState("desc");
+  const [orderBy, setOrderBy] = React.useState("date");
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense] = React.useState(false);
@@ -273,22 +272,24 @@ export default function EnhancedTable() {
 
   const rows = [];
 
-  products.map((item) => rows.push(
-    createData(
-      item.name,
-      item.ean,
-      item.cost,
-      item.saleprice,
-      item.saleprice - item.cost,
-      item.platform,
-      item.id,
-      item.datevalue,
+  products.map((item) =>
+    rows.push(
+      createData(
+        item.name,
+        item.ean,
+        item.cost,
+        item.saleprice,
+        item.saleprice - item.cost,
+        item.platform,
+        item.id,
+        item.datevalue,
+      ),
     ),
-  ));
+  );
 
   const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
+    const isAsc = orderBy === property && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
 
@@ -337,13 +338,15 @@ export default function EnhancedTable() {
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const visibleRows = React.useMemo(
-    () => stableSort(rows, getComparator(order, orderBy)).slice(
-      page * rowsPerPage,
-      page * rowsPerPage + rowsPerPage,
-    ),
+    () =>
+      stableSort(rows, getComparator(order, orderBy)).slice(
+        page * rowsPerPage,
+        page * rowsPerPage + rowsPerPage,
+      ),
     [order, orderBy, page, rowsPerPage, rows],
   );
 
@@ -357,143 +360,142 @@ export default function EnhancedTable() {
       setOpenDeleteModal(false);
       loadProducts();
     } catch (error) {
-      console.log('Ocorreu um erro ao deletar o produto', error);
+      console.log("Ocorreu um erro ao deletar o produto", error);
     }
   }
   return (
     <>
       <Box
         sx={{
-          display: 'flex',
-          width: '100%',
-          alignItems: 'center',
-          justifyContent: 'center',
-          bgcolor: 'background.default',
-          color: 'text.primary',
+          display: "flex",
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "background.default",
+          color: "text.primary",
           borderRadius: 1,
           p: 3,
         }}
       >
         {isLoading && (
-          <div className="flex flex-col h-[600px] items-center justify-center">
+          <div className="flex h-[600px] flex-col items-center justify-center">
             <Spinner />
             <p>Carregando...</p>
           </div>
         )}
         {!isLoading && (
-        <Paper sx={{ width: '100%', mb: 0, minHeight: 500 }}>
-          <EnhancedTableToolbar numSelected={selected.length} />
-          <TableContainer>
-            <Table
-              sx={{ minWidth: 750 }}
-              aria-labelledby="tableTitle"
-              size={dense ? 'small' : 'medium'}
-            >
-              <EnhancedTableHead
-                numSelected={selected.length}
-                order={order}
-                orderBy={orderBy}
-                onSelectAllClick={handleSelectAllClick}
-                onRequestSort={handleRequestSort}
-                rowCount={rows.length}
-              />
-              {products.length > 0 && (
-                <TableBody 
-                  key={products.id}
-                >
-                  {visibleRows.map((row, index) => {
-                    const isItemSelected = isSelected(row.id);
-                    const labelId = `enhanced-table-checkbox-${index}`;
+          <Paper sx={{ width: "100%", mb: 0, minHeight: 500 }}>
+            <EnhancedTableToolbar numSelected={selected.length} />
+            <TableContainer>
+              <Table
+                sx={{ minWidth: 750 }}
+                aria-labelledby="tableTitle"
+                size={dense ? "small" : "medium"}
+              >
+                <EnhancedTableHead
+                  numSelected={selected.length}
+                  order={order}
+                  orderBy={orderBy}
+                  onSelectAllClick={handleSelectAllClick}
+                  onRequestSort={handleRequestSort}
+                  rowCount={rows.length}
+                />
+                {products.length > 0 && (
+                  <TableBody key={products.id}>
+                    {visibleRows.map((row, index) => {
+                      const isItemSelected = isSelected(row.id);
+                      const labelId = `enhanced-table-checkbox-${index}`;
 
-                    return (
-                      <TableRow
-                        hover
-                        onClick={(event) => handleClick(event, row.id)}
-                        role="checkbox"
-                        aria-checked={isItemSelected}
-                        tabIndex={-1}
-                        key={row.id}
-                        selected={isItemSelected}
-                        sx={{ cursor: 'pointer' }}
-                      >
-                        <TableCell padding="checkbox">
-                          <Checkbox
-                            color="primary"
-                            checked={isItemSelected}
-                            inputProps={{
-                              'aria-labelledby': labelId,
-                            }}
-                          />
-                        </TableCell>
-                        <TableCell
-                          component="th"
-                          id={labelId}
-                          scope="row"
-                          padding="none"
+                      return (
+                        <TableRow
+                          hover
+                          onClick={(event) => handleClick(event, row.id)}
+                          role="checkbox"
+                          aria-checked={isItemSelected}
+                          tabIndex={-1}
+                          key={row.id}
+                          selected={isItemSelected}
+                          sx={{ cursor: "pointer" }}
                         >
-                          {row.name}
-                        </TableCell>
-                        <TableCell align="right">{row.ean}</TableCell>
-                        <TableCell align="right">{row.cost}</TableCell>
-                        <TableCell align="right">{row.price}</TableCell>
-                        <TableCell align="right">{row.profit}</TableCell>
-                        <TableCell align="right">{row.platform}</TableCell>
-                        <TableCell align="right">{row.date.substr(0, 10)}</TableCell>
-                        <TableCell align="right">
-                          <Tooltip title="Deletar">
-                            <IconButton onClick={() => handleRemove(row)}>
-                              <DeleteIcon />
-                            </IconButton>
-                          </Tooltip>
-                          <Link to={`/app/nomaders/products/edit/${row.id}`}>
-                            <Tooltip title="Editar">
-                              <IconButton>
-                                <EditIcon />
+                          <TableCell padding="checkbox">
+                            <Checkbox
+                              color="primary"
+                              checked={isItemSelected}
+                              inputProps={{
+                                "aria-labelledby": labelId,
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell
+                            component="th"
+                            id={labelId}
+                            scope="row"
+                            padding="none"
+                          >
+                            {row.name}
+                          </TableCell>
+                          <TableCell align="right">{row.ean}</TableCell>
+                          <TableCell align="right">{row.cost}</TableCell>
+                          <TableCell align="right">{row.price}</TableCell>
+                          <TableCell align="right">{row.profit}</TableCell>
+                          <TableCell align="right">{row.platform}</TableCell>
+                          <TableCell align="right">
+                            {row.date.substr(0, 10)}
+                          </TableCell>
+                          <TableCell align="right">
+                            <Tooltip title="Deletar">
+                              <IconButton onClick={() => handleRemove(row)}>
+                                <DeleteIcon />
                               </IconButton>
                             </Tooltip>
-                          </Link>
-                        </TableCell>
+                            <Link to={`/app/nomaders/products/edit/${row.id}`}>
+                              <Tooltip title="Editar">
+                                <IconButton>
+                                  <EditIcon />
+                                </IconButton>
+                              </Tooltip>
+                            </Link>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                    {emptyRows > 0 && (
+                      <TableRow
+                        style={{
+                          height: (dense ? 33 : 53) * emptyRows,
+                        }}
+                      >
+                        <TableCell colSpan={6} />
                       </TableRow>
-                    );
-                  })}
-                  {emptyRows > 0 && (
-                    <TableRow
-                      style={{
-                        height: (dense ? 33 : 53) * emptyRows,
-                      }}
-                    >
-                      <TableCell colSpan={6} />
-                    </TableRow>
-                  )}
-                </TableBody>
-              )}
-              {products.length <= 0 && !isLoading && (
-                <caption className="mb-8 mt-24">
-                  <img src={EmptyBox} alt="box" className="ml-[46%]" />
-                  <p className="mt-5 text-center">
-                    Você ainda não tem nenhum produto cadastrado! Clique no
-                    botão
-                    <br />
-                    <strong className="text-primary-indigo">
-                      ‟ADICIONAR”
-                      {' '}
-                    </strong>
-                    para cadastrar o seu primeiro!
-                  </p>
-                </caption>
-              )}
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[8, 10, 25]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </Paper>
+                    )}
+                  </TableBody>
+                )}
+                {products.length <= 0 && !isLoading && (
+                  <caption className="mb-8 mt-24">
+                    <img src={EmptyBox} alt="box" className="ml-[46%]" />
+                    <p className="mt-5 text-center">
+                      Você ainda não tem nenhum produto cadastrado! Clique no
+                      botão
+                      <br />
+                      <strong className="text-primary-indigo">
+                        ‟ADICIONAR”{" "}
+                      </strong>
+                      para cadastrar o seu primeiro!
+                    </p>
+                  </caption>
+                )}
+              </Table>
+            </TableContainer>
+            <TablePagination
+              rowsPerPageOptions={[8, 10, 25]}
+              component="div"
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </Paper>
         )}
         {/* <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
@@ -507,6 +509,5 @@ export default function EnhancedTable() {
         onConfirm={handleConfirm}
       />
     </>
-
   );
 }
