@@ -7,10 +7,14 @@ import { ApiContext } from "../../contexts/ApiContext";
 function ProductCards({ platform }) {
   const { products } = useContext(ApiContext);
 
-  const [distance, setDistance] = useState("");
+  const [distance, setDistance] = useState({
+    selecionado: localStorage.getItem("Option"),
+  });
 
   let preco = 0;
   let lucro = 0;
+
+  console.log(distance);
 
   for (let i = 0; i < products.length; i++) {
     if (products[i].platform === distance.selecionado) {
@@ -19,14 +23,16 @@ function ProductCards({ platform }) {
     }
   }
 
+  localStorage.setItem("Option", distance.selecionado);
+
   return (
     <div className="flex w-full flex-col gap-3 rounded-lg bg-white p-5 dark:bg-primary-blue">
       <header className="flex justify-between">
         <select
           className="dark:text-white/70"
           onChange={(e) => setDistance({ selecionado: e.target.value })}
+          value={localStorage.getItem("Option")}
         >
-          <option className="text-black/40">Selecionar Plataforma</option>
           {platform.map((item) => (
             <option key={item} value={item} className="text-black">
               {item}
