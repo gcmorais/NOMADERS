@@ -7,11 +7,7 @@ import { ApiContext } from "../../contexts/ApiContext";
 function ProductCards({ platform }) {
   const { products } = useContext(ApiContext);
 
-  const [distance, setDistance] = useState({
-    selecionado: platform[0],
-  });
-
-  console.log(distance);
+  const [distance, setDistance] = useState("");
 
   let preco = 0;
   let lucro = 0;
@@ -30,6 +26,7 @@ function ProductCards({ platform }) {
           className="dark:text-white/70"
           onChange={(e) => setDistance({ selecionado: e.target.value })}
         >
+          <option className="text-black/40">Selecionar Plataforma</option>
           {platform.map((item) => (
             <option key={item} value={item} className="text-black">
               {item}
