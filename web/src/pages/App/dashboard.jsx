@@ -139,7 +139,11 @@ function Dashboard() {
     case "February":
       if (monthYear === 2024) {
         valueDefault = valueFebruary;
-        valueComp = [valueFebruary / valueJanuary - 1] * 100;
+        if (valueJanuary > 0) {
+          valueComp = [valueFebruary / valueJanuary - 1] * 100;
+        } else {
+          valueComp = 0;
+        }
       }
       break;
     case "March":
@@ -303,7 +307,11 @@ function Dashboard() {
     case "February":
       if (monthYear === 2024) {
         profitDefault = profitFebruary;
-        profitComp = [profitFebruary / profitJanuary - 1] * 100;
+        if (profitJanuary > 0) {
+          profitComp = [profitFebruary / profitJanuary - 1] * 100;
+        } else {
+          profitComp = 0;
+        }
       }
       break;
     case "March":
