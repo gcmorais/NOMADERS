@@ -2,13 +2,7 @@ import React from "react";
 import { BiSolidBarChartAlt2 } from "react-icons/bi";
 import PropTypes from "prop-types";
 
-function ProductCards({
-  platform,
-  setDistance,
-  preco,
-  lucro,
-  selectValue,
-}) {
+function ProductCards({ platform, setDistance, preco, lucro, selectValue }) {
   return (
     <div className="flex w-full flex-col gap-3 rounded-lg bg-white p-5 dark:bg-primary-blue">
       <header className="flex justify-between">
@@ -35,7 +29,9 @@ function ProductCards({
           <h1 className="text-2xl font-medium dark:text-white">R$ {preco}</h1>
         </div>
         <div>
-          <p className="text-[11px] dark:text-white/50">Lucros totais</p>
+          <p className="text-[11px] text-sm dark:text-white/50">
+            Lucros totais
+          </p>
           <h1
             className={`text-2xl font-medium md:pr-9 ${
               lucro > 0 ? "text-green-500" : "text-red-500"
