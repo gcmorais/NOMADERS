@@ -33,7 +33,7 @@ function AddProductModal({ isOpen, setModalOpen }) {
     return (
       <Login
         navLink={setModalOpen}
-        width="lg:w-[969px]"
+        width="lg:w-[969px] lg:h-[601px]"
         theme="dark:bg-primary-blue dark:fill-white"
       >
         <header className="mb-9 flex flex-col gap-8">
@@ -41,7 +41,7 @@ function AddProductModal({ isOpen, setModalOpen }) {
             Adicionar Produto
           </h1>
         </header>
-        <main className="flex flex-col justify-between gap-10 md:flex-row">
+        <main className="flex flex-col justify-between gap-10 p-10 md:flex-row">
           <div>
             <List checked={checked} setChecked={setChecked} />
           </div>

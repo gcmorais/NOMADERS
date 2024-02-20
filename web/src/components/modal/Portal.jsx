@@ -1,14 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { AiOutlineClose } from 'react-icons/ai';
-import ReactDOM from 'react-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { AiOutlineClose } from "react-icons/ai";
+import ReactDOM from "react-dom";
 
 export default function PortalCreate({
-  children, navLink, width, theme, boxStyle
+  children,
+  navLink,
+  width,
+  theme,
+  boxStyle,
 }) {
   return ReactDOM.createPortal(
-    <div className="fixed inset-0 flex justify-center items-center px-2 backdrop-blur-sm bg-secundary-gray/50 z-30">
-      <div className={`rounded-xl bg-white lg:h-auto ${width} lg:border-0 w-full ${theme}`}>
+    <div className="fixed inset-0 z-30 flex items-center justify-center bg-secundary-gray/50 px-2 backdrop-blur-sm">
+      <div
+        className={`rounded-xl bg-white lg:h-auto ${width} w-full lg:border-0 ${theme}`}
+      >
         <div className="m-2 ">
           <button
             type="button"
@@ -18,12 +24,10 @@ export default function PortalCreate({
             <AiOutlineClose className={`rounded-full fill-black ${theme}`} />
           </button>
         </div>
-        <div className={`mt-10 px-10 lg:mt-0 ${boxStyle}`}>
-          {children}
-        </div>
+        <div className={`mt-10 px-10 lg:mt-0 ${boxStyle}`}>{children}</div>
       </div>
     </div>,
-    document.getElementById('modal-root'),
+    document.getElementById("modal-root"),
   );
 }
 
@@ -37,6 +41,6 @@ PortalCreate.propTypes = {
 
 PortalCreate.defaultProps = {
   navLink: () => {},
-  theme: '',
-  boxStyle: '',
+  theme: "",
+  boxStyle: "",
 };
