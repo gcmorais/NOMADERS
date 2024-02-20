@@ -1,19 +1,20 @@
-import * as React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import CommentIcon from '@mui/icons-material/Comment';
+import * as React from "react";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Checkbox from "@mui/material/Checkbox";
+import IconButton from "@mui/material/IconButton";
+import CommentIcon from "@mui/icons-material/Comment";
+import { ApiContext } from "../../contexts/ApiContext";
 
-export default function CheckboxList() {
-  const [checked, setChecked] = React.useState([0]);
+export default function CheckboxList({ checked, setChecked }) {
+  const { products } = React.useContext(ApiContext);
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+    const newChecked = [];
 
     if (currentIndex === -1) {
       newChecked.push(value);
@@ -25,34 +26,41 @@ export default function CheckboxList() {
   };
 
   return (
-    <List sx={{
-      width: 380, maxWidth: 400, maxHeight: 300, bgcolor: 'background.paper', position: 'relative', overflow: 'auto', color: '#9b9898',
-    }}
+    <List
+      sx={{
+        width: 380,
+        maxWidth: 400,
+        maxHeight: 300,
+        bgcolor: "background.paper",
+        position: "relative",
+        overflow: "auto",
+        color: "#9b9898",
+      }}
     >
-      {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => {
-        const labelId = `checkbox-list-label-${value}`;
+      {products.map((item) => {
+        const labelId = `checkbox-list-label-${item.id}`;
 
         return (
           <ListItem
-            key={value}
-            secondaryAction={(
+            key={item.id}
+            secondaryAction={
               <IconButton edge="end" aria-label="comments">
                 <CommentIcon />
               </IconButton>
-            )}
+            }
             disablePadding
           >
-            <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
+            <ListItemButton role={undefined} onClick={handleToggle(item)} dense>
               <ListItemIcon>
                 <Checkbox
                   edge="start"
-                  checked={checked.indexOf(value) !== -1}
+                  checked={checked.indexOf(item) !== -1}
                   tabIndex={-1}
                   disableRipple
-                  inputProps={{ 'aria-labelledby': labelId }}
+                  inputProps={{ "aria-labelledby": labelId }}
                 />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={`Produto ${value + 1}`} />
+              <ListItemText id={labelId} primary={`${item.name}`} />
             </ListItemButton>
           </ListItem>
         );
