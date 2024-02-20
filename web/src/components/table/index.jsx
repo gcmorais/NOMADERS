@@ -32,6 +32,7 @@ import EmptyBox from "../../assets/empty-box.svg";
 import DeleteProductModal from "../modal/deleteProductModal";
 import Spinner from "../spinner";
 import { ApiContext } from "../../contexts/ApiContext";
+import { FindContext } from "./findSearch";
 
 function createData(name, ean, cost, price, profit, platform, id, date) {
   return {
@@ -189,6 +190,7 @@ EnhancedTableHead.propTypes = {
 
 function EnhancedTableToolbar(props) {
   const { numSelected } = props;
+  const { search, setSearch } = React.useContext(FindContext);
 
   return (
     <Toolbar
@@ -227,6 +229,11 @@ function EnhancedTableToolbar(props) {
         <form className="flex">
           <input
             className="w-[150px] rounded-l-full bg-white px-5 py-2 text-[12px] dark:bg-primary-blue dark:text-white/80 lg:w-[300px]"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyPress={(e) => {
+              e.key === "Enter" && e.preventDefault();
+            }}
             placeholder="Pesquisar..."
           />
           <button
@@ -269,6 +276,7 @@ export default function EnhancedTable() {
   const [deleteProduct, setDeleteProduct] = React.useState(false);
   const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
   const { products, isLoading, loadProducts } = React.useContext(ApiContext);
+  const { search, setSearch } = React.useContext(FindContext);
 
   const rows = [];
 
@@ -363,6 +371,15 @@ export default function EnhancedTable() {
       console.log("Ocorreu um erro ao deletar o produto", error);
     }
   }
+
+  const searchLowerCase = search.toLowerCase();
+
+  const findSearch = rows.filter(
+    (item) =>
+      item.name.toLowerCase().includes(searchLowerCase) ||
+      item.platform.toLowerCase().includes(searchLowerCase),
+  );
+
   return (
     <>
       <Box
@@ -384,8 +401,12 @@ export default function EnhancedTable() {
           </div>
         )}
         {!isLoading && (
-          <Paper sx={{ width: "100%", mb: 0, minHeight: 500 }}>
-            <EnhancedTableToolbar numSelected={selected.length} />
+          <Paper sx={{ width: "100%", mb: 0, minHeight: 650 }}>
+            <EnhancedTableToolbar
+              numSelected={selected.length}
+              search={search}
+              setSearch={setSearch}
+            />
             <TableContainer>
               <Table
                 sx={{ minWidth: 750 }}
@@ -402,63 +423,129 @@ export default function EnhancedTable() {
                 />
                 {products.length > 0 && (
                   <TableBody key={products.id}>
-                    {visibleRows.map((row, index) => {
-                      const isItemSelected = isSelected(row.id);
-                      const labelId = `enhanced-table-checkbox-${index}`;
+                    {search.length === 0
+                      ? visibleRows.map((row, index) => {
+                          const isItemSelected = isSelected(row.id);
+                          const labelId = `enhanced-table-checkbox-${index}`;
 
-                      return (
-                        <TableRow
-                          hover
-                          onClick={(event) => handleClick(event, row.id)}
-                          role="checkbox"
-                          aria-checked={isItemSelected}
-                          tabIndex={-1}
-                          key={row.id}
-                          selected={isItemSelected}
-                          sx={{ cursor: "pointer" }}
-                        >
-                          <TableCell padding="checkbox">
-                            <Checkbox
-                              color="primary"
-                              checked={isItemSelected}
-                              inputProps={{
-                                "aria-labelledby": labelId,
-                              }}
-                            />
-                          </TableCell>
-                          <TableCell
-                            component="th"
-                            id={labelId}
-                            scope="row"
-                            padding="none"
-                          >
-                            {row.name}
-                          </TableCell>
-                          <TableCell align="right">{row.ean}</TableCell>
-                          <TableCell align="right">{row.cost}</TableCell>
-                          <TableCell align="right">{row.price}</TableCell>
-                          <TableCell align="right">{row.profit}</TableCell>
-                          <TableCell align="right">{row.platform}</TableCell>
-                          <TableCell align="right">
-                            {row.date.substr(0, 10)}
-                          </TableCell>
-                          <TableCell align="right">
-                            <Tooltip title="Deletar">
-                              <IconButton onClick={() => handleRemove(row)}>
-                                <DeleteIcon />
-                              </IconButton>
-                            </Tooltip>
-                            <Link to={`/app/nomaders/products/edit/${row.id}`}>
-                              <Tooltip title="Editar">
-                                <IconButton>
-                                  <EditIcon />
-                                </IconButton>
-                              </Tooltip>
-                            </Link>
-                          </TableCell>
-                        </TableRow>
-                      );
-                    })}
+                          return (
+                            <TableRow
+                              hover
+                              onClick={(event) => handleClick(event, row.id)}
+                              role="checkbox"
+                              aria-checked={isItemSelected}
+                              tabIndex={-1}
+                              key={row.id}
+                              selected={isItemSelected}
+                              sx={{ cursor: "pointer" }}
+                            >
+                              <TableCell padding="checkbox">
+                                <Checkbox
+                                  color="primary"
+                                  checked={isItemSelected}
+                                  inputProps={{
+                                    "aria-labelledby": labelId,
+                                  }}
+                                />
+                              </TableCell>
+                              <TableCell
+                                component="th"
+                                id={labelId}
+                                scope="row"
+                                padding="none"
+                              >
+                                {row.name}
+                              </TableCell>
+                              <TableCell align="right">{row.ean}</TableCell>
+                              <TableCell align="right">{row.cost}</TableCell>
+                              <TableCell align="right">{row.price}</TableCell>
+                              <TableCell align="right">{row.profit}</TableCell>
+                              <TableCell align="right">
+                                {row.platform}
+                              </TableCell>
+                              <TableCell align="right">
+                                {row.date.substr(0, 10)}
+                              </TableCell>
+                              <TableCell align="right">
+                                <Tooltip title="Deletar">
+                                  <IconButton onClick={() => handleRemove(row)}>
+                                    <DeleteIcon />
+                                  </IconButton>
+                                </Tooltip>
+                                <Link
+                                  to={`/app/nomaders/products/edit/${row.id}`}
+                                >
+                                  <Tooltip title="Editar">
+                                    <IconButton>
+                                      <EditIcon />
+                                    </IconButton>
+                                  </Tooltip>
+                                </Link>
+                              </TableCell>
+                            </TableRow>
+                          );
+                        })
+                      : findSearch.map((row, index) => {
+                          const isItemSelected = isSelected(row.id);
+                          const labelId = `enhanced-table-checkbox-${index}`;
+
+                          return (
+                            <TableRow
+                              hover
+                              onClick={(event) => handleClick(event, row.id)}
+                              role="checkbox"
+                              aria-checked={isItemSelected}
+                              tabIndex={-1}
+                              key={row.id}
+                              selected={isItemSelected}
+                              sx={{ cursor: "pointer" }}
+                            >
+                              <TableCell padding="checkbox">
+                                <Checkbox
+                                  color="primary"
+                                  checked={isItemSelected}
+                                  inputProps={{
+                                    "aria-labelledby": labelId,
+                                  }}
+                                />
+                              </TableCell>
+                              <TableCell
+                                component="th"
+                                id={labelId}
+                                scope="row"
+                                padding="none"
+                              >
+                                {row.name}
+                              </TableCell>
+                              <TableCell align="right">{row.ean}</TableCell>
+                              <TableCell align="right">{row.cost}</TableCell>
+                              <TableCell align="right">{row.price}</TableCell>
+                              <TableCell align="right">{row.profit}</TableCell>
+                              <TableCell align="right">
+                                {row.platform}
+                              </TableCell>
+                              <TableCell align="right">
+                                {row.date.substr(0, 10)}
+                              </TableCell>
+                              <TableCell align="right">
+                                <Tooltip title="Deletar">
+                                  <IconButton onClick={() => handleRemove(row)}>
+                                    <DeleteIcon />
+                                  </IconButton>
+                                </Tooltip>
+                                <Link
+                                  to={`/app/nomaders/products/edit/${row.id}`}
+                                >
+                                  <Tooltip title="Editar">
+                                    <IconButton>
+                                      <EditIcon />
+                                    </IconButton>
+                                  </Tooltip>
+                                </Link>
+                              </TableCell>
+                            </TableRow>
+                          );
+                        })}
                     {emptyRows > 0 && (
                       <TableRow
                         style={{
