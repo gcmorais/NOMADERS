@@ -21,17 +21,6 @@ class ProductRepository {
     return row;
   }
 
-  async findByEan(ean) {
-    const [row] = await db.query(
-      `
-      SELECT * FROM products
-      WHERE ean = $1
-    `,
-      [ean]
-    );
-    return row;
-  }
-
   async create({ name, ean, platform, cost, salePrice, dateValue }) {
     const [row] = await db.query(
       `

@@ -30,12 +30,6 @@ class ProductController {
       return response.status(400).json({ error: "DateValue é obrigatório!!" });
     }
 
-    const eanExists = await ProductRepository.findByEan(ean);
-
-    if (eanExists) {
-      return response.status(400).json({ error: "Ean já está em uso." });
-    }
-
     const product = await ProductRepository.create({
       name,
       ean,
