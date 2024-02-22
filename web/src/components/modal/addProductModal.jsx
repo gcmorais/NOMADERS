@@ -12,7 +12,6 @@ import { DateMask } from "../../utils/DateMask";
 
 function AddProductModal({ isOpen, setModalOpen }) {
   const [checked, setChecked] = React.useState([]);
-  const [test, setTest] = React.useState([]);
   const [date, setDate] = useState("");
   const [distance, setDistance] = useState({});
 
