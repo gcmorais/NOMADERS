@@ -26,13 +26,15 @@ export default function MenuListComposition() {
   };
 
   const handleClose = (event) => {
-    setOpenModal(true);
-
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
+  };
+
+  const accountHandle = (event) => {
+    setOpen(false);
+    setOpenModal(true);
   };
 
   const navigate = useNavigate();
@@ -97,9 +99,9 @@ export default function MenuListComposition() {
                       aria-labelledby="composition-button"
                       onKeyDown={handleListKeyDown}
                     >
-                      <MenuItem onClick={handleClose}>Minha conta</MenuItem>
+                      <MenuItem onClick={accountHandle}>Minha conta</MenuItem>
                       <MenuItem
-                        onClick={() => singOut()}
+                        onClick={() => handleClose()}
                         data-testid="close-popup"
                       >
                         Sair
