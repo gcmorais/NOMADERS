@@ -1,22 +1,26 @@
-import React, { useContext } from 'react';
-import { FaHome, FaDatabase } from 'react-icons/fa';
-import { BsArrowRight } from 'react-icons/bs';
-import { NavLink, useLocation } from 'react-router-dom';
-import User from '../../assets/user.svg';
-import PersonalMenu from './personalMenu';
-import { AuthContext } from '../../contexts/AuthContext';
+import React, { useContext } from "react";
+import { FaHome, FaDatabase } from "react-icons/fa";
+import { BsArrowRight } from "react-icons/bs";
+import { NavLink, useLocation } from "react-router-dom";
+import User from "../../assets/user.png";
+import PersonalMenu from "./personalMenu";
+import { AuthContext } from "../../contexts/AuthContext";
 
 function DashMenu() {
   const location = useLocation();
   const { infoUserName, infoUserEmail } = useContext(AuthContext);
 
   return (
-    <div className="flex flex-col gap-1.5 w-full lg:w-[270px] ">
-      <div className="lg:h-[13.75vh] flex flex-col justify-center items-left gap-1 bg-secundary-white rounded-lg dark:bg-secundary-blue">
-        <div className="flex justify-center gap-3 lg:justify-around lg:gap-0 items-center p-3 z-10">
-          <img src={User} alt="profile-img" className="pl-1" />
+    <div className="flex w-full flex-col gap-1.5 lg:w-[270px] ">
+      <div className="items-left flex flex-col justify-center gap-1 rounded-lg bg-secundary-white dark:bg-secundary-blue lg:h-[13.75vh]">
+        <div className="z-10 flex items-center justify-center gap-3 p-3 lg:justify-around lg:gap-0">
+          <img
+            src={User}
+            alt="profile-img"
+            className="ml-5 mr-5 h-10 lg:w-16"
+          />
           <div>
-            <h1 className="font-inter font-semibold text-xl text-primary-black dark:text-white/80">
+            <h1 className="font-inter text-sm font-semibold text-primary-black dark:text-white/80">
               {infoUserName}
             </h1>
             <p className="font-inter text-[10.5px] opacity-50 dark:text-secundary-neutral">
@@ -26,12 +30,14 @@ function DashMenu() {
           <PersonalMenu />
         </div>
       </div>
-      <div className="hidden lg:block pt-5 lg:h-full bg-secundary-white rounded-lg dark:bg-secundary-blue">
+      <div className="hidden rounded-lg bg-secundary-white pt-5 dark:bg-secundary-blue lg:block lg:h-full">
         <NavLink
           to="dashboard"
-          className={({ isActive }) => (isActive
-            ? 'w-[90%] flex justify-center gap-10 items-center px-20 py-2 mb-2 lg:mb-10 rounded-r-full bg-primary-indigo text-white'
-            : 'w-[90%] flex justify-center gap-10 items-center px-20 py-2 mb-10 text-[#7E86A8]')}
+          className={({ isActive }) =>
+            isActive
+              ? "mb-2 flex w-[90%] items-center justify-center gap-10 rounded-r-full bg-primary-indigo px-20 py-2 text-white lg:mb-10"
+              : "mb-10 flex w-[90%] items-center justify-center gap-10 px-20 py-2 text-[#7E86A8]"
+          }
         >
           <span className="text-2xl">
             <FaHome />
@@ -41,21 +47,22 @@ function DashMenu() {
             <BsArrowRight />
           </span>
         </NavLink>
-        <p className="hidden lg:block text-[10px] uppercase tracking-widest ml-8  pb-4 text-[#7E86A8]/80">
+        <p className="ml-8 hidden pb-4 text-[10px] uppercase tracking-widest  text-[#7E86A8]/80 lg:block">
           Vendas
         </p>
         <NavLink
           to="products"
-          className={({ isActive }) => (isActive
-            ? 'hidden w-[90%] lg:flex justify-center items-center gap-10 py-2 rounded-r-full text-white bg-primary-indigo'
-            : 'hidden w-[90%] lg:flex justify-center items-center gap-10 py-2 text-[#7E86A8]')}
+          className={({ isActive }) =>
+            isActive
+              ? "hidden w-[90%] items-center justify-center gap-10 rounded-r-full bg-primary-indigo py-2 text-white lg:flex"
+              : "hidden w-[90%] items-center justify-center gap-10 py-2 text-[#7E86A8] lg:flex"
+          }
         >
-          <span className="text-xl mr-2">
+          <span className="mr-2 text-xl">
             <FaDatabase />
           </span>
-          <p className="mr-[70px] text-md font-inter font-medium">Produtos</p>
+          <p className="text-md mr-[70px] font-inter font-medium">Produtos</p>
         </NavLink>
-
       </div>
     </div>
   );
