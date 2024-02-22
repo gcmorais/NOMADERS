@@ -11,7 +11,7 @@ export default function PortalCreate({
   boxStyle,
 }) {
   return ReactDOM.createPortal(
-    <div className="fixed inset-0 z-30 flex items-center justify-center bg-secundary-gray/50 px-2 backdrop-blur-sm">
+    <div className="fixed inset-0 z-30 flex items-center justify-center overflow-hidden bg-secundary-gray/50 px-2 backdrop-blur-sm">
       <div
         className={`rounded-xl bg-white lg:h-auto ${width} w-full lg:border-0 ${theme}`}
       >

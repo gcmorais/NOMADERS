@@ -1,21 +1,23 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/jsx-props-no-spreading */
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Grow from '@mui/material/Grow';
-import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
-import Stack from '@mui/material/Stack';
-import { BiSolidDownArrow } from 'react-icons/bi';
-import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Grow from "@mui/material/Grow";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import MenuItem from "@mui/material/MenuItem";
+import MenuList from "@mui/material/MenuList";
+import Stack from "@mui/material/Stack";
+import { BiSolidDownArrow } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import AccountModal from "../modal/accountModal";
 
 export default function MenuListComposition() {
   const [open, setOpen] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
   const anchorRef = React.useRef(null);
   const { singOut } = useContext(AuthContext);
 
@@ -24,6 +26,8 @@ export default function MenuListComposition() {
   };
 
   const handleClose = (event) => {
+    setOpenModal(true);
+
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -34,10 +38,10 @@ export default function MenuListComposition() {
   const navigate = useNavigate();
 
   function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
+    if (event.key === "Tab") {
       event.preventDefault();
       setOpen(false);
-    } else if (event.key === 'Escape') {
+    } else if (event.key === "Escape") {
       setOpen(false);
     }
   }
@@ -53,55 +57,65 @@ export default function MenuListComposition() {
   }, [open]);
 
   return (
-    <Stack direction="row" spacing={2}>
-      <div>
-        <Button
-          ref={anchorRef}
-          id="composition-button"
-          aria-controls={open ? 'composition-menu' : undefined}
-          aria-expanded={open ? 'true' : undefined}
-          aria-haspopup="true"
-          size="small"
-          onClick={handleToggle}
-          data-testid="open-popup"
-        >
-          <BiSolidDownArrow />
-        </Button>
-        <Popper
-          data-testid="popup-is-open"
-          open={open}
-          anchorEl={anchorRef.current}
-          role={undefined}
-          placement="bottom-start"
-          transition
-          disablePortal
-        >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin:
-                  placement === 'bottom-start' ? 'left top' : 'left bottom',
-              }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList
-                    autoFocusItem={open}
-                    id="composition-menu"
-                    aria-labelledby="composition-button"
-                    onKeyDown={handleListKeyDown}
-                  >
-                    <MenuItem onClick={handleClose}>Perfil</MenuItem>
-                    <MenuItem onClick={handleClose}>Minha conta</MenuItem>
-                    <MenuItem onClick={() => singOut()} data-testid="close-popup">Sair</MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
-    </Stack>
+    <>
+      <Stack direction="row" spacing={2}>
+        <div>
+          <Button
+            ref={anchorRef}
+            id="composition-button"
+            aria-controls={open ? "composition-menu" : undefined}
+            aria-expanded={open ? "true" : undefined}
+            aria-haspopup="true"
+            size="small"
+            onClick={handleToggle}
+            data-testid="open-popup"
+          >
+            <BiSolidDownArrow />
+          </Button>
+          <Popper
+            data-testid="popup-is-open"
+            open={open}
+            anchorEl={anchorRef.current}
+            role={undefined}
+            placement="bottom-start"
+            transition
+            disablePortal
+          >
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                style={{
+                  transformOrigin:
+                    placement === "bottom-start" ? "left top" : "left bottom",
+                }}
+              >
+                <Paper>
+                  <ClickAwayListener onClickAway={handleClose}>
+                    <MenuList
+                      autoFocusItem={open}
+                      id="composition-menu"
+                      aria-labelledby="composition-button"
+                      onKeyDown={handleListKeyDown}
+                    >
+                      <MenuItem onClick={handleClose}>Minha conta</MenuItem>
+                      <MenuItem
+                        onClick={() => singOut()}
+                        data-testid="close-popup"
+                      >
+                        Sair
+                      </MenuItem>
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+        </div>
+      </Stack>
+      <AccountModal
+        isOpen={openModal}
+        setModalOpen={() => setOpenModal(!openModal)}
+      />
+    </>
   );
 }
