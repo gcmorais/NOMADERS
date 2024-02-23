@@ -11,14 +11,14 @@ import MenuList from "@mui/material/MenuList";
 import Stack from "@mui/material/Stack";
 import { BiSolidDownArrow } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
 import AccountModal from "../modal/accountModal";
+import ConfirmModal from "../modal/confirmModal";
 
 export default function MenuListComposition() {
   const [open, setOpen] = React.useState(false);
-  const { signOut } = useContext(AuthContext);
   const [openModal, setOpenModal] = React.useState(false);
+  const [openConfirmDeleteModal, setOpenConfirmDeleteModal] =
+    React.useState(false);
   const anchorRef = React.useRef(null);
 
   const handleToggle = () => {
@@ -34,6 +34,11 @@ export default function MenuListComposition() {
     setOpenModal(true);
   };
 
+  const confirmHandle = () => {
+    setOpen(false);
+    setOpenConfirmDeleteModal(true);
+  };
+
   const navigate = useNavigate();
 
   function handleListKeyDown(event) {
@@ -45,7 +50,6 @@ export default function MenuListComposition() {
     }
   }
 
-  // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
   React.useEffect(() => {
     if (prevOpen.current === true && open === false) {
@@ -97,7 +101,10 @@ export default function MenuListComposition() {
                       onKeyDown={handleListKeyDown}
                     >
                       <MenuItem onClick={accountHandle}>Minha conta</MenuItem>
-                      <MenuItem onClick={signOut} data-testid="close-popup">
+                      <MenuItem
+                        onClick={confirmHandle}
+                        data-testid="close-popup"
+                      >
                         Sair
                       </MenuItem>
                     </MenuList>
@@ -111,6 +118,10 @@ export default function MenuListComposition() {
       <AccountModal
         isOpen={openModal}
         setModalOpen={() => setOpenModal(!openModal)}
+      />
+      <ConfirmModal
+        isOpen={openConfirmDeleteModal}
+        setModalOpen={() => setOpenConfirmDeleteModal(!openConfirmDeleteModal)}
       />
     </>
   );
