@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [infoUserName, setInfoUserName] = useState();
   const [infoUserEmail, setInfoUserEmail] = useState();
+  const [infoUserId, setInfoUserId] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,9 +21,11 @@ export const AuthProvider = ({ children }) => {
         setUser(storageUser);
         const userName = obj.name;
         const userEmail = obj.email;
-        
-        setInfoUserName(userName)
-        setInfoUserEmail(userEmail)
+        const userId = obj.id;
+
+        setInfoUserName(userName);
+        setInfoUserEmail(userEmail);
+        setInfoUserId(userId);
       }
     };
 
@@ -30,47 +33,50 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  
-  async function signIn({email, password}){
+  async function signIn({ email, password }) {
     const info = {
       email,
       password,
-    }
+    };
 
     const response = await UsersService.authUser(info);
 
-    if(response.error){
+    if (response.error) {
       alert(response.error);
     }
 
     setInfoUserName(response.user.name);
     setInfoUserEmail(response.user.email);
+    setInfoUserId(response.user.id);
     setUser(response.user);
     localStorage.setItem("@Auth:token", response.token);
     localStorage.setItem("@Auth:user", JSON.stringify(response.user));
   }
 
-  if(loading){
-    return <h1>Loading....</h1>
+  if (loading) {
+    return <h1>Loading....</h1>;
   }
 
-  const singOut = () => {
+  const signOut = () => {
     setUser(null);
     localStorage.removeItem("@Auth:token");
     localStorage.removeItem("@Auth:user");
     return <Navigate to="/" />;
   };
 
-  return(
-    <AuthContext.Provider value={{
-      user,
-      infoUserName,
-      infoUserEmail,
-      signed: !!user,
-      signIn,
-      singOut
-    }}>
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        infoUserName,
+        infoUserEmail,
+        infoUserId,
+        signed: !!user,
+        signIn,
+        signOut,
+      }}
+    >
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};

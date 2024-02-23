@@ -5,11 +5,14 @@ import { AuthContext } from "../../contexts/AuthContext";
 import Input from "../input/input";
 import FormGroup from "../input/formgroup";
 import useErrors from "../../hooks/useErrors";
+import UsersService from "../../services/UsersService";
 
 function AccountModal({ isOpen, setModalOpen }) {
-  const { infoUserName, infoUserEmail } = useContext(AuthContext);
+  const { signOut, infoUserName, infoUserEmail, infoUserId } =
+    useContext(AuthContext);
   const [name, setName] = useState(infoUserName);
   const [email, setEmail] = useState(infoUserEmail);
+  const [password, setPassword] = useState();
 
   const { setError, removeError, getErrorMessageByFieldName } = useErrors();
 
@@ -33,9 +36,29 @@ function AccountModal({ isOpen, setModalOpen }) {
     }
   }
 
-  function handleSubmit(event) {
+  function handlePasswordChange(event) {
+    setPassword(event.target.value);
+
+    if (!event.target.value) {
+      setError({ field: "password", message: "Senha é obrigatória." });
+    } else {
+      removeError("password");
+    }
+  }
+
+  async function handleSubmit(event) {
     event.preventDefault();
-    console.log("deu certo");
+    try {
+      const data = {
+        name,
+        email,
+        password,
+      };
+      await UsersService.updateUser(infoUserId, data);
+      signOut();
+    } catch (error) {
+      console.log("Ocorreu um erro, tente novamente.", error);
+    }
   }
 
   if (isOpen) {
@@ -65,6 +88,14 @@ function AccountModal({ isOpen, setModalOpen }) {
                   styles="dark:text-white"
                   value={email}
                   change={handleEmailChange}
+                />
+              </FormGroup>
+              <FormGroup error={getErrorMessageByFieldName("password")}>
+                <Input
+                  text="Senha"
+                  styles="dark:text-white"
+                  value={password}
+                  change={handlePasswordChange}
                 />
               </FormGroup>
             </div>

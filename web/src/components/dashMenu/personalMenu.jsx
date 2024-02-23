@@ -17,22 +17,19 @@ import AccountModal from "../modal/accountModal";
 
 export default function MenuListComposition() {
   const [open, setOpen] = React.useState(false);
+  const { signOut } = useContext(AuthContext);
   const [openModal, setOpenModal] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const { singOut } = useContext(AuthContext);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
 
   const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
     setOpen(false);
   };
 
-  const accountHandle = (event) => {
+  const accountHandle = () => {
     setOpen(false);
     setOpenModal(true);
   };
@@ -100,10 +97,7 @@ export default function MenuListComposition() {
                       onKeyDown={handleListKeyDown}
                     >
                       <MenuItem onClick={accountHandle}>Minha conta</MenuItem>
-                      <MenuItem
-                        onClick={() => handleClose()}
-                        data-testid="close-popup"
-                      >
+                      <MenuItem onClick={signOut} data-testid="close-popup">
                         Sair
                       </MenuItem>
                     </MenuList>

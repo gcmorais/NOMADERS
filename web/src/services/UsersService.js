@@ -9,6 +9,10 @@ class UsersService {
     return this.httpClient.post("/user", user);
   }
 
+  updateUser(id, user) {
+    return this.httpClient.put(`/user/${id}`, user);
+  }
+
   authUser(user) {
     return this.httpClient.post("/auth", user);
   }
