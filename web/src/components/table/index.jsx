@@ -143,7 +143,7 @@ function EnhancedTableHead(props) {
     <TableHead>
       <TableRow>
         <TableCell padding="checkbox">
-          <Checkbox
+          {/* <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
@@ -151,7 +151,7 @@ function EnhancedTableHead(props) {
             inputProps={{
               "aria-label": "select all desserts",
             }}
-          />
+          /> */}
         </TableCell>
         {headCells.map((headCell) => (
           <TableCell
@@ -197,34 +197,16 @@ function EnhancedTableToolbar(props) {
       sx={{
         pl: { sm: 2 },
         pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(
-              theme.palette.primary.main,
-              theme.palette.action.activatedOpacity,
-            ),
-        }),
       }}
     >
-      {numSelected > 0 ? (
-        <Typography
-          sx={{ flex: "1 1 100%" }}
-          color="inherit"
-          variant="subtitle1"
-          component="div"
-        >
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Typography
-          sx={{ flex: "1 1 100%" }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-        >
-          Produtos
-        </Typography>
-      )}
+      <Typography
+        sx={{ flex: "1 1 100%" }}
+        variant="h6"
+        id="tableTitle"
+        component="div"
+      >
+        Produtos
+      </Typography>
       <div className="mr-10 hidden rounded-full border-[1px] border-black/10 dark:border-white/10 md:block">
         <form className="flex">
           <input
@@ -245,19 +227,21 @@ function EnhancedTableToolbar(props) {
         </form>
       </div>
 
-      {numSelected > 0 ? (
+      <Tooltip>
+        <Stack direction="row" spacing={2}>
+          <AddToggleMenu />
+        </Stack>
+      </Tooltip>
+
+      {/* {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>
             <DeleteIcon width={1} />
           </IconButton>
         </Tooltip>
       ) : (
-        <Tooltip>
-          <Stack direction="row" spacing={2}>
-            <AddToggleMenu />
-          </Stack>
-        </Tooltip>
-      )}
+        
+      )} */}
     </Toolbar>
   );
 }
@@ -417,7 +401,7 @@ export default function EnhancedTable() {
                   numSelected={selected.length}
                   order={order}
                   orderBy={orderBy}
-                  onSelectAllClick={handleSelectAllClick}
+                  // onSelectAllClick={handleSelectAllClick}
                   onRequestSort={handleRequestSort}
                   rowCount={rows.length}
                 />
@@ -431,22 +415,22 @@ export default function EnhancedTable() {
                           return (
                             <TableRow
                               hover
-                              onClick={(event) => handleClick(event, row.id)}
+                              // onClick={(event) => handleClick(event, row.id)}
                               role="checkbox"
-                              aria-checked={isItemSelected}
+                              // aria-checked={isItemSelected}
                               tabIndex={-1}
                               key={row.id}
-                              selected={isItemSelected}
+                              // selected={isItemSelected}
                               sx={{ cursor: "pointer" }}
                             >
                               <TableCell padding="checkbox">
-                                <Checkbox
+                                {/* <Checkbox
                                   color="primary"
-                                  checked={isItemSelected}
+                                  // checked={isItemSelected}
                                   inputProps={{
                                     "aria-labelledby": labelId,
                                   }}
-                                />
+                                /> */}
                               </TableCell>
                               <TableCell
                                 component="th"
@@ -492,18 +476,18 @@ export default function EnhancedTable() {
                           return (
                             <TableRow
                               hover
-                              onClick={(event) => handleClick(event, row.id)}
+                              // onClick={(event) => handleClick(event, row.id)}
                               role="checkbox"
-                              aria-checked={isItemSelected}
+                              // aria-checked={isItemSelected}
                               tabIndex={-1}
                               key={row.id}
-                              selected={isItemSelected}
+                              // selected={isItemSelected}
                               sx={{ cursor: "pointer" }}
                             >
                               <TableCell padding="checkbox">
                                 <Checkbox
                                   color="primary"
-                                  checked={isItemSelected}
+                                  // checked={isItemSelected}
                                   inputProps={{
                                     "aria-labelledby": labelId,
                                   }}
