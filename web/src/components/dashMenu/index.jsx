@@ -13,12 +13,8 @@ function DashMenu() {
   return (
     <div className="flex w-full flex-col gap-1.5 lg:w-[270px] ">
       <div className="items-left flex flex-col justify-center gap-1 rounded-lg bg-secundary-white dark:bg-secundary-blue lg:h-[13.75vh]">
-        <div className="z-10 flex items-center justify-center gap-3 p-3 lg:justify-around lg:gap-0">
-          <img
-            src={User}
-            alt="profile-img"
-            className="ml-5 mr-5 h-10 lg:w-16"
-          />
+        <div className="z-10 flex items-center justify-center gap-3 p-3 lg:gap-0">
+          <img src={User} alt="profile-img" className="ml-5 mr-5 h-10" />
           <div>
             <h1 className="font-inter text-sm font-semibold text-primary-black dark:text-white/80">
               {infoUserName}
