@@ -19,7 +19,7 @@ function ConfirmModal({ isOpen, setModalOpen }) {
         <div className="mb-10 mt-2 flex justify-around">
           <button
             type="submit"
-            className="text-primary-white"
+            className="dark:text-primary-white"
             onClick={setModalOpen}
           >
             Cancelar
