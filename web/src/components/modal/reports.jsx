@@ -1,47 +1,69 @@
-import React, { useRef } from 'react';
-import Portal from './Portal';
-import { useReactToPrint } from 'react-to-print';
-import ReportsButton from '../button/reportsButton';
-import DashInfo from '../dashInfo';
-import moment from 'moment';
-import AreaChart from '../chart/areaChart';
+import React, { useRef } from "react";
+import Portal from "./Portal";
+import { useReactToPrint } from "react-to-print";
+import ReportsButton from "../button/reportsButton";
+import DashInfo from "../dashInfo";
+import moment from "moment";
+import AreaChart from "../chart/areaChart";
 
-function Reports({isOpen, setOpen, totalSales, totalProfit, January, February, March, April, May, June, July, August, September, October,November, December}) {
+function Reports({
+  isOpen,
+  setOpen,
+  totalSales,
+  totalProfit,
+  January,
+  February,
+  March,
+  April,
+  May,
+  June,
+  July,
+  August,
+  September,
+  October,
+  November,
+  December,
+}) {
   const contentDocument = useRef();
 
   const handlePrint = useReactToPrint({
     content: () => contentDocument.current,
   });
-  
+
   const onClose = () => {
-    setOpen(false)
+    setOpen(false);
   };
 
-  const dataAtual = moment().format('DD-MM-YYYY');
+  const dataAtual = moment().format("DD-MM-YYYY");
 
-  if(isOpen){
+  if (isOpen) {
     return (
-      <Portal navLink={onClose} width="w-[900px]" boxStyle={"overflow-scroll overflow-x-hidden h-[600px]"}>
-        <header className='flex items-center justify-between pb-6'>
-          <p className='opacity-25'>
-            Para baixar clique no botão:
-          </p>
-          <ReportsButton click={handlePrint} icon={true} text={"Baixar"} aditionalStyles={'p-3 w-[120px]'}/>
+      <Portal
+        navLink={onClose}
+        width="w-[899px]"
+        boxStyle={"overflow-scroll overflow-x-hidden h-[600px]"}
+      >
+        <header className="flex items-center justify-between pb-6">
+          <p className="opacity-25">Para baixar clique no botão:</p>
+          <ReportsButton
+            click={handlePrint}
+            icon={true}
+            text={"Baixar"}
+            aditionalStyles={"p-3 w-[120px]"}
+          />
         </header>
-        <main ref={contentDocument} className='p-10'>
-          <header className='flex items-center justify-between pb-6'>
+        <main ref={contentDocument} className="p-10">
+          <header className="flex items-center justify-between pb-6">
             <h1>Reports financeiros</h1>
             <h1>
-              <span className='opacity-30 mr-2'>
-                emitido em:
-              </span> 
+              <span className="mr-2 opacity-30">emitido em:</span>
               {dataAtual}
             </h1>
           </header>
           <main>
             <section>
               <hr />
-              <h3 className='mt-4'>Relação de lucro totais: </h3>
+              <h3 className="mt-4">Relação de lucro totais: </h3>
               <br />
               <DashInfo
                 headerText="Vendas Totais"
@@ -61,9 +83,9 @@ function Reports({isOpen, setOpen, totalSales, totalProfit, January, February, M
 
             <section>
               <hr />
-              <h3 className='mt-4'>Relação de lucro por mês: </h3>
+              <h3 className="mt-4">Relação de lucro por mês: </h3>
               <br />
-              <AreaChart 
+              <AreaChart
                 January={January}
                 February={February}
                 March={March}
@@ -80,16 +102,16 @@ function Reports({isOpen, setOpen, totalSales, totalProfit, January, February, M
             </section>
           </main>
           <footer>
-            <p className='opacity-30 text-center mt-52'>
+            <p className="mt-52 text-center opacity-30">
               para mais informações acesse: www.nomaders.com
             </p>
           </footer>
         </main>
       </Portal>
-    )
+    );
   }
 
   return null;
 }
 
-export default Reports
+export default Reports;
