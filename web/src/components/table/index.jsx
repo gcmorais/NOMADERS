@@ -65,6 +65,7 @@ function getComparator(order, orderBy) {
 
 function stableSort(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
+  console.log(stabilizedThis);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) {
@@ -182,7 +183,7 @@ function EnhancedTableHead(props) {
 EnhancedTableHead.propTypes = {
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
+  onSelectAllClick: PropTypes.func,
   order: PropTypes.oneOf(["asc", "desc"]).isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
@@ -252,7 +253,7 @@ EnhancedTableToolbar.propTypes = {
 
 export default function EnhancedTable() {
   const [order, setOrder] = React.useState("desc");
-  const [orderBy, setOrderBy] = React.useState("date");
+  const [orderBy, setOrderBy] = React.useState("");
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense] = React.useState(false);
@@ -265,7 +266,7 @@ export default function EnhancedTable() {
   const rows = [];
 
   products.map((item) =>
-    rows.push(
+    rows.unshift(
       createData(
         item.name,
         item.ean,
@@ -332,7 +333,6 @@ export default function EnhancedTable() {
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
   const visibleRows = React.useMemo(
     () =>
       stableSort(rows, getComparator(order, orderBy)).slice(
