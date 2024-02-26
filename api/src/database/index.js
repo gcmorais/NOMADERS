@@ -1,7 +1,6 @@
-const { Pool } = require("pg");
+const { Client } = require("pg");
 
-const pool = new Pool({
-  connectionString: process.env.POSTGRES_URL,
+const client = new Client({
   host: "localhost",
   port: 5432,
   user: "root",
@@ -9,12 +8,9 @@ const pool = new Pool({
   database: "nomaders",
 });
 
-pool.connect((err) => {
-  if (err) throw err;
-  console.log("Connect to PosgreSQL successfully!");
-});
+client.connect();
 
 exports.query = async (query, values) => {
-  const { rows } = await pool.query(query, values);
+  const { rows } = await client.query(query, values);
   return rows;
 };
