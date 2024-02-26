@@ -71,13 +71,6 @@ class ProductController {
     if (!findProductById) {
       response.status(404).json({ error: "Produto não encontrado." });
     }
-
-    const productEan = await ProductRepository.findByEan(ean);
-
-    if (productEan && productEan.id !== id) {
-      return response.status(400).json({ error: "Ean já está em uso." });
-    }
-
     if (!name) {
       response.status(404).json({ error: "Nome é obrigatório." });
     }
