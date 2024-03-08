@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
-import { BsArrowLeft } from 'react-icons/bs';
-import Laptop from '../../assets/laptop.svg';
-import StarsIndigo from '../../assets/starsindigo.svg';
-import SignUp from '../../components/modal/signUp';
-import SignIn from '../../components/modal/signIn';
+import React, { useState } from "react";
+import { Link, Outlet } from "react-router-dom";
+import { BsArrowLeft } from "react-icons/bs";
+import Laptop from "../../assets/laptop.svg";
+import StarsIndigo from "../../assets/starsindigo.svg";
+import SignUp from "../../components/modal/signUp";
+import SignIn from "../../components/modal/signIn";
 
 function LoginPage() {
   const [openUpModal, setOpenUpModal] = useState(false);
@@ -36,7 +36,7 @@ function LoginPage() {
             </h1>
             <div className="lg:flex mt-2 mb-14 lg:mb-0">
               <div className="flex flex-col gap-2 items-center lg:items-start">
-                <Link to="/app/signup">
+                <Link to="/signup">
                   <button
                     type="button"
                     className="flex justify-center text-center items-center rounded-full bg-primary-indigo text-white 2xl:w-[280px] px-[43px] h-10 "
@@ -51,7 +51,7 @@ function LoginPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-2 mt-7 lg:mt-0 items-center">
-                <Link to="/app/signin">
+                <Link to="/signin">
                   <button
                     type="button"
                     className="flex justify-center text-center items-center rounded-full bg-primary-indigo text-white 2xl:w-[270px] px-[62px] h-10"

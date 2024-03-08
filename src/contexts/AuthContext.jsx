@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import UsersService from "../services/UsersService";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -10,6 +10,8 @@ export const AuthProvider = ({ children }) => {
   const [infoUserEmail, setInfoUserEmail] = useState();
   const [infoUserId, setInfoUserId] = useState();
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadingStoreData = () => {
@@ -61,7 +63,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem("@Auth:token");
     localStorage.removeItem("@Auth:user");
-    return <Navigate to="/" />;
+    return navigate("/");
   };
 
   return (

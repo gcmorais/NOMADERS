@@ -30,7 +30,7 @@ function NewProduct() {
       <div className="ml-20 pt-10">
         <p className="flex items-center gap-3 text-black dark:text-white">
           <BsArrowLeft />
-          <Link to="/app/nomaders/products">Ir para tabela</Link>
+          <Link to="/app/products">Ir para tabela</Link>
         </p>
       </div>
       <div className="flex flex-col items-center justify-center p-[173px]">
