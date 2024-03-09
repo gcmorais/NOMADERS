@@ -1,23 +1,30 @@
 import React, {
   createContext,
   useCallback,
+  useContext,
   useEffect,
   useMemo,
   useState,
 } from "react";
 import PropTypes from "prop-types";
+import { api } from "../services/api";
+import { AuthContext } from "./AuthContext";
 
 export const ApiContext = createContext({});
 
 function ApiProvider({ children }) {
   const [products, setProducts] = useState([]);
+  const [getUser, setGetUser] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const { user } = useContext(AuthContext);
 
-  const loadProducts = useCallback(async () => {
+  const loadUser = useCallback(async () => {
     try {
-      const productList = await ProductsServices.listProducts();
-      setProducts(productList);
+      const response = await api.get(`/user/${user}`);
+      setGetUser(response);
+      console.log(response);
+      return response.data;
     } catch {
       setHasError(true);
     } finally {
@@ -26,17 +33,18 @@ function ApiProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    loadProducts();
-  }, [loadProducts]);
+    loadUser();
+  }, [loadUser]);
 
   const product = useMemo(
     () => ({
       products,
       isLoading,
-      loadProducts,
+      loadUser,
       hasError,
+      getUser,
     }),
-    [products, isLoading, loadProducts, hasError]
+    [products, isLoading, loadUser, hasError, getUser]
   );
 
   return <ApiContext.Provider value={product}>{children}</ApiContext.Provider>;
