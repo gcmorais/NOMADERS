@@ -33,7 +33,7 @@ import Spinner from "../spinner";
 import { ApiContext } from "../../contexts/ApiContext";
 import { FindContext } from "./findSearch";
 
-function createData(name, ean, cost, price, profit, platform, id, date) {
+function createData(name, ean, cost, price, profit, platform, id, createdAt) {
   return {
     name,
     ean,
@@ -42,7 +42,7 @@ function createData(name, ean, cost, price, profit, platform, id, date) {
     profit,
     platform,
     id,
-    date,
+    createdAt,
   };
 }
 
@@ -258,22 +258,25 @@ export default function EnhancedTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(8);
   const [deleteProduct, setDeleteProduct] = React.useState(false);
   const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
-  const { products, isLoading, loadProducts } = React.useContext(ApiContext);
+  const { products, isLoading, loadProducts, produtos } =
+    React.useContext(ApiContext);
   const { search, setSearch } = React.useContext(FindContext);
 
   const rows = [];
 
-  products.map((item) =>
+  console.log(produtos);
+
+  produtos.map((item) =>
     rows.unshift(
       createData(
         item.name,
         item.ean,
         item.cost,
-        item.saleprice,
-        item.saleprice - item.cost,
+        item.salePrice,
+        item.salePrice - item.cost,
         item.platform,
         item.id,
-        item.datevalue
+        item.createdAt
       )
     )
   );
@@ -403,8 +406,8 @@ export default function EnhancedTable() {
                   onRequestSort={handleRequestSort}
                   rowCount={rows.length}
                 />
-                {products.length > 0 && (
-                  <TableBody key={products.id}>
+                {produtos.length > 0 && (
+                  <TableBody key={produtos.id}>
                     {search.length === 0
                       ? visibleRows.map((row, index) => {
                           const isItemSelected = isSelected(row.id);
@@ -446,7 +449,7 @@ export default function EnhancedTable() {
                                 {row.platform}
                               </TableCell>
                               <TableCell align="right">
-                                {row.date.substr(0, 10)}
+                                {row.createdAt.substr(0, 10)}
                               </TableCell>
                               <TableCell align="right">
                                 <Tooltip title="Deletar">
@@ -507,7 +510,7 @@ export default function EnhancedTable() {
                                 {row.platform}
                               </TableCell>
                               <TableCell align="right">
-                                {row.date.substr(0, 10)}
+                                {row.createdAt.substr(0, 10)}
                               </TableCell>
                               <TableCell align="right">
                                 <Tooltip title="Deletar">
@@ -539,7 +542,7 @@ export default function EnhancedTable() {
                     )}
                   </TableBody>
                 )}
-                {products.length <= 0 && !isLoading && (
+                {produtos.length <= 0 && !isLoading && (
                   <caption className="mb-8 mt-24">
                     <img src={EmptyBox} alt="box" className="ml-[46%]" />
                     <p className="mt-5 text-center">

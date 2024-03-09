@@ -14,6 +14,7 @@ export const ApiContext = createContext({});
 
 function ApiProvider({ children }) {
   const [products, setProducts] = useState([]);
+  const [produtos, setProdutos] = useState([]);
   const [getUser, setGetUser] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -22,9 +23,8 @@ function ApiProvider({ children }) {
   const loadUser = useCallback(async () => {
     try {
       const response = await api.get(`/user/${user}`);
-      setGetUser(response);
-      console.log(response);
-      return response.data;
+      setGetUser(response.data);
+      setProdutos(response.data.Products);
     } catch {
       setHasError(true);
     } finally {
@@ -39,12 +39,13 @@ function ApiProvider({ children }) {
   const product = useMemo(
     () => ({
       products,
+      produtos,
       isLoading,
       loadUser,
       hasError,
       getUser,
     }),
-    [products, isLoading, loadUser, hasError, getUser]
+    [products, produtos, isLoading, loadUser, hasError, getUser]
   );
 
   return <ApiContext.Provider value={product}>{children}</ApiContext.Provider>;
