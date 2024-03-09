@@ -2,7 +2,6 @@ import React from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import ProductForm from "../../components/productForm";
-import ProductsServices from "../../services/ProductsService";
 import { ApiContext } from "../../contexts/ApiContext";
 
 function NewProduct() {

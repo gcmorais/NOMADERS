@@ -1,8 +1,11 @@
 import React, {
-  createContext, useCallback, useEffect, useMemo, useState,
-} from 'react';
-import PropTypes from 'prop-types';
-import ProductsServices from '../services/ProductsService';
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import PropTypes from "prop-types";
 
 export const ApiContext = createContext({});
 
@@ -28,16 +31,15 @@ function ApiProvider({ children }) {
 
   const product = useMemo(
     () => ({
-      products, isLoading, loadProducts, hasError,
+      products,
+      isLoading,
+      loadProducts,
+      hasError,
     }),
-    [products, isLoading, loadProducts, hasError],
+    [products, isLoading, loadProducts, hasError]
   );
 
-  return (
-    <ApiContext.Provider value={product}>
-      {children}
-    </ApiContext.Provider>
-  );
+  return <ApiContext.Provider value={product}>{children}</ApiContext.Provider>;
 }
 
 ApiProvider.propTypes = {

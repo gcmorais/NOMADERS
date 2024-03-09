@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import UsersService from "../services/UsersService";
 import { useNavigate } from "react-router-dom";
+import { api } from "../services/api";
 
 export const AuthContext = createContext();
 
@@ -41,18 +41,19 @@ export const AuthProvider = ({ children }) => {
       password,
     };
 
-    const response = await UsersService.authUser(info);
+    const response = await api.post("/login", info);
 
     if (response.error) {
       alert(response.error);
     }
 
-    setInfoUserName(response.user.name);
-    setInfoUserEmail(response.user.email);
-    setInfoUserId(response.user.id);
-    setUser(response.user);
-    localStorage.setItem("@Auth:token", response.token);
-    localStorage.setItem("@Auth:user", JSON.stringify(response.user));
+    setInfoUserName(response.data.name);
+    setInfoUserEmail(response.data.email);
+    setInfoUserId(response.data.id);
+    setUser(response.data);
+    console.log(response.data.user);
+    localStorage.setItem("@Auth:user", JSON.stringify(response.data.user.id));
+    localStorage.setItem("@Auth:token", response.data.token);
   }
 
   if (loading) {

@@ -7,7 +7,6 @@ import Select from "../input/select";
 import useErrors from "../../hooks/useErrors";
 import FormGroup from "../input/formgroup";
 import { ApiContext } from "../../contexts/ApiContext";
-import ProductsServices from "../../services/ProductsService";
 import { DateMask } from "../../utils/DateMask";
 
 function AddProductModal({ isOpen, setModalOpen }) {

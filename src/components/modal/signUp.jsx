@@ -8,7 +8,7 @@ import Input from "../input/input";
 import useErrors from "../../hooks/useErrors";
 import isEmailValid from "../../utils/isEmailValid";
 import FormGroup from "../input/formgroup";
-import UsersService from "../../services/UsersService";
+import { api } from "../../services/api";
 
 function SignUp({ isOpen }) {
   const [name, setName] = useState("");
@@ -35,8 +35,8 @@ function SignUp({ isOpen }) {
         email,
         password,
       };
-      const response = await UsersService.createUser(data);
-      console.log(response);
+      const response = await api.post("/user", data);
+      console.log(response.data);
     } catch (error) {
       console.log("Ocorreu um erro no seu registro,tente novamente.", error);
     }

@@ -21,6 +21,7 @@
     "@tanstack/react-table": "^8.10.1",
     "antd": "^5.9.0",
     "apexcharts": "^3.42.0",
+    "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.4",

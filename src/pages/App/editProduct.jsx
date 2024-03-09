@@ -1,9 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import { BsArrowLeft } from 'react-icons/bs';
-import { Link, useParams } from 'react-router-dom';
-import ProductForm from '../../components/productForm';
-import ProductsServices from '../../services/ProductsService';
-import { ApiContext } from '../../contexts/ApiContext';
+import React, { useEffect, useRef } from "react";
+import { BsArrowLeft } from "react-icons/bs";
+import { Link, useParams } from "react-router-dom";
+import ProductForm from "../../components/productForm";
+import { ApiContext } from "../../contexts/ApiContext";
 
 function EditProduct() {
   const productFormRef = useRef(null);
@@ -17,7 +16,7 @@ function EditProduct() {
 
         productFormRef.current.setFieldsValues(data);
       } catch {
-        console.log('deu erro');
+        console.log("deu erro");
       }
     }
     loadProduct();
@@ -36,7 +35,7 @@ function EditProduct() {
       loadProducts();
       console.log(response);
     } catch (error) {
-      console.log('Ocorreu um erro :(', error);
+      console.log("Ocorreu um erro :(", error);
     }
   }
   return (
@@ -44,9 +43,7 @@ function EditProduct() {
       <div className="ml-20 pt-10">
         <p className="flex items-center gap-3 text-black dark:text-white">
           <BsArrowLeft />
-          <Link to="/app/nomaders/products">
-            Ir para tabela
-          </Link>
+          <Link to="/app/nomaders/products">Ir para tabela</Link>
         </p>
       </div>
       <div className="p-[173px] flex items-center justify-center flex-col">

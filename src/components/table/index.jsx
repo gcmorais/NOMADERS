@@ -27,7 +27,6 @@ import { Stack } from "@mui/material";
 
 import EditIcon from "@mui/icons-material/Edit";
 import AddToggleMenu from "./addToggleMenu";
-import ProductsService from "../../services/ProductsService";
 import EmptyBox from "../../assets/empty-box.svg";
 import DeleteProductModal from "../modal/deleteProductModal";
 import Spinner from "../spinner";
@@ -274,9 +273,9 @@ export default function EnhancedTable() {
         item.saleprice - item.cost,
         item.platform,
         item.id,
-        item.datevalue,
-      ),
-    ),
+        item.datevalue
+      )
+    )
   );
 
   const handleRequestSort = (event, property) => {
@@ -307,7 +306,7 @@ export default function EnhancedTable() {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
+        selected.slice(selectedIndex + 1)
       );
     }
 
@@ -336,9 +335,9 @@ export default function EnhancedTable() {
     () =>
       stableSort(rows, getComparator(order, orderBy)).slice(
         page * rowsPerPage,
-        page * rowsPerPage + rowsPerPage,
+        page * rowsPerPage + rowsPerPage
       ),
-    [order, orderBy, page, rowsPerPage, rows],
+    [order, orderBy, page, rowsPerPage, rows]
   );
 
   function handleRemove(row) {
@@ -360,7 +359,7 @@ export default function EnhancedTable() {
   const findSearch = rows.filter(
     (item) =>
       item.name.toLowerCase().includes(searchLowerCase) ||
-      item.platform.toLowerCase().includes(searchLowerCase),
+      item.platform.toLowerCase().includes(searchLowerCase)
   );
 
   return (

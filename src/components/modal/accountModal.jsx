@@ -5,7 +5,6 @@ import { AuthContext } from "../../contexts/AuthContext";
 import Input from "../input/input";
 import FormGroup from "../input/formgroup";
 import useErrors from "../../hooks/useErrors";
-import UsersService from "../../services/UsersService";
 
 function AccountModal({ isOpen, setModalOpen }) {
   const { signOut, infoUserName, infoUserEmail, infoUserId } =
