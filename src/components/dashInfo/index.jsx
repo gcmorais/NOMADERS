@@ -21,12 +21,17 @@ function DashInfo({ headerText, mainValue, footerValue, footerText, icon }) {
       <footer className="mt-2 flex items-center gap-2">
         {icon && (
           <>
-            {footerValue >= 0 && (
+            {Number(footerValue) === 0 && (
+              <span className="text-xl text-blue-500">
+                <IoIosArrowDropupCircle />
+              </span>
+            )}
+            {Number(footerValue) > 0 && (
               <span className="text-xl text-green-500">
                 <IoIosArrowDropupCircle />
               </span>
             )}
-            {footerValue < 0 && (
+            {Number(footerValue) < 0 && (
               <span className="text-xl text-red-500">
                 <IoIosArrowDropdownCircle />
               </span>
@@ -35,9 +40,13 @@ function DashInfo({ headerText, mainValue, footerValue, footerText, icon }) {
         )}
 
         <p className="flex text-primary-gray/80 lg:text-sm 2xl:text-base">
-          {footerValue >= 0 ? (
+          {Number(footerValue) === 0 && (
+            <strong className="mr-1 text-blue-500">{footerValue}</strong>
+          )}
+          {Number(footerValue) > 0 && (
             <strong className="mr-1 text-green-500">{footerValue}</strong>
-          ) : (
+          )}
+          {Number(footerValue) < 0 && (
             <strong className="mr-1 text-red-500">{footerValue}</strong>
           )}
           {footerText}
