@@ -5,10 +5,11 @@ import { NavLink, useLocation } from "react-router-dom";
 import User from "../../assets/user.png";
 import PersonalMenu from "./personalMenu";
 import { AuthContext } from "../../contexts/AuthContext";
+import { ApiContext } from "../../contexts/ApiContext";
 
 function DashMenu() {
   const location = useLocation();
-  const { infoUserName, infoUserEmail } = useContext(AuthContext);
+  const { getUser } = useContext(ApiContext);
 
   return (
     <div className="flex w-full flex-col gap-1.5 lg:w-[270px] ">
@@ -17,10 +18,10 @@ function DashMenu() {
           <img src={User} alt="profile-img" className="ml-5 mr-5 h-10" />
           <div>
             <h1 className="font-inter text-sm font-semibold text-primary-black dark:text-white/80">
-              {infoUserName}
+              {getUser.name}
             </h1>
             <p className="font-inter text-[10.5px] opacity-50 dark:text-secundary-neutral">
-              {infoUserEmail}
+              {getUser.email}
             </p>
           </div>
           <PersonalMenu />

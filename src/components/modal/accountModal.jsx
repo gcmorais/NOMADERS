@@ -5,12 +5,16 @@ import { AuthContext } from "../../contexts/AuthContext";
 import Input from "../input/input";
 import FormGroup from "../input/formgroup";
 import useErrors from "../../hooks/useErrors";
+import { ApiContext } from "../../contexts/ApiContext";
+import { api } from "../../services/api";
 
 function AccountModal({ isOpen, setModalOpen }) {
-  const { signOut, infoUserName, infoUserEmail, infoUserId } =
-    useContext(AuthContext);
-  const [name, setName] = useState(infoUserName);
-  const [email, setEmail] = useState(infoUserEmail);
+  const { signOut } = useContext(AuthContext);
+
+  const { getUser } = useContext(ApiContext);
+
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   const { setError, removeError, getErrorMessageByFieldName } = useErrors();
@@ -53,7 +57,7 @@ function AccountModal({ isOpen, setModalOpen }) {
         email,
         password,
       };
-      await UsersService.updateUser(infoUserId, data);
+      await api.put(`/user/${getUser.id}`, data);
       signOut();
     } catch (error) {
       console.log("Ocorreu um erro, tente novamente.", error);
@@ -77,7 +81,7 @@ function AccountModal({ isOpen, setModalOpen }) {
                 <Input
                   text="Nome do usuário"
                   styles="dark:text-white"
-                  value={name}
+                  value={getUser.name}
                   change={handleNameChange}
                 />
               </FormGroup>
@@ -85,7 +89,7 @@ function AccountModal({ isOpen, setModalOpen }) {
                 <Input
                   text="Email"
                   styles="dark:text-white"
-                  value={email}
+                  value={getUser.email}
                   change={handleEmailChange}
                 />
               </FormGroup>
