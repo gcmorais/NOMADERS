@@ -11,6 +11,8 @@ function ProductCards({ platform, setDistance, preco, lucro, selectValue }) {
           onChange={(e) => setDistance({ selecionado: e.target.value })}
           value={selectValue}
         >
+          <option>Selecionar</option>
+
           {platform.map((item) => (
             <option key={item} value={item} className="text-black">
               {item}

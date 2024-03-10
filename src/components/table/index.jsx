@@ -32,6 +32,7 @@ import DeleteProductModal from "../modal/deleteProductModal";
 import Spinner from "../spinner";
 import { ApiContext } from "../../contexts/ApiContext";
 import { FindContext } from "./findSearch";
+import { api } from "../../services/api";
 
 function createData(name, ean, cost, price, profit, platform, id, createdAt) {
   return {
@@ -258,13 +259,10 @@ export default function EnhancedTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(8);
   const [deleteProduct, setDeleteProduct] = React.useState(false);
   const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
-  const { products, isLoading, loadProducts, produtos } =
-    React.useContext(ApiContext);
+  const { isLoading, loadUser, produtos } = React.useContext(ApiContext);
   const { search, setSearch } = React.useContext(FindContext);
 
   const rows = [];
-
-  console.log(produtos);
 
   produtos.map((item) =>
     rows.unshift(
@@ -349,9 +347,9 @@ export default function EnhancedTable() {
   }
   async function handleConfirm() {
     try {
-      await ProductsService.deleteProduct(deleteProduct.id);
+      await api.delete(`/product/${deleteProduct.id}`);
       setOpenDeleteModal(false);
-      loadProducts();
+      loadUser();
     } catch (error) {
       console.log("Ocorreu um erro ao deletar o produto", error);
     }
@@ -457,9 +455,7 @@ export default function EnhancedTable() {
                                     <DeleteIcon />
                                   </IconButton>
                                 </Tooltip>
-                                <Link
-                                  to={`/app/nomaders/products/edit/${row.id}`}
-                                >
+                                <Link to={`/app/products/edit/${row.id}`}>
                                   <Tooltip title="Editar">
                                     <IconButton>
                                       <EditIcon />
@@ -518,9 +514,7 @@ export default function EnhancedTable() {
                                     <DeleteIcon />
                                   </IconButton>
                                 </Tooltip>
-                                <Link
-                                  to={`/app/nomaders/products/edit/${row.id}`}
-                                >
+                                <Link to={`/app/products/edit/${row.id}`}>
                                   <Tooltip title="Editar">
                                     <IconButton>
                                       <EditIcon />

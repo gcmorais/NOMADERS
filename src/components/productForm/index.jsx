@@ -30,15 +30,15 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit, edit }, ref) => {
         setEan(data.ean);
         setPlatform(data.platform);
         setCost(data.cost);
-        setSalePrice(data.saleprice);
-        setDateValue(data.datevalue);
+        setSalePrice(data.salePrice);
+        setDateValue(data.createdAt);
       },
     }),
-    [],
+    []
   );
 
   const autoNavigate = () => {
-    navigate("/app/nomaders/products");
+    navigate("/app/products");
   };
 
   function handleNameChange(event) {
@@ -90,7 +90,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit, edit }, ref) => {
     }
   }
   function handleDateValueChange(event) {
-    setDateValue(DateMask(event.target.value));
+    setDateValue(DateMask());
 
     if (!event.target.value) {
       setError({ field: "date-value", message: "Insira uma data válida" });
@@ -128,7 +128,7 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit, edit }, ref) => {
           {title}
         </h1>
       </header>
-      <main>
+      <main className="lg:w-[40%]">
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <FormGroup error={getErrorMessageByFieldName("name")}>
             <Input
@@ -159,12 +159,12 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit, edit }, ref) => {
               valueMask={23}
             />
           </FormGroup>
-          <div className="flex gap-5">
+          <div className="2xl:flex justify-between">
             <FormGroup error={getErrorMessageByFieldName("cost")}>
               <Input
                 text="Custo"
                 placeholder="R$"
-                styles="dark:text-white"
+                styles=" dark:text-white"
                 value={cost}
                 change={handleCostChange}
                 valueMask={4}
@@ -179,16 +179,6 @@ const ProductForm = forwardRef(({ title, btnLabel, onSubmit, edit }, ref) => {
                 value={salePrice}
                 change={handleSalePriceChange}
                 valueMask={4}
-              />
-            </FormGroup>
-            <FormGroup error={getErrorMessageByFieldName("date-value")}>
-              <Input
-                text="Data de venda"
-                styles="dark:text-white"
-                value={dateValue.substr(0, 20)}
-                change={handleDateValueChange}
-                date={true}
-                valueMask={10}
               />
             </FormGroup>
           </div>

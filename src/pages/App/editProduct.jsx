@@ -3,20 +3,21 @@ import { BsArrowLeft } from "react-icons/bs";
 import { Link, useParams } from "react-router-dom";
 import ProductForm from "../../components/productForm";
 import { ApiContext } from "../../contexts/ApiContext";
+import { api } from "../../services/api";
 
 function EditProduct() {
   const productFormRef = useRef(null);
   const { id } = useParams();
-  const { loadProducts } = React.useContext(ApiContext);
+  const { loadUser } = React.useContext(ApiContext);
 
   useEffect(() => {
     async function loadProduct() {
       try {
-        const data = await ProductsServices.getProductById(id);
+        const response = await api.get(`/product/${id}`);
 
-        productFormRef.current.setFieldsValues(data);
+        productFormRef.current.setFieldsValues(response.data);
       } catch {
-        console.log("deu erro");
+        console.log("Ocorreu um erro, tente novamente.");
       }
     }
     loadProduct();
@@ -29,13 +30,12 @@ function EditProduct() {
         platform: formData.platform,
         cost: formData.cost,
         salePrice: formData.salePrice,
-        dateValue: formData.dateValue,
+        createdAt: formData.createdAt,
       };
-      const response = await ProductsServices.updateProduct(id, data);
-      loadProducts();
-      console.log(response);
+      await api.put(`/product/${id}`, data);
+      loadUser();
     } catch (error) {
-      console.log("Ocorreu um erro :(", error);
+      console.log("Ocorreu um erro, tente novamente.", error);
     }
   }
   return (
@@ -43,7 +43,7 @@ function EditProduct() {
       <div className="ml-20 pt-10">
         <p className="flex items-center gap-3 text-black dark:text-white">
           <BsArrowLeft />
-          <Link to="/app/nomaders/products">Ir para tabela</Link>
+          <Link to="/app/products">Ir para tabela</Link>
         </p>
       </div>
       <div className="p-[173px] flex items-center justify-center flex-col">

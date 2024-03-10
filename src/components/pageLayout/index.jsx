@@ -6,7 +6,7 @@ import HeaderApp from "../headerApp";
 import { ApiContext } from "../../contexts/ApiContext";
 
 function LayoutPage({ children }) {
-  const { products } = useContext(ApiContext);
+  const { produtos } = useContext(ApiContext);
 
   let precoA = 0;
   let lucroA = 0;
@@ -36,29 +36,29 @@ function LayoutPage({ children }) {
     selecionado: localStorage.getItem("CardD"),
   });
 
-  for (let i = 0; i < products.length; i++) {
-    if (products[i].platform === cardA.selecionado) {
-      precoA += Number(products[i].cost);
-      lucroA += products[i].saleprice - products[i].cost;
+  for (let i = 0; i < produtos.length; i++) {
+    if (produtos[i].platform === cardA.selecionado) {
+      precoA += Number(produtos[i].cost);
+      lucroA += produtos[i].salePrice - produtos[i].cost;
     }
 
-    if (products[i].platform === cardB.selecionado) {
-      precoB += Number(products[i].cost);
-      lucroB += products[i].saleprice - products[i].cost;
+    if (produtos[i].platform === cardB.selecionado) {
+      precoB += Number(produtos[i].cost);
+      lucroB += produtos[i].salePrice - produtos[i].cost;
     }
 
-    if (products[i].platform === cardC.selecionado) {
-      precoC += Number(products[i].cost);
-      lucroC += products[i].saleprice - products[i].cost;
+    if (produtos[i].platform === cardC.selecionado) {
+      precoC += Number(produtos[i].cost);
+      lucroC += produtos[i].salePrice - produtos[i].cost;
     }
 
-    if (products[i].platform === cardD.selecionado) {
-      precoD += Number(products[i].cost);
-      lucroD += products[i].saleprice - products[i].cost;
+    if (produtos[i].platform === cardD.selecionado) {
+      precoD += Number(produtos[i].cost);
+      lucroD += produtos[i].salePrice - produtos[i].cost;
     }
   }
 
-  let plataforma = products.map((item) => {
+  let plataforma = produtos.map((item) => {
     return item.platform;
   });
 

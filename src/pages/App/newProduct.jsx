@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import ProductForm from "../../components/productForm";
 import { ApiContext } from "../../contexts/ApiContext";
+import { AuthContext } from "../../contexts/AuthContext";
+import { api } from "../../services/api";
 
 function NewProduct() {
-  const { loadProducts } = React.useContext(ApiContext);
+  const { loadUser } = useContext(ApiContext);
+  const { user } = useContext(AuthContext);
 
   async function handleSubmit(formData) {
     try {
@@ -15,10 +18,10 @@ function NewProduct() {
         platform: formData.platform,
         cost: formData.cost,
         salePrice: formData.salePrice,
-        dateValue: formData.dateValue,
+        userId: user,
       };
-      const response = await ProductsServices.createProduct(data);
-      loadProducts();
+      const response = await api.post("/product", data);
+      loadUser();
       console.log(response);
     } catch (error) {
       console.log("Ocorreu um erro :(", error);
@@ -32,7 +35,7 @@ function NewProduct() {
           <Link to="/app/products">Ir para tabela</Link>
         </p>
       </div>
-      <div className="flex flex-col items-center justify-center p-[173px]">
+      <div className="flex flex-col items-center justify-center lg:p-[173px] pt-[100px]">
         <ProductForm
           title="Novo Produto"
           btnLabel="Registrar Produto"

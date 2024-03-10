@@ -10,7 +10,7 @@ import CommentIcon from "@mui/icons-material/Comment";
 import { ApiContext } from "../../contexts/ApiContext";
 
 export default function CheckboxList({ checked, setChecked }) {
-  const { products } = React.useContext(ApiContext);
+  const { products, produtos } = React.useContext(ApiContext);
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -37,7 +37,7 @@ export default function CheckboxList({ checked, setChecked }) {
         color: "#9b9898",
       }}
     >
-      {products.map((item) => {
+      {produtos.map((item) => {
         const labelId = `checkbox-list-label-${item.id}`;
 
         return (

@@ -8,14 +8,14 @@ import useErrors from "../../hooks/useErrors";
 import FormGroup from "../input/formgroup";
 import { ApiContext } from "../../contexts/ApiContext";
 import { DateMask } from "../../utils/DateMask";
+import { api } from "../../services/api";
+import { AuthContext } from "../../contexts/AuthContext";
 
 function AddProductModal({ isOpen, setModalOpen }) {
   const [checked, setChecked] = React.useState([]);
-  const [date, setDate] = useState("");
-  const [distance, setDistance] = useState({});
-
-  const { loadProducts } = useContext(ApiContext);
-  const { products } = useContext(ApiContext);
+  const [distance, setDistance] = useState({ selecionado: "" });
+  const { user } = useContext(AuthContext);
+  const { produtos, loadUser } = useContext(ApiContext);
 
   async function handleSubmit(formData) {
     formData.preventDefault();
@@ -25,18 +25,17 @@ function AddProductModal({ isOpen, setModalOpen }) {
         ean: checked[0].ean,
         platform: distance.selecionado,
         cost: checked[0].cost,
-        salePrice: checked[0].saleprice,
-        dateValue: date,
+        salePrice: checked[0].salePrice,
+        userId: user,
       };
-      const response = await ProductsServices.createProduct(data);
-      loadProducts();
-      console.log(response);
+      await api.post("/product", data);
+      loadUser();
     } catch (error) {
       console.log("Ocorreu um erro, tente novamente mais tarde.", error);
     }
   }
 
-  let plataforma = products.map((item) => {
+  let plataforma = produtos.map((item) => {
     return item.platform;
   });
 
@@ -44,20 +43,9 @@ function AddProductModal({ isOpen, setModalOpen }) {
     return plataforma.indexOf(este) === i;
   });
 
-  const { setError, removeError, getErrorMessageByFieldName, errors } =
-    useErrors();
+  const { errors } = useErrors();
 
-  const isFormValid = date && errors.length === 0;
-
-  function handleDateChange(event) {
-    setDate(DateMask(event.target.value));
-
-    if (!event.target.value) {
-      setError({ field: "data", message: "Data é obrigatória." });
-    } else {
-      removeError("data");
-    }
-  }
+  const isFormValid = errors.length === 0 && distance.selecionado !== "";
 
   if (isOpen) {
     return (
@@ -71,11 +59,11 @@ function AddProductModal({ isOpen, setModalOpen }) {
             Adicionar Produto
           </h1>
         </header>
-        <main className="flex flex-col justify-between gap-10 p-10 md:flex-row">
+        <main className="flex flex-col justify-center gap-10 p-10 md:flex-row">
           <div>
             <List checked={checked} setChecked={setChecked} />
           </div>
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 w-[100%]">
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div>
                 {checked.map((item) => {
@@ -107,7 +95,7 @@ function AddProductModal({ isOpen, setModalOpen }) {
                               Preço de venda
                             </p>
                             <span className="text-black/80 dark:text-primary-white">
-                              R$ {item.saleprice}
+                              R$ {item.salePrice}
                             </span>
                           </div>
                           <div>
@@ -115,7 +103,7 @@ function AddProductModal({ isOpen, setModalOpen }) {
                               Lucro
                             </p>
                             <span className="text-green-600">
-                              R$ {item.saleprice - item.cost}
+                              R$ {item.salePrice - item.cost}
                             </span>
                           </div>
                         </div>
@@ -125,16 +113,6 @@ function AddProductModal({ isOpen, setModalOpen }) {
                 })}
               </div>
               <div className="flex gap-5">
-                <FormGroup error={getErrorMessageByFieldName("date-value")}>
-                  <Input
-                    text="Data de venda"
-                    styles="dark:text-white"
-                    value={date.substr(0, 20)}
-                    change={handleDateChange}
-                    date={true}
-                    valueMask={10}
-                  />
-                </FormGroup>
                 <FormGroup styles="w-full">
                   <p className="font-inter text-sm font-semibold opacity-70 dark:text-white">
                     Plataforma
@@ -145,6 +123,7 @@ function AddProductModal({ isOpen, setModalOpen }) {
                       setDistance({ selecionado: e.target.value })
                     }
                   >
+                    <option />
                     {novaArr.map((item) => (
                       <option
                         key={item}
