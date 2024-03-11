@@ -19,8 +19,13 @@ function ApiProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const { user } = useContext(AuthContext);
+  const [logUser, setLogUser] = useState(user);
 
-  const loadUser = useCallback(async () => {
+  if (user !== logUser) {
+    setLogUser(user);
+  }
+
+  async function loadUser() {
     try {
       const response = await api.get(`/user/${user}`);
       setGetUser(response.data);
@@ -30,11 +35,11 @@ function ApiProvider({ children }) {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }
 
   useEffect(() => {
     loadUser();
-  }, [loadUser]);
+  }, []);
 
   const product = useMemo(
     () => ({

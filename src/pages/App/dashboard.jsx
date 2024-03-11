@@ -12,7 +12,12 @@ import ErrorMessage from "../../components/errorMessage";
 import Reports from "../../components/modal/reports";
 
 function Dashboard() {
-  const { isLoading, hasError, produtos } = useContext(ApiContext);
+  const { isLoading, hasError, produtos, loadUser } = useContext(ApiContext);
+
+  useEffect(() => {
+    loadUser();
+    console.log("teste");
+  }, []);
 
   const [openModal, setOpenModal] = useState(false);
 
