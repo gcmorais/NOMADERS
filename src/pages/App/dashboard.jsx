@@ -16,7 +16,6 @@ function Dashboard() {
 
   useEffect(() => {
     loadUser();
-    console.log("teste");
   }, []);
 
   const [openModal, setOpenModal] = useState(false);
