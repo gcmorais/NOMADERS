@@ -7,7 +7,7 @@ import React, {
   useState,
 } from "react";
 import PropTypes from "prop-types";
-import { api } from "../services/api";
+import { api, getAuthorizationHeader } from "../services/api";
 import { AuthContext } from "./AuthContext";
 
 export const ApiContext = createContext({});
@@ -27,7 +27,9 @@ function ApiProvider({ children }) {
 
   async function loadUser() {
     try {
-      const response = await api.get(`/user/${user}`);
+      const response = await api.get(`/user/${user}`, {
+        headers: { Authorization: getAuthorizationHeader() },
+      });
       setGetUser(response.data);
       setProdutos(response.data.Products);
     } catch {
@@ -36,10 +38,6 @@ function ApiProvider({ children }) {
       setIsLoading(false);
     }
   }
-
-  useEffect(() => {
-    loadUser();
-  }, []);
 
   const product = useMemo(
     () => ({

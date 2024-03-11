@@ -12,7 +12,9 @@ import ErrorMessage from "../../components/errorMessage";
 import Reports from "../../components/modal/reports";
 
 function Dashboard() {
-  const { isLoading, hasError, produtos, loadUser } = useContext(ApiContext);
+  const { isLoading, produtos, loadUser } = useContext(ApiContext);
+
+  console.log("chamou dashboard");
 
   useEffect(() => {
     loadUser();
@@ -511,8 +513,8 @@ function Dashboard() {
           <p className="dark:text-white">Carregando...</p>
         </div>
       )}
-      {hasError && !isLoading && <ErrorMessage />}
-      {!isLoading && !hasError && (
+
+      {!isLoading && (
         <section
           data-testid="dashboard-background"
           className="mt-2 w-full rounded-lg bg-secundary-white dark:bg-secundary-blue lg:mt-0"

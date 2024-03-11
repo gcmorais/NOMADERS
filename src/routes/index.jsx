@@ -25,15 +25,11 @@ function AppDash() {
 }
 
 function ProductsDash() {
-  const { hasError } = useContext(ApiContext);
   return (
     <>
-      {hasError && <ErrorMessage />}
-      {!hasError && (
-        <LayoutPage>
-          <Outlet />
-        </LayoutPage>
-      )}
+      <LayoutPage>
+        <Outlet />
+      </LayoutPage>
     </>
   );
 }
