@@ -14,8 +14,6 @@ import Reports from "../../components/modal/reports";
 function Dashboard() {
   const { isLoading, produtos, loadUser } = useContext(ApiContext);
 
-  console.log("chamou dashboard");
-
   useEffect(() => {
     loadUser();
   }, []);
