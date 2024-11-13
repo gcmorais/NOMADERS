@@ -1,8 +1,6 @@
 <h1 align="center">NOMADERS</h1>
 <p align="center">
 
-![preview](EM_BREVE)
-
 ## Projeto
 
 NOMADERS é uma plataforma de gerenciamento de vendas projetada para usuários comerciais.
